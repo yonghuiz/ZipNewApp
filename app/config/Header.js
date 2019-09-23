@@ -3,7 +3,7 @@
  */
 import Storage from 'react-native-storage'
 import {
-    AsyncStorage,
+    
     Dimensions,
     Platform,
     PermissionsAndroid,
@@ -11,6 +11,7 @@ import {
     StatusBar,
     Alert,
 } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import {Navigation} from 'react-native-navigation'
 
 const {DeviceOperate} = NativeModules;
