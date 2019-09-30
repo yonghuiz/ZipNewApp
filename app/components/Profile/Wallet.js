@@ -21,6 +21,7 @@ import {
     DEL_CARDCREDIT,
 } from '../../config/API'
 import ZIPText from '../ZIPText'
+import {Navigation} from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     container: {
@@ -140,15 +141,30 @@ class Wallet extends Component {
     }
 
     _addCard() {
-        this.props.navigator.push({
-            screen:'BindCreditCard',
-            title:'Add credit card',
-            navigatorStyle:navigatorStyle,
-            animationType: 'slide-horizontal',
-            passProps:{
-                fromWallet:true,
-            }
-        })
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: 'BindCreditCard',
+                passProps: {
+                    fromWallet:true
+                    },
+                options: {
+                  topBar: {
+                    title: {
+                      text: 'Add credit card'
+                    }
+                  }
+                }
+              }
+          });
+        // this.props.navigator.push({
+        //     screen:'BindCreditCard',
+        //     title:'Add credit card',
+        //     navigatorStyle:navigatorStyle,
+        //     animationType: 'slide-horizontal',
+        //     passProps:{
+        //         fromWallet:true,
+        //     }
+        // })
     }
 
     setDefaultCard(data,index) {
@@ -331,16 +347,32 @@ class Wallet extends Component {
                         activeOpacity={1}
                         onPress={()=>{
                             if (this.props.card !== null) {
-                                this.props.navigator.push({
-                                    screen: 'Recharge',
-                                    title: 'Recharge',
-                                    navigatorStyle: navigatorStyle,
-                                    animationType: 'slide-horizontal',
+                                Navigation.push(this.props.componentId, {
+                                component: {
+                                    name: 'Recharge',
                                     passProps: {
                                         card: this.props.card,
-                                        fromLocker:this.props.fromLocker,
+                                       fromLocker:this.props.fromLocker,
+                                        },
+                                    options: {
+                                    topBar: {
+                                        title: {
+                                        text: 'Recharge'
+                                        }
                                     }
-                                })
+                                    }
+                                }
+                            });
+                                // this.props.navigator.push({
+                                //     screen: 'Recharge',
+                                //     title: 'Recharge',
+                                //     navigatorStyle: navigatorStyle,
+                                //     animationType: 'slide-horizontal',
+                                //     passProps: {
+                                //         card: this.props.card,
+                                //         fromLocker:this.props.fromLocker,
+                                //     }
+                                // })
                             }
                         }}
                     >

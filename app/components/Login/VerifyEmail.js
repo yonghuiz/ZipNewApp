@@ -27,12 +27,12 @@ class VerifyEmail extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            emailCode:'',
+            emailCode: '',
             showCount: false,
             count: 59,
-            canSendVCode:true,
+            canSendVCode: true,
 
-            hudType:'none',
+            hudType: 'none',
         }
     }
 
@@ -44,33 +44,33 @@ class VerifyEmail extends PureComponent {
 
 
         this.setState({
-            hudType:'none'
-        },()=>{
+            hudType: 'none'
+        }, () => {
             this.hud.show('sending code to your email');
         });
 
         let param = new FormData();
         //param.append('email',this.state.email);
-        netWork('POST',RESEND_EMAIL,param,true)
-            .then(json=>{
+        netWork('POST', RESEND_EMAIL, param, true)
+            .then(json => {
                 this.setState({
-                    hudType:'success'
-                },()=>{
-                    this.hud.show(`We have sent a new code to ${this.props.email}, please check your email.`,3000);
+                    hudType: 'success'
+                }, () => {
+                    this.hud.show(`We have sent a new code to ${this.props.email}, please check your email.`, 3000);
                 });
             })
-            .catch(err=>{
+            .catch(err => {
                 this.setState({
-                    hudType:'error',
-                },()=>{
-                    this.hud.show(err,3000);
+                    hudType: 'error',
+                }, () => {
+                    this.hud.show(err, 3000);
                 })
             })
     }
 
     doneButtonColor() {
         if (
-            this.state.emailCode.length !== 0 
+            this.state.emailCode.length !== 0
         ) {
             return 'rgba(42,187,103,1)'
         } else {
@@ -80,7 +80,7 @@ class VerifyEmail extends PureComponent {
 
     doneTextColor() {
         if (
-            this.state.emailCode.length !== 0 
+            this.state.emailCode.length !== 0
         ) {
             return 'white'
         } else {
@@ -91,8 +91,8 @@ class VerifyEmail extends PureComponent {
     verifyEmailCode() {
         if (this.state.hudType !== 'none') {
             this.setState({
-                hudType:'none',
-            },()=>{
+                hudType: 'none',
+            }, () => {
                 this.hud.show('Please wait');
             })
         } else {
@@ -100,44 +100,45 @@ class VerifyEmail extends PureComponent {
         }
 
         let param = new FormData();
-        param.append('vcode',this.state.emailCode);
-        let showError = (err)=>{
+        param.append('vcode', this.state.emailCode);
+        let showError = (err) => {
             this.setState({
-                hudType:'error',
-            },()=>{
-                this.hud.show('Fail to verify email,please check your email,input the newest code.',5000);
+                hudType: 'error',
+            }, () => {
+                this.hud.show('Fail to verify email,please check your email,input the newest code.', 5000);
             })
         }
-        netWork('POST',VERIFY_EMAIL,param,true)
-            .then(json=>{
-                if(json.ret!=0){
+        netWork('POST', VERIFY_EMAIL, param, true)
+            .then(json => {
+                if (json.ret != 0) {
                     showError(json.ret);
                     return;
                 }
                 this.setState({
-                    hudType:'success',
-                },()=>{                   
-                    this.hud.show(json.msg,2000);
+                    hudType: 'success',
+                }, () => {
+                    this.hud.show(json.msg, 2000);
                     this.props.getMember();
-                    this.time = setTimeout(()=>{
-                        this.props.navigator.pop();
-                    },2000);
+                    this.time = setTimeout(() => {
+                        Navigation.pop(this.props.componentId);
+                        //this.props.navigator.pop();
+                    }, 2000);
                 });
 
-                
+
             })
-            .catch(err=>{ showError(err)})
+            .catch(err => { showError(err) })
     }
 
     render() {
         return (
-            <View style={{flex:1, backgroundColor:'white'}}>
-                <StatusBar barStyle="light-content" animated={true}/>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <StatusBar barStyle="light-content" animated={true} />
                 <KeyboardAwareScrollView
-                    style={{flex:1}}
+                    style={{ flex: 1 }}
                     contentContainerStyle={{
-                        flexDirection:'column',
-                        padding:8,
+                        flexDirection: 'column',
+                        padding: 8,
                     }}
                     keyboardShouldPersistTaps={'handled'}
                 >
@@ -183,7 +184,7 @@ class VerifyEmail extends PureComponent {
                             marginTop: 16,
                         }}
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             Keyboard.dismiss();
                             if (this.doneTextColor() === 'white') {
                                 this.verifyEmailCode();
@@ -200,7 +201,7 @@ class VerifyEmail extends PureComponent {
                         </ZIPText>
                     </TouchableOpacity>
                 </KeyboardAwareScrollView>
-                <Hud ref={r=>this.hud = r} hudType={this.state.hudType}/>
+                <Hud ref={r => this.hud = r} hudType={this.state.hudType} />
             </View>
         )
     }
@@ -209,9 +210,9 @@ class VerifyEmail extends PureComponent {
 
 
 export default connect(
-    (state)=>({email: state.zipporaHome.member.member.email,}),
-    (dispatch)=>({
-        getMember:()=>dispatch(zipporaHomeActions.getMember()),
-        loadProfile:()=>dispatch(ziplockerProfileActions.loadProfile()),
+    (state) => ({ email: state.zipporaHome.member.member.email, }),
+    (dispatch) => ({
+        getMember: () => dispatch(zipporaHomeActions.getMember()),
+        loadProfile: () => dispatch(ziplockerProfileActions.loadProfile()),
     })
 )(VerifyEmail)

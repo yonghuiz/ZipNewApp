@@ -147,7 +147,8 @@ class NewDeliverPay extends PureComponent {
                     this.hud.show(json.msg, 1500);
                 });
                 this.time = setTimeout(() => {
-                    this.props.navigator.pop();
+                    Navigation.pop(this.props.componentId);
+                  //  this.props.navigator.pop();
                 }, 1500);
             })
             .catch(err => {

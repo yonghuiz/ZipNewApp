@@ -222,12 +222,25 @@ export default class Register extends PureComponent {
                     this.hud.show(json.msg,1500);
                 });
                 this.time = setTimeout(()=>{
-                    this.props.navigator.push({
-                        screen: 'AddAddress',
-                        title: 'Add a delivery address',
-                        animationType: 'slide-horizontal',
-                        navigatorStyle: navigatorStyle,
-                    })
+                    Navigation.push(this.props.componentId, {
+                        component: {
+                            name: 'AddAddress',
+
+                            options: {
+                                topBar: {
+                                    title: {
+                                        text: 'Add a delivery address',
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    // this.props.navigator.push({
+                    //     screen: 'AddAddress',
+                    //     title: 'Add a delivery address',
+                    //     animationType: 'slide-horizontal',
+                    //     navigatorStyle: navigatorStyle,
+                    // })
                 },1500);
             })
             .catch(err=>{
@@ -270,21 +283,48 @@ export default class Register extends PureComponent {
                     userInfo.memberId = json.data.memberId;
                     userInfo.psd = json.data.psd;
                     if (json.data.statusDetail.hasBindAddress == 0) {
-                        this.props.navigator.push({
-                            screen: 'AddAddress',
-                            title: 'Add a delivery address',
-                            animationType: 'slide-horizontal',
-                            navigatorStyle: navigatorStyle,
-                        })
+                        Navigation.push(this.props.componentId, {
+                            component: {
+                                name: 'AddAddress',
+    
+                                options: {
+                                    topBar: {
+                                        title: {
+                                            text: 'Add a delivery address',
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                        // this.props.navigator.push({
+                        //     screen: 'AddAddress',
+                        //     title: 'Add a delivery address',
+                        //     animationType: 'slide-horizontal',
+                        //     navigatorStyle: navigatorStyle,
+                        // })
                     } else {
                         if (json.data.serviceMode == null) {
-                            this.props.navigator.push({
-                                screen: 'ChooseModel',
-                                title: 'Choose your use model',
-                                backButtonTitle: 'Back',
-                                animationType: 'slide-horizontal',
-                                navigatorStyle: navigatorStyle,
+                            Navigation.push(this.props.componentId, {
+                                component: {
+                                    name: 'ChooseModel',
+        
+                                    options: {
+                                        topBar: {
+                                            title: {
+                                                text: 'Choose your use model',
+                                            }
+                                        }
+                                    }
+                                }
                             });
+
+                            // this.props.navigator.push({
+                            //     screen: 'ChooseModel',
+                            //     title: 'Choose your use model',
+                            //     backButtonTitle: 'Back',
+                            //     animationType: 'slide-horizontal',
+                            //     navigatorStyle: navigatorStyle,
+                            // });
                         } else {
                             storage.save({
                                 key: 'isLogin',
@@ -306,52 +346,82 @@ export default class Register extends PureComponent {
                                 expires: null,
                             });
                             if (json.data.serviceMode === 'ziplocker') {
-                                Navigation.startSingleScreenApp({
-                                    screen: {
-                                        screen: 'ZipLockerHome',
-                                        navigatorStyle: navigatorStyle,
-                                    },
-                                    appStyle: {
-                                        orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
-                                        hideBackButtonTitle: true
-                                    },
-                                    drawer: {
-                                        left: { // optional, define if you want a drawer from the left
-                                            screen: 'DrawerScreen',
-                                        },
-                                        style: {
-                                            drawerShadow: false,
-                                            leftDrawerWidth: 60,
-                                            contentOverlayColor: 'rgba(0,0,0,0.25)',
-                                        },
-                                        disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
-                                    },
-                                    animationType: 'fade',
-                                });
+                                Navigation.setRoot({
+                                    root: {
+                                      stack: {
+                                        id: 'Stack.Home3',
+                                        children: [
+                                          {
+                                            component: {
+                                               id: 'ZipLockerHome',
+                                               name: 'ZipLockerHome',
+                                           },
+                                         },
+                                        ],
+                                      }
+                                    }
+                                  });
+                                // Navigation.startSingleScreenApp({
+                                //     screen: {
+                                //         screen: 'ZipLockerHome',
+                                //         navigatorStyle: navigatorStyle,
+                                //     },
+                                //     appStyle: {
+                                //         orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
+                                //         hideBackButtonTitle: true
+                                //     },
+                                //     drawer: {
+                                //         left: { // optional, define if you want a drawer from the left
+                                //             screen: 'DrawerScreen',
+                                //         },
+                                //         style: {
+                                //             drawerShadow: false,
+                                //             leftDrawerWidth: 60,
+                                //             contentOverlayColor: 'rgba(0,0,0,0.25)',
+                                //         },
+                                //         disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+                                //     },
+                                //     animationType: 'fade',
+                                // });
 
                             } else {
-                                Navigation.startSingleScreenApp({
-                                    screen: {
-                                        screen: 'ZipporaHome',
-                                        navigatorStyle: navigatorStyle,
-                                    },
-                                    appStyle: {
-                                        orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
-                                        hideBackButtonTitle: true
-                                    },
-                                    drawer: {
-                                        left: { // optional, define if you want a drawer from the left
-                                            screen: 'DrawerScreen',
-                                        },
-                                        style: {
-                                            drawerShadow: false,
-                                            leftDrawerWidth: 60,
-                                            contentOverlayColor: 'rgba(0,0,0,0.25)',
-                                        },
-                                        disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
-                                    },
-                                    animationType: 'fade'
-                                })
+                                Navigation.setRoot({
+                                    root: {
+                                      stack: {
+                                        id: 'Stack.Home2',
+                                        children: [
+                                          {
+                                            component: {
+                                               id: 'ZipporaHome',
+                                               name: 'ZipporaHome',
+                                           },
+                                         },
+                                        ],
+                                      }
+                                    }
+                                  });
+                                // Navigation.startSingleScreenApp({
+                                //     screen: {
+                                //         screen: 'ZipporaHome',
+                                //         navigatorStyle: navigatorStyle,
+                                //     },
+                                //     appStyle: {
+                                //         orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
+                                //         hideBackButtonTitle: true
+                                //     },
+                                //     drawer: {
+                                //         left: { // optional, define if you want a drawer from the left
+                                //             screen: 'DrawerScreen',
+                                //         },
+                                //         style: {
+                                //             drawerShadow: false,
+                                //             leftDrawerWidth: 60,
+                                //             contentOverlayColor: 'rgba(0,0,0,0.25)',
+                                //         },
+                                //         disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+                                //     },
+                                //     animationType: 'fade'
+                                // })
                             }
                         }
                     }
@@ -568,12 +638,25 @@ export default class Register extends PureComponent {
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={()=>{
-                            this.props.navigator.push({
-                                screen: 'NewRegister',
-                                title: 'Sign Up',
-                                navigatorStyle: navigatorStyle,
-                                animationType: 'slide-horizontal',
-                            });
+                            Navigation.push(this.props.componentId, {
+                        component: {
+                            name: 'NewRegister',
+
+                            options: {
+                                topBar: {
+                                    title: {
+                                        text: 'Sign Up',
+                                    }
+                                }
+                            }
+                        }
+                    });
+                            // this.props.navigator.push({
+                            //     screen: 'NewRegister',
+                            //     title: 'Sign Up',
+                            //     navigatorStyle: navigatorStyle,
+                            //     animationType: 'slide-horizontal',
+                            // });
                         }}
                         style={{
                             alignItems:'center',

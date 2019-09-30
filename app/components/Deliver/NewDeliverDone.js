@@ -125,7 +125,8 @@ class NewDeliverDone extends PureComponent {
                     this.props.loadPickList();
                     this.props.getDeliverList();
                     this.time = setTimeout(()=>{
-                        this.props.navigator.popToRoot();
+                        Navigation.popToRoot(this.props.componentId);
+                        //this.props.navigator.popToRoot();
                     },1500);
                 })
                 .catch(err=>{
@@ -136,7 +137,8 @@ class NewDeliverDone extends PureComponent {
                     })
                 })
         } else {
-            this.props.navigator.popToRoot();
+            Navigation.popToRoot(this.props.componentId);
+           // this.props.navigator.popToRoot();
         }
     }
 

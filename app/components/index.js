@@ -3,8 +3,9 @@
  */
 
 import '../config';
+import React from 'react';
 import { Navigation } from 'react-native-navigation'
-
+import App from '../App'
 import Deliver from './Deliver/Deliver'
 import MyPickup from './MyPick/MyPickup'
 import NewDeliver from './Deliver/NewDeliver'
@@ -66,7 +67,7 @@ import NewApartment from './Zippora/NewApartment'
 import ZipporaSelectAPT from './Zippora/ZipporaSelectAPT'
 import ZipporaSelectUnit from './Zippora/ZipporaSelectUnit'
 import UploadCertificate from './Zippora/UploadCertificate'
-import ZipporaHome from './Zippora/ZipporaHome'
+import  ZipporaHome from './Zippora/ZipporaHome'
 import ZipporaLog from './Zippora/ZipporaLog'
 import ZipporaAPTInfo from './Zippora/ZipproaAPTInfo';
 import ZipproaLocation from './Zippora/ZipproaLocation'
@@ -74,62 +75,67 @@ import BackButton from './BackButton'
 import UserAgreement from './Login/UserAgreement'
 
 export function registerScreens(store, Provider) {
-    Navigation.registerComponent('Deliver',()=>Deliver,store,Provider);
-    Navigation.registerComponent('MyPickup',()=>MyPickup,store,Provider);
-    Navigation.registerComponent('NewDeliver',()=>NewDeliver,store,Provider);
-    Navigation.registerComponent('NewDeliverPay',()=>NewDeliverPay,store,Provider);
+    
+    Navigation.registerComponent('APP1',()=>App);
+    Navigation.registerComponent('MyPickup',() => (props) => (
+        <Provider store={store}>
+          <MyPickup {...props} />
+    </Provider>),()=>MyPickup);
+    Navigation.registerComponent('NewDeliver',() => (props) => (<Provider store={store}><NewDeliver {...props} /></Provider>),()=>NewDeliver);
+    Navigation.registerComponent('NewDeliverPay',() => (props) => (<Provider store={store}><NewDeliverPay {...props} /></Provider>),()=>NewDeliverPay);
     Navigation.registerComponent('ZiplockerLocation',()=>ZiplockerLocation);
-    Navigation.registerComponent('NewDeliverDone',()=>NewDeliverDone,store,Provider);
-    Navigation.registerComponent('NewDeliverUploadImage',()=>NewDeliverUploadImage,store,Provider);
-    Navigation.registerComponent('DeliverInfo',()=>DeliverInfo,store,Provider);
+    Navigation.registerComponent('NewDeliverDone',() => (props) => (<Provider store={store}><NewDeliverDone {...props} /></Provider>),()=>NewDeliverDone);
+    Navigation.registerComponent('NewDeliverUploadImage',() => (props) => (<Provider store={store}><NewDeliverUploadImage {...props} /></Provider>),()=>NewDeliverUploadImage);
+    Navigation.registerComponent('DeliverInfo',() => (props) => (<Provider store={store}><DeliverInfo {...props} /></Provider>),()=>DeliverInfo);
     Navigation.registerComponent('DeclareDeliver',()=>DeclareDeliver);
     Navigation.registerComponent('EditDeclareImages',()=>EditDeclareImages);
-    Navigation.registerComponent('DeliverFrom',()=>DeliverFrom,store,Provider);
-    Navigation.registerComponent('DeliverTo',()=>DeliverTo,store,Provider);
+    Navigation.registerComponent('DeliverFrom',() => (props) => (<Provider store={store}><DeliverFrom {...props} /></Provider>),()=>DeliverFrom);
+    Navigation.registerComponent('DeliverTo',() => (props) => (<Provider store={store}><DeliverTo {...props} /></Provider>),()=>DeliverTo);
     Navigation.registerComponent('Login',()=>Login);
-    Navigation.registerComponent('Register',()=>Register,store,Provider);
-    Navigation.registerComponent('NewRegister',()=>NewRegister,store,Provider);
-    Navigation.registerComponent('ResetPassword',()=>ResetPassword,store,Provider);
-    Navigation.registerComponent('AddAddress',()=>AddAddress);
-    Navigation.registerComponent('BindCabinet',()=>BindCabinet,store,Provider);
-    Navigation.registerComponent('BindCreditCard',()=>BindCreditCard,store,Provider);
-    Navigation.registerComponent('CountryPick',()=>CountryPick,store,Provider);
-    Navigation.registerComponent('Map',()=>Map,store,Provider);
+    Navigation.registerComponent('Register',() => (props) => (<Provider store={store}><Register {...props} /></Provider>),()=>Register);
+    Navigation.registerComponent('NewRegister',() => (props) => (<Provider store={store}><NewRegister {...props} /></Provider>),()=>NewRegister);
+    Navigation.registerComponent('ResetPassword',() => (props) => (<Provider store={store}><ResetPassword {...props} /></Provider>),()=>ResetPassword);
+    Navigation.registerComponent('AddAddress',() => (props) => (<Provider store={store}><AddAddress {...props} /></Provider>),()=>AddAddress);
+    Navigation.registerComponent('BindCabinet',() => (props) => (<Provider store={store}>< BindCabinet {...props} /></Provider>),()=>BindCabinet);
+    Navigation.registerComponent('BindCreditCard',() => (props) => (<Provider store={store}><BindCreditCard {...props} /></Provider>),()=>BindCreditCard);
+    Navigation.registerComponent('CountryPick',() => (props) => (<Provider store={store}><CountryPick {...props} /></Provider>),()=>CountryPick);
+    Navigation.registerComponent('Map',() => (props) => (<Provider store={store}><Map {...props} /></Provider>),()=>Map);
     Navigation.registerComponent('AroundInfo',()=>AroundInfo);
-    Navigation.registerComponent('ZiplockerProfile',()=>ZiplockerProfile,store,Provider);
-    Navigation.registerComponent('Profile',()=>Profile,store,Provider);
-    Navigation.registerComponent('Transaction',()=>Transaction,store,Provider);
-    Navigation.registerComponent('DeliveryTransaction',()=>DeliveryTransaction,store,Provider);
-    Navigation.registerComponent('PickUpTransaction',()=>PickUpTransaction,store,Provider);
-    Navigation.registerComponent('ProfileInfo',()=>ProfileInfo,store,Provider);
-    Navigation.registerComponent('ModifyHouseHolder',()=>ModifyHouseHolder, store, Provider);
+    Navigation.registerComponent('ZiplockerProfile',() => (props) => (<Provider store={store}><ZiplockerProfile {...props} /></Provider>),()=>ZiplockerProfile);
+    Navigation.registerComponent('Profile',() => (props) => (<Provider store={store}><Profile {...props} /></Provider>),()=>Profile);
+    Navigation.registerComponent('Transaction',() => (props) => (<Provider store={store}><Transaction {...props} /></Provider>),()=>Transaction);
+    Navigation.registerComponent('DeliveryTransaction',() => (props) => (<Provider store={store}><DeliveryTransaction {...props} /></Provider>),()=>DeliveryTransaction);
+    Navigation.registerComponent('PickUpTransaction',() => (props) => (<Provider store={store}><PickUpTransaction {...props} /></Provider>),()=>PickUpTransaction);
+    Navigation.registerComponent('ProfileInfo',() => (props) => (<Provider store={store}><ProfileInfo {...props} /></Provider>),()=>ProfileInfo);
+    Navigation.registerComponent('ModifyHouseHolder',() => (props) => (<Provider store={store}><ModifyHouseHolder {...props} /></Provider>),()=>ModifyHouseHolder);
     Navigation.registerComponent('ModifyPassword',()=>ModifyPassword);
-    Navigation.registerComponent('ModifyProfile',()=>ModifyProfile,store,Provider);
-    Navigation.registerComponent('BarScan',()=>BarScan,store,Provider);
+    Navigation.registerComponent('ModifyProfile',() => (props) => (<Provider store={store}><ModifyProfile {...props} /></Provider>),()=>ModifyProfile);
+    Navigation.registerComponent('BarScan',() => (props) => (<Provider store={store}><BarScan {...props} /></Provider>),()=>BarScan);
     Navigation.registerComponent('MenuComponent',()=>MenuComponent);
     Navigation.registerComponent('ActionSheetScreen',()=>ActionSheetScreen);
     Navigation.registerComponent('PickerScreen',()=>PickerScreen);
     Navigation.registerComponent('ImageLightBox',()=>ImageLightBox);
     Navigation.registerComponent('SwitchModeLightBox',()=>SwitchModeLightBox);
     Navigation.registerComponent('SelectDeliverAddress',()=>SelectDeliverAddress);
-    Navigation.registerComponent('DeliverToList',()=>DeliverToList,store,Provider);
-    Navigation.registerComponent('DeliverSearch',()=>DeliverSearch,store,Provider);
+    Navigation.registerComponent('DeliverToList',() => (props) => (<Provider store={store}><DeliverToList {...props} /></Provider>),()=>DeliverToList);
+    Navigation.registerComponent('DeliverSearch',() => (props) => (<Provider store={store}><DeliverSearch {...props} /></Provider>),()=>DeliverSearch);
     Navigation.registerComponent('DrawerScreen',()=>DrawerScreen);
     Navigation.registerComponent('ChooseModel',()=>ChooseModel);
     Navigation.registerComponent('NewApartment',()=>NewApartment);
-    Navigation.registerComponent('ZipporaSelectAPT',()=>ZipporaSelectAPT,store,Provider);
-    Navigation.registerComponent('ZipporaSelectUnit',()=>ZipporaSelectUnit,store,Provider);
-    Navigation.registerComponent('UploadCertificate',()=>UploadCertificate,store,Provider);
-    Navigation.registerComponent('ZipporaHome',()=>ZipporaHome,store,Provider);
-    Navigation.registerComponent('ZipporaLog',()=>ZipporaLog,store,Provider);
-    Navigation.registerComponent('ZipporaAPTInfo',()=>ZipporaAPTInfo,store,Provider);
+    Navigation.registerComponent('ZipporaSelectAPT',() => (props) => (<Provider store={store}><ZipporaSelectAPT {...props} /></Provider>),()=>ZipporaSelectAPT);
+    Navigation.registerComponent('ZipporaSelectUnit',() => (props) => (<Provider store={store}><ZipporaSelectUnit {...props} /></Provider>),()=>ZipporaSelectUnit);
+    Navigation.registerComponent('UploadCertificate',() => (props) => (<Provider store={store}><UploadCertificate {...props} /></Provider>),()=>UploadCertificate);
+   //Navigation.registerComponent('ZipporaHome',()=>ZipporaHome);
+  Navigation.registerComponent('ZipporaHome',() => (props) => (<Provider store={store}><ZipporaHome {...props} /></Provider>),()=>ZipporaHome);
+    Navigation.registerComponent('ZipporaLog',() => (props) => (<Provider store={store}><ZipporaLog {...props} /></Provider>),()=>ZipporaLog);
+    Navigation.registerComponent('ZipporaAPTInfo',() => (props) => (<Provider store={store}><ZipporaAPTInfo {...props} /></Provider>),()=>ZipporaAPTInfo);
     Navigation.registerComponent('ZipproaLocation',()=>ZipproaLocation);
-    Navigation.registerComponent('Statement',()=>Statement,store,Provider);
+    Navigation.registerComponent('Statement',() => (props) => (<Provider store={store}><Statement {...props} /></Provider>),()=>Statement);
     Navigation.registerComponent('AboutUs',()=>AboutUs);
-    Navigation.registerComponent('Wallet',()=>Wallet,store,Provider);
-    Navigation.registerComponent('Recharge',()=>Recharge,store,Provider);
-    Navigation.registerComponent('ZipLockerHome',()=>ZipLockerHome,store,Provider);
-    Navigation.registerComponent('VerifyEmail',()=>VerifyEmail,store,Provider);
+    Navigation.registerComponent('Wallet',() => (props) => (<Provider store={store}><Wallet {...props} /></Provider>),()=>Wallet);
+    Navigation.registerComponent('Recharge',() => (props) => (<Provider store={store}><Recharge {...props} /></Provider>),()=>Recharge);
+    Navigation.registerComponent('ZipLockerHome',() => (props) => (<Provider store={store}><ZipLockerHome {...props} /></Provider>),()=>ZipLockerHome);
+    Navigation.registerComponent('VerifyEmail',() => (props) => (<Provider store={store}><VerifyEmail {...props} /></Provider>),()=>VerifyEmail);
     Navigation.registerComponent('BackButton',()=>BackButton);
     Navigation.registerComponent('UserAgreement',()=>UserAgreement);
 }

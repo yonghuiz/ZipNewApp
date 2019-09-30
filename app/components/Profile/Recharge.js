@@ -231,7 +231,8 @@ class Recharge extends PureComponent {
                 //刷新member信息
                 this.props.getMember();
                 this.time = setTimeout(()=>{
-                    this.props.navigator.popToRoot();
+                    Navigation.popToRoot(this.props.componentId);
+                   // this.props.navigator.popToRoot();
                 },1500);
             })
             .catch(err=>{
@@ -279,7 +280,8 @@ class Recharge extends PureComponent {
                             this.props.getMember();
                         }
                         this.time = setTimeout(()=>{
-                            this.props.navigator.pop();
+                            Navigation.pop(this.props.componentId);
+                            //this.props.navigator.pop();
                         },1500);
                     }).catch(err=>{
                         this.paying = false;
@@ -395,16 +397,32 @@ class Recharge extends PureComponent {
         cards.push(
             <TouchableOpacity
                 onPress={() => {
+                    Navigation.push(this.props.componentId, {
+            component: {
+                name: 'BindCreditCard',
+                passProps: {
+                    fromWallet:true
+                    },
+                options: {
+                  topBar: {
+                    title: {
+                      text: 'Add credit card'
+                    }
+                  }
+                }
+              }
+          })
                     //添加信用卡
-                    this.props.navigator.push({
-                        screen:'BindCreditCard',
-                        title:'Add credit card',
-                        navigatorStyle:navigatorStyle,
-                        animationType: 'slide-horizontal',
-                        passProps:{
-                            fromWallet:true,
-                        }
-                    })
+                    
+                //     this.props.navigator.push({
+                //         screen:'BindCreditCard',
+                //         title:'Add credit card',
+                //         navigatorStyle:navigatorStyle,
+                //         animationType: 'slide-horizontal',
+                //         passProps:{
+                //             fromWallet:true,
+                //         }
+                //     })
                 }}
                 key="add"
                 style={styles.addButton}
@@ -468,7 +486,7 @@ class Recharge extends PureComponent {
                         style={styles.payWayButton}
                     >
                         <Icon
-                            name={payWay === 0 ? 'ios-radio-button-on-outline':'ios-radio-button-off-outline'}
+                            name={payWay === 0 ? 'ios-radio-button-on':'ios-radio-button-off'}
                             size={28}
                             color={Color.themeColor}
                         />
@@ -487,7 +505,7 @@ class Recharge extends PureComponent {
                         style={styles.payWayButton}
                     >
                         <Icon
-                            name={payWay === 1 ? 'ios-radio-button-on-outline':'ios-radio-button-off-outline'}
+                            name={payWay === 1 ? 'ios-radio-button-on':'ios-radio-button-off'}
                             size={28}
                             color={Color.themeColor}
                         />

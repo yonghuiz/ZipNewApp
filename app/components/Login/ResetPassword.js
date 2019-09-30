@@ -25,17 +25,17 @@ export default class ResetPassword extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            email:'',
-            emailCode:'',
-            memberId:'',
-            password:'',
-            confirmPassword:'',
+            email: '',
+            emailCode: '',
+            memberId: '',
+            password: '',
+            confirmPassword: '',
 
             showCount: false,
             count: 59,
-            canSendVCode:true,
+            canSendVCode: true,
 
-            hudType:'none',
+            hudType: 'none',
         }
     }
 
@@ -54,27 +54,27 @@ export default class ResetPassword extends PureComponent {
         }
 
         this.setState({
-            hudType:'none'
-        },()=>{
+            hudType: 'none'
+        }, () => {
             this.hud.show('sending code');
         });
 
         let param = new FormData();
-        param.append('email',this.state.email);
-        netWork('POST',LOGIN_FORGET_PSD,param,false)
-            .then(json=>{
+        param.append('email', this.state.email);
+        netWork('POST', LOGIN_FORGET_PSD, param, false)
+            .then(json => {
                 this.setState({
-                    hudType:'success',
-                    memberId:json.data.memberId,
-                },()=>{
-                    this.hud.show(json.msg,1500);
+                    hudType: 'success',
+                    memberId: json.data.memberId,
+                }, () => {
+                    this.hud.show(json.msg, 1500);
                 });
             })
-            .catch(err=>{
+            .catch(err => {
                 this.setState({
-                    hudType:'error',
-                },()=>{
-                    this.hud.show(err,1500);
+                    hudType: 'error',
+                }, () => {
+                    this.hud.show(err, 1500);
                 })
             })
     }
@@ -108,8 +108,8 @@ export default class ResetPassword extends PureComponent {
     resetPsd() {
         if (this.state.hudType !== 'none') {
             this.setState({
-                hudType:'none',
-            },()=>{
+                hudType: 'none',
+            }, () => {
                 this.hud.show('Please wait');
             })
         } else {
@@ -117,41 +117,42 @@ export default class ResetPassword extends PureComponent {
         }
 
         let param = new FormData();
-        param.append('memberId',this.state.memberId);
-        param.append('vcode',this.state.emailCode);
-        param.append('psd1',Md5.digest_s(this.state.password));
-        param.append('psd2',Md5.digest_s(this.state.confirmPassword));
+        param.append('memberId', this.state.memberId);
+        param.append('vcode', this.state.emailCode);
+        param.append('psd1', Md5.digest_s(this.state.password));
+        param.append('psd2', Md5.digest_s(this.state.confirmPassword));
 
-        netWork('POST',LOGIN_RESET_PSD,param,false)
-            .then(json=>{
+        netWork('POST', LOGIN_RESET_PSD, param, false)
+            .then(json => {
                 this.setState({
-                    hudType:'success',
-                },()=>{
-                    this.hud.show(json.msg,1500);
+                    hudType: 'success',
+                }, () => {
+                    this.hud.show(json.msg, 1500);
                 });
 
-                this.time = setTimeout(()=>{
-                    this.props.navigator.pop();
-                },1500);
+                this.time = setTimeout(() => {
+                    Navigation.pop(this.props.componentId);
+                    // this.props.navigator.pop();
+                }, 1500);
             })
-            .catch(err=>{
+            .catch(err => {
                 this.setState({
-                    hudType:'error',
-                },()=>{
-                    this.hud.show(err,1500);
+                    hudType: 'error',
+                }, () => {
+                    this.hud.show(err, 1500);
                 })
             })
     }
 
     render() {
         return (
-            <View style={{flex:1, backgroundColor:'white'}}>
-                <StatusBar barStyle="light-content" animated={true}/>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <StatusBar barStyle="light-content" animated={true} />
                 <KeyboardAwareScrollView
-                    style={{flex:1}}
+                    style={{ flex: 1 }}
                     contentContainerStyle={{
-                        flexDirection:'column',
-                        padding:8,
+                        flexDirection: 'column',
+                        padding: 8,
                     }}
                     keyboardShouldPersistTaps={'handled'}
                 >
@@ -200,9 +201,9 @@ export default class ResetPassword extends PureComponent {
                         underlineColorAndroid={'transparent'}
                         value={this.state.password}
                         secureTextEntry={true}
-                        onChangeText={(text)=>{
+                        onChangeText={(text) => {
                             this.setState({
-                                password:text,
+                                password: text,
                             })
                         }}
                     />
@@ -215,9 +216,9 @@ export default class ResetPassword extends PureComponent {
                         underlineColorAndroid={'transparent'}
                         value={this.state.confirmPassword}
                         secureTextEntry={true}
-                        onChangeText={(text)=>{
+                        onChangeText={(text) => {
                             this.setState({
-                                confirmPassword:text,
+                                confirmPassword: text,
                             })
                         }}
                     />
@@ -231,7 +232,7 @@ export default class ResetPassword extends PureComponent {
                             marginTop: 16,
                         }}
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             Keyboard.dismiss();
                             if (this.doneTextColor() === 'white') {
                                 this.resetPsd();
@@ -248,7 +249,7 @@ export default class ResetPassword extends PureComponent {
                         </ZIPText>
                     </TouchableOpacity>
                 </KeyboardAwareScrollView>
-                <Hud ref={r=>this.hud = r} hudType={this.state.hudType}/>
+                <Hud ref={r => this.hud = r} hudType={this.state.hudType} />
             </View>
         )
     }

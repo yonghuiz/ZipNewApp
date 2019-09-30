@@ -76,15 +76,31 @@ export default class ModifyPassword extends PureComponent {
                 });
                 this.time = setTimeout(()=>{
                     logout();
-                    this.props.navigator.resetTo({
-                        screen: 'Login',
-                        navigatorStyle: {
-                            ...navigatorStyle,
-                            navBarHidden: true,
-                        },
-                        animationType: 'fade',
-                        animated: true,
-                    });
+
+                    Navigation.setStackRoot(this.props.componentId, [
+                        {
+                        component: {
+                            name: 'Login',
+                           
+                            options: {
+                                animations: {
+                                setStackRoot: {
+                                    enabled: true
+                                }
+                                }
+                            }
+                            }
+                    }
+                    ]);
+                    // this.props.navigator.resetTo({
+                    //     screen: 'Login',
+                    //     navigatorStyle: {
+                    //         ...navigatorStyle,
+                    //         navBarHidden: true,
+                    //     },
+                    //     animationType: 'fade',
+                    //     animated: true,
+                    // });
                 },1500);
             })
             .catch(err=>{

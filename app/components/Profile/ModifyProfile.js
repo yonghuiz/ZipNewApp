@@ -2,6 +2,7 @@
  * Created by liuyu on 2017/8/21.
  */
 import React, {Component} from 'react'
+import {Navigation} from 'react-native-navigation'
 import {
     View,
     TextInput,
@@ -20,27 +21,78 @@ import ZIPTextInput from '../ZIPTextInput'
 class ModifyProfile extends Component {
 
     haveChange = false;
-
+    static options(passProps) {
+        return {
+          topBar: {
+            rightButtons: {
+                title: 'Save',
+              id: 'save'
+             
+            }
+          }
+        };
+      }
     constructor(props) {
         super(props);
         this.state = {
             value: props.value,
             hudType:'none',
         };
-        this.props.navigator.setButtons({
-            rightButtons: [
-                {
-                    title: 'Save',
-                    id: 'save',
-                    disabled: true,
-                }                
-            ],
-            animated: true,
-        });
-        this.props.navigator.setOnNavigatorEvent((event) => {
-            this.onNavigatorEvent(event)
-        });
+       
+        Navigation.events().bindComponent(this);
+        // this.props.navigator.setButtons({
+        //     rightButtons: [
+        //         {
+        //             title: 'Save',
+        //             id: 'save',
+        //             disabled: true,
+        //         }                
+        //     ],
+        //     animated: true,
+        // });
+        
     }
+    // this.props.navigator.setOnNavigatorEvent((event) => {
+    //     this.onNavigatorEvent(event)
+    // });
+
+    navigationButtonPressed({ buttonId }) {
+        // will be called when "buttonOne" is clicked
+        if (buttonId === 'save') {
+            if((this.state.value||'').trim()===''){
+                this.showHud('error','Please input value, value can not be blank.',3000);
+                return;
+            }
+            Keyboard.dismiss();
+            //提交修改信息
+            this.showHud('none','Please wait...');
+            
+            let formData = new FormData();
+            formData.append(this.props.type, this.state.value);
+            netWork('POST', MODIFY_PROFILE, formData, true)
+                .then(json => {
+                    this.showHud('success',json.msg,1500);
+                    if (this.props.fromLocker === true) {
+                        this.props.loadProfile();
+                    } else {
+                        this.props.getMember();
+                    }
+                    this.time = setTimeout(()=>{
+                        Navigation.pop(this.props.componentId);
+                        //this.props.navigator.pop();
+                    },1500);
+                })
+                .catch(err => {
+                    this.setState({
+                        hudType:'error',
+                    },()=>{
+                        this.hud.show(err,1500);
+                    });
+                })
+        }
+      }
+
+   
     showHud(type,msg,after=null){
         if (this.state.hudType !== type) {
             this.setState({
@@ -51,41 +103,42 @@ class ModifyProfile extends Component {
         }
     }
 
-    onNavigatorEvent(event) {
-        if (event.type === 'NavBarButtonPress') {
-            if (event.id === 'save') {
-                if((this.state.value||'').trim()===''){
-                    this.showHud('error','Please input value, value can not be blank.',3000);
-                    return;
-                }
-                Keyboard.dismiss();
-                //提交修改信息
-                this.showHud('none','Please wait...');
+    // onNavigatorEvent(event) {
+    //     if (event.type === 'NavBarButtonPress') {
+    //         if (event.id === 'save') {
+    //             if((this.state.value||'').trim()===''){
+    //                 this.showHud('error','Please input value, value can not be blank.',3000);
+    //                 return;
+    //             }
+    //             Keyboard.dismiss();
+    //             //提交修改信息
+    //             this.showHud('none','Please wait...');
                 
-                let formData = new FormData();
-                formData.append(this.props.type, this.state.value);
-                netWork('POST', MODIFY_PROFILE, formData, true)
-                    .then(json => {
-                        this.showHud('success',json.msg,1500);
-                        if (this.props.fromLocker === true) {
-                            this.props.loadProfile();
-                        } else {
-                            this.props.getMember();
-                        }
-                        this.time = setTimeout(()=>{
-                            this.props.navigator.pop();
-                        },1500);
-                    })
-                    .catch(err => {
-                        this.setState({
-                            hudType:'error',
-                        },()=>{
-                            this.hud.show(err,1500);
-                        });
-                    })
-            }
-        }
-    }
+    //             let formData = new FormData();
+    //             formData.append(this.props.type, this.state.value);
+    //             netWork('POST', MODIFY_PROFILE, formData, true)
+    //                 .then(json => {
+    //                     this.showHud('success',json.msg,1500);
+    //                     if (this.props.fromLocker === true) {
+    //                         this.props.loadProfile();
+    //                     } else {
+    //                         this.props.getMember();
+    //                     }
+    //                     this.time = setTimeout(()=>{
+    //                         Navigation.pop(this.props.componentId)
+    //                         //this.props.navigator.pop();
+    //                     },1500);
+    //                 })
+    //                 .catch(err => {
+    //                     this.setState({
+    //                         hudType:'error',
+    //                     },()=>{
+    //                         this.hud.show(err,1500);
+    //                     });
+    //                 })
+    //         }
+    //     }
+    // }
 
     componentWillUnmount() {
         clearTimeout(this.time);
@@ -116,16 +169,27 @@ class ModifyProfile extends Component {
                             value={this.state.value}
                             onChange={() => {
                                 if (!this.haveChange) {
-                                    this.props.navigator.setButtons({
-                                        rightButtons: [
+                                    Navigation.mergeOptions(this.props.componentId, {
+                                        topBar: {
+                                            rightButtons: [
                                             {
-                                                title: 'Save',
                                                 id: 'save',
-                                                disabled: false,
+                                                text: 'Save'
                                             }
-                                        ],
-                                        animated: true,
-                                    });
+                                            ]
+                                        }
+                                        });
+
+                                    // this.props.navigator.setButtons({
+                                    //     rightButtons: [
+                                    //         {
+                                    //             title: 'Save',
+                                    //             id: 'save',
+                                    //             disabled: false,
+                                    //         }
+                                    //     ],
+                                    //     animated: true,
+                                    // });
                                     this.haveChange = true;
                                 }
                             }}

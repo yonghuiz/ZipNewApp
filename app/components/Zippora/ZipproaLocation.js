@@ -2,23 +2,26 @@
  * Created by liuyu on 2017/9/30.
  */
 import React, { PureComponent } from 'react'
-import MapView from 'react-native-maps'
+//import MapView from 'react-native-maps'
 import {
     View,
     Text,
     StyleSheet,
-    WebView,
+    //WebView,
     Platform
 } from 'react-native'
+import {WebView} from 'react-native-webview'
+
 
 export default class ZipproaLocation extends PureComponent {
 
     constructor(props) {
         super(props);
-        console.log(props.zippora);
+      
         this.mapUrl = (this.props.zippora.addressUrl!=null&&this.props.zippora.addressUrl.indexOf('://')>0)
             ?this.props.zippora.addressUrl
             :`https://www.google.com/maps/place/${this.props.zippora.address}`
+            console.log(this.mapUrl);
     }
 
     render() {

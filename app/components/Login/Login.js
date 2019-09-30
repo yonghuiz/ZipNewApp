@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/5/15.
  */
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     KeyboardAvoidingView,
@@ -15,6 +15,7 @@ import {
 } from 'react-native'
 import Md5 from '../../config/md5'
 import Icon from 'react-native-vector-icons/Ionicons'
+import SplashScreen from 'react-native-splash-screen'
 
 import Hud from 'react-native-lyhud'
 import {
@@ -26,11 +27,11 @@ import {
     KeyboardAwareScrollView,
 } from 'react-native-keyboard-aware-scroll-view'
 import ZIPText from '../ZIPText'
-import {Navigation} from 'react-native-navigation'
+import { Navigation } from 'react-native-navigation'
 import * as Animatable from 'react-native-animatable'
 import CommonTextInput from '../CommonTextInput'
 // rz const appPackage = require('../../../package.json')
- const appPackage = require('../../../version.json')
+const appPackage = require('../../../version.json')
 import { repeatPress } from '../RepeatPress'
 
 const styles = StyleSheet.create({
@@ -116,9 +117,11 @@ export default class Login extends PureComponent {
             count: 59,
             canSendVCode: true,
         }
+        Navigation.events().bindComponent(this);
     }
 
     componentDidMount() {
+        SplashScreen.hide();
         haveAlertLogin = false;
     }
 
@@ -212,21 +215,47 @@ export default class Login extends PureComponent {
                         userInfo.memberId = json.data.memberId;
                         userInfo.psd = json.data.psd;
                         if (json.data.statusDetail.hasBindAddress == 0) {
-                            this.props.navigator.push({
-                                screen: 'AddAddress',
-                                title: 'Add a delivery address',
-                                animationType: 'slide-horizontal',
-                                navigatorStyle: navigatorStyle,
-                            })
+                            Navigation.push(this, {
+                                component: {
+                                    name: 'AddAddress',
+
+                                    options: {
+                                        topBar: {
+                                            title: {
+                                                text: 'Add a delivery address'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                            // this.props.navigator.push({
+                            //     screen: 'AddAddress',
+                            //     title: 'Add a delivery address',
+                            //     animationType: 'slide-horizontal',
+                            //     navigatorStyle: navigatorStyle,
+                            // })
                         } else {
                             if (json.data.serviceMode == null) {
-                                this.props.navigator.push({
-                                    screen: 'ChooseModel',
-                                    title: 'Choose your use model',
-                                    backButtonTitle: 'Back',
-                                    animationType: 'slide-horizontal',
-                                    navigatorStyle: navigatorStyle,
+                                Navigation.push(this, {
+                                    component: {
+                                        name: 'ChooseModel',
+
+                                        options: {
+                                            topBar: {
+                                                title: {
+                                                    text: 'Choose your use model'
+                                                }
+                                            }
+                                        }
+                                    }
                                 });
+                                // this.props.navigator.push({
+                                //     screen: 'ChooseModel',
+                                //     title: 'Choose your use model',
+                                //     backButtonTitle: 'Back',
+                                //     animationType: 'slide-horizontal',
+                                //     navigatorStyle: navigatorStyle,
+                                // });
                             } else {
                                 storage.save({
                                     key: 'isLogin',
@@ -248,52 +277,80 @@ export default class Login extends PureComponent {
                                     expires: null,
                                 });
                                 if (json.data.serviceMode === 'ziplocker') {
-                                    Navigation.startSingleScreenApp({
-                                        screen: {
-                                            screen: 'ZipLockerHome',
-                                            navigatorStyle: navigatorStyle,
-                                        },
-                                        appStyle: {
-                                            orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
-                                            hideBackButtonTitle: true
-                                        },
-                                        drawer: {
-                                            left: { // optional, define if you want a drawer from the left
-                                                screen: 'DrawerScreen',
-                                            },
-                                            style: {
-                                                drawerShadow: false,
-                                                leftDrawerWidth: 60,
-                                                contentOverlayColor: 'rgba(0,0,0,0.25)',
-                                            },
-                                            disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
-                                        },
-                                        animationType: 'fade',
+                                    Navigation.setRoot({
+                                        root: {
+                                            stack: {
+                                                id: 'Stack.Home3',
+                                                children: [
+                                                    {
+                                                        component: {
+                                                            id: 'ZipLockerHome',
+                                                            name: 'ZipLockerHome',
+                                                        },
+                                                    },
+                                                ],
+                                            }
+                                        }
                                     });
+                                    // screen: {
+                                    //     screen: 'ZipLockerHome',
+                                    //     navigatorStyle: navigatorStyle,
+                                    // },
+                                    // appStyle: {
+                                    //     orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
+                                    //     hideBackButtonTitle: true
+                                    // },
+                                    // drawer: {
+                                    //     left: { // optional, define if you want a drawer from the left
+                                    //         screen: 'DrawerScreen',
+                                    //     },
+                                    //     style: {
+                                    //         drawerShadow: false,
+                                    //         leftDrawerWidth: 60,
+                                    //         contentOverlayColor: 'rgba(0,0,0,0.25)',
+                                    //     },
+                                    //     disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+                                    // },
+                                    // animationType: 'fade',
+
 
                                 } else {
-                                    Navigation.startSingleScreenApp({
-                                        screen: {
-                                            screen: 'ZipporaHome',
-                                            navigatorStyle: navigatorStyle,
-                                        },
-                                        appStyle: {
-                                            orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
-                                            hideBackButtonTitle: true
-                                        },
-                                        drawer: {
-                                            left: { // optional, define if you want a drawer from the left
-                                                screen: 'DrawerScreen',
-                                            },
-                                            style: {
-                                                drawerShadow: false,
-                                                leftDrawerWidth: 60,
-                                                contentOverlayColor: 'rgba(0,0,0,0.25)',
-                                            },
-                                            disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
-                                        },
-                                        animationType: 'fade'
-                                    })
+                                    Navigation.setRoot({
+                                        root: {
+                                            stack: {
+                                                id: 'Stack.Home2',
+                                                children: [
+                                                    {
+                                                        component: {
+                                                            id: 'ZipporaHome',
+                                                            name: 'ZipporaHome',
+                                                        },
+                                                    },
+                                                ],
+                                            }
+                                        }
+                                    });
+                                    // screen: {
+                                    //     screen: 'ZipporaHome',
+                                    //     navigatorStyle: navigatorStyle,
+                                    // },
+                                    // appStyle: {
+                                    //     orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
+                                    //     hideBackButtonTitle: true
+                                    // },
+                                    // drawer: {
+                                    //     left: { // optional, define if you want a drawer from the left
+                                    //         screen: 'DrawerScreen',
+                                    //     },
+                                    //     style: {
+                                    //         drawerShadow: false,
+                                    //         leftDrawerWidth: 60,
+                                    //         contentOverlayColor: 'rgba(0,0,0,0.25)',
+                                    //     },
+                                    //     disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+                                    // },
+                                    // animationType: 'fade'
+
                                 }
                             }
                         }
@@ -550,12 +607,26 @@ export default class Login extends PureComponent {
                     userInfo.memberId = json.data.memberId;
                     userInfo.psd = json.data.psd;
                     if (json.data.statusDetail.hasBindAddress == 0) {
-                        this.props.navigator.push({
-                            screen: 'AddAddress',
-                            title: 'Add a delivery address',
-                            animationType: 'slide-horizontal',
-                            navigatorStyle: navigatorStyle,
-                        })
+
+                        Navigation.push(this, {
+                            component: {
+                                name: 'AddAddress',
+
+                                options: {
+                                    topBar: {
+                                        title: {
+                                            text: 'Add a delivery address'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                        // this.props.navigator.push({
+                        //     screen: 'AddAddress',
+                        //     title: 'Add a delivery address',
+                        //     animationType: 'slide-horizontal',
+                        //     navigatorStyle: navigatorStyle,
+                        // })
                     } else {
                         storage.save({
                             key: 'isLogin',
@@ -571,28 +642,44 @@ export default class Login extends PureComponent {
                             },
                             expires: null,
                         });
-                        Navigation.startSingleScreenApp({
-                            screen: {
-                                screen: 'ZipporaHome',
-                                navigatorStyle: navigatorStyle,
-                            },
-                            appStyle: {
-                                orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
-                                hideBackButtonTitle: true
-                            },
-                            // drawer: {
-                            //     left: { // optional, define if you want a drawer from the left
-                            //         screen: 'DrawerScreen',
-                            //     },
-                            //     style: {
-                            //         drawerShadow: false,
-                            //         leftDrawerWidth: 60,
-                            //         contentOverlayColor: 'rgba(0,0,0,0.25)',
-                            //     },
-                            //     disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
-                            // },
-                            animationType: 'fade'
-                        })
+                        Navigation.setRoot({
+                            root: {
+                                stack: {
+                                    id: 'Stack.Home2',
+                                    children: [
+                                        {
+                                            component: {
+                                                id: 'ZipporaHome',
+                                                name: 'ZipporaHome',
+                                            },
+                                        },
+                                    ],
+                                }
+                            }
+                        });
+                        //Navigation.startSingleScreenApp({
+
+                        // screen: {
+                        //     screen: 'ZipporaHome',
+                        //     navigatorStyle: navigatorStyle,
+                        // },
+                        // appStyle: {
+                        //     orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
+                        //     hideBackButtonTitle: true
+                        // },
+                        // drawer: {
+                        //     left: { // optional, define if you want a drawer from the left
+                        //         screen: 'DrawerScreen',
+                        //     },
+                        //     style: {
+                        //         drawerShadow: false,
+                        //         leftDrawerWidth: 60,
+                        //         contentOverlayColor: 'rgba(0,0,0,0.25)',
+                        //     },
+                        //     disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+                        // },
+                        //  animationType: 'fade'
+
                     }
                 }, 1500);
             })
@@ -620,7 +707,7 @@ export default class Login extends PureComponent {
         }
 
         let param = new FormData();
-        param.append('phone', this.state.phoneNum.replace(/\s/g,""));
+        param.append('phone', this.state.phoneNum.replace(/\s/g, ""));
         param.append('psd', Md5.digest_s(this.state.phonePsd));
         netWork('POST', LOGIN_LOGIN, param, false)
             .then(json => {
@@ -635,12 +722,25 @@ export default class Login extends PureComponent {
                     userInfo.memberId = json.data.memberId;
                     userInfo.psd = json.data.psd;
                     if (json.data.statusDetail.hasBindAddress == 0) {
-                        this.props.navigator.push({
-                            screen: 'AddAddress',
-                            title: 'Add a delivery address',
-                            animationType: 'slide-horizontal',
-                            navigatorStyle: navigatorStyle,
-                        })
+                        Navigation.push(this, {
+                            component: {
+                                name: 'AddAddress',
+
+                                options: {
+                                    topBar: {
+                                        title: {
+                                            text: 'Add a delivery address'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                        // this.props.navigator.push({
+                        //     screen: 'AddAddress',
+                        //     title: 'Add a delivery address',
+                        //     animationType: 'slide-horizontal',
+                        //     navigatorStyle: navigatorStyle,
+                        // })
                     } else {
                         storage.save({
                             key: 'isLogin',
@@ -656,28 +756,44 @@ export default class Login extends PureComponent {
                             },
                             expires: null,
                         });
-                        Navigation.startSingleScreenApp({
-                            screen: {
-                                screen: 'ZipporaHome',
-                                navigatorStyle: navigatorStyle,
-                            },
-                            appStyle: {
-                                orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
-                                hideBackButtonTitle: true
-                            },
-                            drawer: {
-                                left: { // optional, define if you want a drawer from the left
-                                    screen: 'DrawerScreen',
-                                },
-                                style: {
-                                    drawerShadow: false,
-                                    leftDrawerWidth: 60,
-                                    contentOverlayColor: 'rgba(0,0,0,0.25)',
-                                },
-                                disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
-                            },
-                            animationType: 'fade'
-                        })
+
+                        Navigation.setRoot({
+                            root: {
+                                stack: {
+                                    id: 'Stack.Home2',
+                                    children: [
+                                        {
+                                            component: {
+                                                id: 'ZipporaHome',
+                                                name: 'ZipporaHome',
+                                            },
+                                        },
+                                    ],
+                                }
+                            }
+                        });
+                        // Navigation.startSingleScreenApp({
+                        //     screen: {
+                        //         screen: 'ZipporaHome',
+                        //         navigatorStyle: navigatorStyle,
+                        //     },
+                        //     appStyle: {
+                        //         orientation: 'portrait', // Sets a specific orientation to the entire app. Default: 'auto'. Supported values: 'auto', 'landscape', 'portrait'
+                        //         hideBackButtonTitle: true
+                        //     },
+                        //     drawer: {
+                        //         left: { // optional, define if you want a drawer from the left
+                        //             screen: 'DrawerScreen',
+                        //         },
+                        //         style: {
+                        //             drawerShadow: false,
+                        //             leftDrawerWidth: 60,
+                        //             contentOverlayColor: 'rgba(0,0,0,0.25)',
+                        //         },
+                        //         disableOpenGesture: false // optional, can the drawer be opened with a swipe instead of button
+                        //     },
+                        //     animationType: 'fade'
+
                     }
                 }, 1500);
             })
@@ -690,30 +806,36 @@ export default class Login extends PureComponent {
                 });
             })
     }
-    
+
+    // SignUp = () => Navigation.setRoot({ root: component(Screens.Pushed) });
+
+
+
+
+
     render() {
         return (
-            <View style={{flex: 1, backgroundColor: 'white'}}>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <KeyboardAwareScrollView
-                    style={{flex: 0.9}}
+                    style={{ flex: 0.9 }}
                     contentContainerStyle={{
                         padding: 8,
                         flexDirection: 'column'
                     }}
                     keyboardShouldPersistTaps={'handled'}
                 >
-                    <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 80}}>
-                        <Image source={require('../../assets/images/logo.png')}/>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 80 }}>
+                        <Image source={require('../../assets/images/logo.png')} />
                     </View>
-                    <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 8}}>
-                        <ZIPText style={{fontSize: 24}}>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 8 }}>
+                        <ZIPText style={{ fontSize: 24 }}>
                             Log In Via {this.state.useEmail ? 'Email' : 'Mobile Number'}
                         </ZIPText>
                     </View>
                     {
                         this.state.useEmail ?
                             <Animatable.View
-                                style={{height: 100}}
+                                style={{ height: 100 }}
                                 ref={r => this.emailView = r}
                             >
                                 <CommonTextInput
@@ -749,7 +871,7 @@ export default class Login extends PureComponent {
                             </Animatable.View>
                             :
                             <Animatable.View
-                                style={{height: 100}}
+                                style={{ height: 100 }}
                                 ref={r => this.phoneView = r}
                             >
                                 {/*<TouchableOpacity*/}
@@ -792,7 +914,7 @@ export default class Login extends PureComponent {
                                         if (text.length > this.state.phoneNum.length) {
                                             if (text.length === 3) {
                                                 phone += ' ';
-                                            } else if (text.length === 8) {
+                                            } else if (text.length === 7) {
                                                 phone += ' ';
                                             }
                                         } else {
@@ -803,8 +925,8 @@ export default class Login extends PureComponent {
                                             }
                                         }
                                         this.setState({
-                                            phoneNum:phone,
-                                        })
+                                            phoneNum: phone,
+                                        });
                                     }}
                                     maxLength={13}
                                     placeholder={'Enter mobile number'}
@@ -832,9 +954,9 @@ export default class Login extends PureComponent {
                             </Animatable.View>
                     }
 
-                    <View style={{paddingLeft: 8, paddingRight: 8, marginTop: 8, flexDirection: 'row'}}>
+                    <View style={{ paddingLeft: 8, paddingRight: 8, marginTop: 8, flexDirection: 'row' }}>
                         <ZIPText
-                            style={{fontSize: 16, color: Color.themeColor, flex: 1, marginRight: 16}}
+                            style={{ fontSize: 16, color: Color.themeColor, flex: 1, marginRight: 16 }}
                             onPress={() => {
                                 Keyboard.dismiss();
                                 this.setState({
@@ -856,16 +978,27 @@ export default class Login extends PureComponent {
                         </ZIPText>
                         <ZIPText
                             onPress={() => {
-                                if(repeatPress(this)) return;
-                                this.props.navigator.push({
-                                    screen: 'NewRegister',
-                                    title: 'Sign Up',
-                                    navigatorStyle: navigatorStyle,
-                                    animationType: 'slide-horizontal',
-                                    backButtonTitle: 'Back',
+                                Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'NewRegister',
+                                        options: {
+                                            topBar: {
+                                                title: {
+                                                    text: 'Sign Up',
+                                                },
+                                            },
+                                        },
+                                    }
                                 });
+                                // this.props.navigator.push({
+                                //     screen: 'NewRegister',
+                                //     title: 'Sign Up',
+                                //     navigatorStyle: navigatorStyle,
+                                //     animationType: 'slide-horizontal',
+                                //     backButtonTitle: 'Back',
+                                // });
                             }}
-                            style={{fontSize: 16, color: Color.themeColor}}
+                            style={{ fontSize: 16, color: Color.themeColor }}
                         >
                             Sign Up
                         </ZIPText>
@@ -904,10 +1037,10 @@ export default class Login extends PureComponent {
                         </ZIPText>
                     </TouchableOpacity>
                 </KeyboardAwareScrollView>
-                <View style={{flex:0.1,backgroundColor:'white'}}>
-                     <ZIPText style={{position: 'absolute',width:'100%',textAlign:'center',bottom:10}}>
-                        Version:{appPackage.version} 
-                     </ZIPText>
+                <View style={{ flex: 0.1, backgroundColor: 'white' }}>
+                    <ZIPText style={{ position: 'absolute', width: '100%', textAlign: 'center', bottom: 10 }}>
+                        Version:{appPackage.version}
+                    </ZIPText>
                 </View>
                 <Hud
                     hudType={this.state.hudType}
@@ -927,15 +1060,21 @@ export default class Login extends PureComponent {
                             }}
                             activeOpacity={1}
                             onPress={() => {
-                                this.props.navigator.push({
-                                    screen: 'ResetPassword',
-                                    title: 'Reset Password',
-                                    navigatorStyle: navigatorStyle,
-                                    animationType: 'slide-horizontal'
-                                })
+                                Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'ResetPassword',
+
+                                    }
+                                });
+                                // this.props.navigator.push({
+                                //     screen: 'ResetPassword',
+                                //     title: 'Reset Password',
+                                //     navigatorStyle: navigatorStyle,
+                                //     animationType: 'slide-horizontal'
+                                // })
                             }}
                         >
-                            <Icon name="ios-help-circle-outline" color="lightgray" size={28}/>
+                            <Icon name="ios-help-circle-outline" color="lightgray" size={28} />
                         </TouchableOpacity>
                         :
                         null

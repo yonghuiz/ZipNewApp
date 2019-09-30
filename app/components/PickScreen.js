@@ -17,6 +17,7 @@ import * as Animatable from 'react-native-animatable'
 import {
     GET_STATE_LIST
 } from '../config/API'
+import {Navigation} from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     controlView: {
@@ -46,10 +47,19 @@ const styles = StyleSheet.create({
 });
 
 export default class DatePickerScreen extends Component {
-    static navigatorStyle = {
-        screenBackgroundColor: 'transparent',
-        modalPresentationStyle: 'overCurrentContext',
-    };
+   
+    static options() {
+        return {
+                layout: {
+                    backgroundColor: 'transparent',
+                    modalPresentationStyle: 'overCurrentContext',
+                }
+    }
+    }
+    // static navigatorStyle = {
+    //     screenBackgroundColor: 
+    //     modalPresentationStyle: 'overCurrentContext',
+    // };
 
     constructor(props) {
         super(props);
@@ -105,7 +115,8 @@ export default class DatePickerScreen extends Component {
         });
 
         twoPromise.then(() => {
-            this.props.navigator.dismissModal({animationType: 'none'})
+            Navigation.dismissModal(this.props.componentId);rr
+          //  this.props.navigator.dismissModal({animationType: 'none'})
         }).catch((err) => {
 
         })
@@ -145,7 +156,8 @@ export default class DatePickerScreen extends Component {
                                     })
                                 }}
                                 selectedValue={this.state.selectState}
-                                style={{height:Platform.OS === 'android' ? 60 : 220, backgroundColor:'white',}}
+                                //style={{backgroundColor:Color.bgColor}}
+                               style={{height:Platform.OS === 'android' ? 60 : 220, backgroundColor:'white',}}
                                 itemStyle={{width:screenSize.width, backgroundColor:'white'}}
                             >
                                 {
@@ -223,8 +235,10 @@ export default class DatePickerScreen extends Component {
                                 onPress={() => {
                                     if (this.props.type === 'date') {
                                         this.props.onSureClick(this.state.date);
+                                        Navigation.dismissModal(this.props.componentId);
                                     } else {
                                         this.props.onSureClick(this.state.selectState);
+                                        Navigation.dismissModal(this.props.componentId);
                                     }
                                     this.dismiss()
                                 }}

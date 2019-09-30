@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {Navigation} from 'react-native-navigation'
 import {
     AppRegistry,
     StyleSheet,
@@ -32,7 +33,7 @@ class ProfileItem extends Component {
             >
                 <View style={styles.itemContainer}>
                     <Image source={this.props.icon}
-                           style={{width: 20, height: 20, resizeMode: Image.resizeMode.stretch}}/>
+                           style={{width: 20, height: 20}} resizeMode="stretch"/>
                     <ZIPText style={styles.itemText}>
                         {this.props.title}
                     </ZIPText>
@@ -124,15 +125,30 @@ class Profile extends Component {
                     onPress={() => {
                         if(repeatPress(this)) return;
                         if (member !== null) {
-                            this.props.navigator.push({
-                                screen: "ProfileInfo",
-                                navigatorStyle: navigatorStyle,
-                                animationType: 'slide-horizontal',
-                                title: 'Profile info',
-                                backButtonTitle:'Back',
-                                overrideBackPress:true,
-                                backButtonHidden: Platform.OS === 'android'?false:true,
-                            })
+                            Navigation.push(this.props.componentId, {
+                    component: {
+                        name: 'ProfileInfo',
+                       
+                        options: {
+                          topBar: {
+                            title: {
+                              text: 'Profile Info'
+                            }
+                          }
+                        }
+                      }
+                  });
+
+
+                            // this.props.navigator.push({
+                            //     screen: "ProfileInfo",
+                            //     navigatorStyle: navigatorStyle,
+                            //     animationType: 'slide-horizontal',
+                            //     title: 'Profile info',
+                            //     backButtonTitle:'Back',
+                            //     overrideBackPress:true,
+                            //     backButtonHidden: Platform.OS === 'android'?false:true,
+                            // })
                         }
                     }}
                     style={styles.chail}
@@ -178,14 +194,27 @@ class Profile extends Component {
                         onPress={() => {
                             if(repeatPress(this)) return;
                             //跳转到wallet
-                            this.props.navigator.push({
-                                screen: 'Wallet',
-                                navigatorStyle: navigatorStyle,
-                                title: 'Wallet',
-                                backButtonTitle: 'Back',
-                                navBarNoBorder: true,
-                                animationType: 'slide-horizontal',
+                            Navigation.push(this.props.componentId, {
+                                component: {
+                                    name: 'Wallet',
+                                
+                                    options: {
+                                    topBar: {
+                                        title: {
+                                        text: 'Wallet'
+                                        }
+                                    }
+                                    }
+                                }
                             });
+                            // this.props.navigator.push({
+                            //     screen: 'Wallet',
+                            //     navigatorStyle: navigatorStyle,
+                            //     title: 'Wallet',
+                            //     backButtonTitle: 'Back',
+                            //     navBarNoBorder: true,
+                            //     animationType: 'slide-horizontal',
+                            // });
                         }}
                     />
                 )
@@ -203,33 +232,72 @@ class Profile extends Component {
                         switch (index) {
                             case 1:
                                 //zipporaLog,
-                                this.props.navigator.push({
-                                    screen: 'ZipporaLog',
-                                    navigatorStyle: navigatorStyle,
-                                    title: 'Zippora Log',
-                                    backButtonTitle: 'Back',
-                                    animationType: 'slide-horizontal',
+                                Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'ZipporaLog',
+                                    
+                                        options: {
+                                        topBar: {
+                                            title: {
+                                            text: 'Zippora Log',
+                                            }
+                                        }
+                                        }
+                                    }
                                 });
+                                // this.props.navigator.push({
+                                //     screen: 'ZipporaLog',
+                                //     navigatorStyle: navigatorStyle,
+                                //     title: 'Zippora Log',
+                                //     backButtonTitle: 'Back',
+                                //     animationType: 'slide-horizontal',
+                                // });
                                 break;
                             case 2:
-                                //跳转到statement
-                                this.props.navigator.push({
-                                    screen: 'Statement',
-                                    navigatorStyle: navigatorStyle,
-                                    title: 'Statement',
-                                    backButtonTitle: 'Back',
-                                    animationType: 'slide-horizontal',
+                                    Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'Statement',
+                                    
+                                        options: {
+                                        topBar: {
+                                            title: {
+                                            text: 'Statement',
+                                            }
+                                        }
+                                        }
+                                    }
                                 });
+                                //跳转到statement
+                                // this.props.navigator.push({
+                                //     screen: 'Statement',
+                                //     navigatorStyle: navigatorStyle,
+                                //     title: 'Statement',
+                                //     backButtonTitle: 'Back',
+                                //     animationType: 'slide-horizontal',
+                                // });
                                 break;
                             case 3:
                                 //跳转到about us,
-                                this.props.navigator.push({
-                                    screen: 'AboutUs',
-                                    navigatorStyle: navigatorStyle,
-                                    title: 'About us',
-                                    backButtonTitle: 'Back',
-                                    animationType: 'slide-horizontal',
+                                Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'AboutUs',
+                                    
+                                        options: {
+                                        topBar: {
+                                            title: {
+                                            text: 'About Us',
+                                            }
+                                        }
+                                        }
+                                    }
                                 });
+                                // this.props.navigator.push({
+                                //     screen: 'AboutUs',
+                                //     navigatorStyle: navigatorStyle,
+                                //     title: 'About us',
+                                //     backButtonTitle: 'Back',
+                                //     animationType: 'slide-horizontal',
+                                // });
                                 break;
                         }
                     }}

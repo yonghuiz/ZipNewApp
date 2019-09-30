@@ -17,6 +17,7 @@ import {
 import {connect} from 'react-redux'
 import * as zipporaHomeActions from '../actions/zipporaHomeAction'
 import * as deliverActions from '../actions/deliverAction'
+import {Navigation} from 'react-native-navigation'
 
 
 class BarScan extends PureComponent {
@@ -30,34 +31,55 @@ class BarScan extends PureComponent {
 
     constructor(props) {
         super();
-        props.navigator.setOnNavigatorEvent((event) => {
-            this.onNavigatorEvent(event)
-        });
+       // Navigation.events().bindComponent(this);
+        // props.navigator.setOnNavigatorEvent((event) => {
+        //     this.onNavigatorEvent(event)
+        // });
         this.state = {
             showCamera: false,
         }
     }
-
-    onNavigatorEvent(event) {
-        switch (event.id) {
-            case 'willAppear':
-                break;
-            case 'didAppear':
-                this.time = setTimeout(()=>{
-                    this.setState({
-                        showCamera: true,
-                    });
-                },1000);
-                break;
-            case 'willDisappear':
-                this.props.setCanScan(true);
-                this.props.setScan(true);
-                break;
-            case 'didDisappear':
-
-                break;
+    componentDidMount() {
+        this.navigationEventListener = Navigation.events().bindComponent(this);
+      }
+    
+      componentWillUnmount() {
+        // Not mandatory
+        this.props.setCanScan(true);
+            this.props.setScan(true);
+        if (this.navigationEventListener) {
+          this.navigationEventListener.remove();
         }
-    }
+      }
+    
+      componentDidAppear() {
+        this.time = setTimeout(()=>{
+                            this.setState({
+                                showCamera: true,
+                            });
+                        },1000);
+      }
+
+    // onNavigatorEvent(event) {
+    //     switch (event.id) {
+    //         case 'willAppear':
+    //             break;
+    //         case 'didAppear':
+    //             this.time = setTimeout(()=>{
+    //                 this.setState({
+    //                     showCamera: true,
+    //                 });
+    //             },1000);
+    //             break;
+    //         case 'willDisappear':
+    //             this.props.setCanScan(true);
+    //             this.props.setScan(true);
+    //             break;
+    //         case 'didDisappear':
+
+    //             break;
+    //     }
+    // }
 
     _sendCode(text) {
 

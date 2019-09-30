@@ -18,6 +18,7 @@ import ErrorView from '../ErrorView'
 import Hud from 'react-native-lyhud'
 import ZIPText from '../ZIPText'
 import Icon from 'react-native-vector-icons/Ionicons'
+import {Navigation} from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     container: {
@@ -48,36 +49,68 @@ class ZipporaSelectAPT extends Component {
 
     constructor(props) {
         super(props);
-        Icon.getImageSource('md-close', 30)
+        Icon.getImageSource('ios-close-circle-outline', 30)
             .then(source => {
-                this.props.navigator.setButtons({
-                    rightButtons: [
+
+                Navigation.mergeOptions(this.props.componentId, {
+                    visible:true,
+                    topBar: {
+                      rightButtons: [
                         {
-                            id: 'close',
-                            icon: source,
-                        },
-                    ],
-                    animated: true
-                })
+                          id: 'close',
+                          Icon: source
+                        }
+                      ]
+                    }
+                  });
+
+                // this.props.navigator.setButtons({
+                //     rightButtons: [
+                //         {
+                //             id: 'close',
+                //             icon: source,
+                //         },
+                //     ],
+                //     animated: true
+                // })
             })
             .catch(err => {
 
             });
 
-        this.props.navigator.setOnNavigatorEvent((event) => {
-            this.onNavigatorEvent(event)
-        });
+        // this.props.navigator.setOnNavigatorEvent((event) => {
+        //     this.onNavigatorEvent(event)
+        // });
     }
 
     componentDidMount() {
+        this.navigationEventListener = Navigation.events().bindComponent(this);
         this.props.loadApt(this.props.zipCode);
     }
 
-    onNavigatorEvent(event) {      
-        if(event.type === 'NavBarButtonPress'&&event.id==='close'){
-            this.props.navigator.popToRoot();
-        }   
-    }
+    
+      componentWillUnmount() {
+        // Not mandatory
+        
+        if (this.navigationEventListener) {
+          this.navigationEventListener.remove();
+        }
+      }
+    
+      navigationButtonPressed({ buttonId }) {
+        // will be called when "buttonOne" is clicked
+        if (buttonId === 'close') {
+            Navigation.popToRoot(this.props.componentId);
+
+        }
+     } 
+      
+    
+    // onNavigatorEvent(event) {      
+    //     if(event.type === 'NavBarButtonPress'&&event.id==='close'){
+    //         this.props.navigator.popToRoot();
+    //     }   
+    // }
 
     _renderItem(item) {
         return (
@@ -89,13 +122,26 @@ class ZipporaSelectAPT extends Component {
                         return;
                     }
                     this.props.setApt(item);
-                    this.props.navigator.push({
-                        screen: 'ZipporaSelectUnit',
-                        title: 'Select Unit',
-                        navigatorStyle: navigatorStyle,
-                        backButtonTitle: 'Back',
-                        animationType: 'slide-horizontal',
-                    })
+                    Navigation.push(this.props.componentId, {
+                    component: {
+                        name: 'ZipporaSelectUnit',
+                       
+                        options: {
+                          topBar: {
+                            title: {
+                              text: 'Select Unit'
+                            }
+                          }
+                        }
+                      }
+                  });
+                    // this.props.navigator.push({
+                    //     screen: 'ZipporaSelectUnit',
+                    //     title: 'Select Unit',
+                    //     navigatorStyle: navigatorStyle,
+                    //     backButtonTitle: 'Back',
+                    //     animationType: 'slide-horizontal',
+                    // })
                 }}
                 style={styles.itemContainer}
             >

@@ -1,6 +1,7 @@
 /**
  * Created by liuyu on 2017/8/15.
  */
+import React from 'react'
 import * as types from '../actions/actionTypes'
 const initialState = {
     loading:false,

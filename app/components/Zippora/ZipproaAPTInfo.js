@@ -23,6 +23,7 @@ import {
 import {connect} from 'react-redux'
 import * as zipporaHomeActions from '../../actions/zipporaHomeAction'
 import ZIPText from '../ZIPText'
+import {Navigation} from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     container: {
@@ -75,7 +76,8 @@ class ZipproaAPTInfo extends Component {
                 this.props.loadZipList();
                 this.time = setTimeout(() => {
                     clearTimeout(this.time);
-                    this.props.navigator.pop();
+                    Navigation.pop(this.props.componentId);
+                   // this.props.navigator.pop();
                 }, 1500);
             })
             .catch(err => {
@@ -145,16 +147,31 @@ class ZipproaAPTInfo extends Component {
                                 activeOpacity={0.7}
                                 onPress={()=>{
                                     //跳转到ZipporaLocation
-                                    this.props.navigator.push({
-                                        screen:'ZipproaLocation',
-                                        title:`Zippora Package Locker ${data.cabinetId}`,
-                                        navigatorStyle:navigatorStyle,
-                                        backButtonTitle:'Back',
-                                        animationType:'slide-horizontal',
-                                        passProps:{
-                                            zippora:data,
+                                    Navigation.push(this.props.componentId, {
+                                        component: {
+                                            name: 'ZipproaLocation',
+                                             passProps: {
+                                                zippora:data,
+                                                 },
+                                            options: {
+                                            topBar: {
+                                                title: {
+                                                text: `Zippora Package Locker ${data.cabinetId}`,
+                                                }
+                                            }
+                                            }
                                         }
-                                    })
+                                    });
+                                    // this.props.navigator.push({
+                                    //     screen:'ZipproaLocation',
+                                    //     title:`Zippora Package Locker ${data.cabinetId}`,
+                                    //     navigatorStyle:navigatorStyle,
+                                    //     backButtonTitle:'Back',
+                                    //     animationType:'slide-horizontal',
+                                    //     passProps:{
+                                    //         zippora:data,
+                                    //     }
+                                    // })
                                 }}
                                 key={data.cabinetId}
                                 style={[

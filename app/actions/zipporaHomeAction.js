@@ -1,6 +1,7 @@
 /**
  * Created by liuyu on 2017/8/14.
  */
+
 import {
     ZIPPORA_HOME_LOAD,
     ZIPPORA_HOME_LOAD_ERROR,
@@ -61,7 +62,9 @@ export function getMember() {
 }
 
 export function setCanScan(canScan) {
+    console.log("1111");
     return {
+       
         type:ZIPPORA_HOME_SET_CAN_SCAN,
         canScan,
     }

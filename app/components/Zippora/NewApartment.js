@@ -14,6 +14,7 @@ import {
 } from 'react-native-elements'
 import ZIPText from '../ZIPText'
 import ZIPTextInput from '../ZIPTextInput'
+import {Navigation} from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     container: {
@@ -72,16 +73,31 @@ export default class NewApartment extends Component {
                     title={'NEXT'}
                     onPress={() => {
                         Keyboard.dismiss();
-                        this.props.navigator.push({
-                            screen: 'ZipporaSelectAPT',
-                            title: 'Select Apartment',
-                            backButtonTitle: 'Back',
-                            animationType: 'slide-horizontal',
-                            navigatorStyle:navigatorStyle,
-                            passProps:{
-                                zipCode:this.state.zipCode,
+                        Navigation.push(this.props.componentId, {
+                    component: {
+                        name: 'ZipporaSelectAPT',
+                        passProps: {
+                            zipCode:this.state.zipCode,
+                            },
+                        options: {
+                          topBar: {
+                            title: {
+                              text: 'Select Apartment'
                             }
-                        })
+                          }
+                        }
+                      }
+                  });
+                        // this.props.navigator.push({
+                        //     screen: 'ZipporaSelectAPT',
+                        //     title: 'Select Apartment',
+                        //     backButtonTitle: 'Back',
+                        //     animationType: 'slide-horizontal',
+                        //     navigatorStyle:navigatorStyle,
+                        //     passProps:{
+                        //         zipCode:this.state.zipCode,
+                        //     }
+                        // })
                     }}
                     backgroundColor={Color.themeColor}
                     //raised

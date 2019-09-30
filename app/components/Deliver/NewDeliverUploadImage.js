@@ -70,7 +70,8 @@ export default class NewDeliverUploadImage extends PureComponent {
                         {
                             text: 'OK',
                             onPress: () => {
-                                this.props.navigator.pop();
+                                Navigation.pop(this.props.componentId);
+                               // this.props.navigator.pop();
                             }
                         }
                     ]
@@ -288,7 +289,8 @@ export default class NewDeliverUploadImage extends PureComponent {
                                                     images,
                                                 },()=>{
                                                     if (images.length === 0) {
-                                                        this.props.navigator.pop();
+                                                        Navigation.pop(this.props.componentId);
+                                                      //  this.props.navigator.pop();
                                                     }
                                                 });
                                             }}

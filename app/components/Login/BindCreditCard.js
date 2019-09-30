@@ -26,13 +26,13 @@ const CreditCardItem = (props) => {
     return (
         <View
             style={{
-                flexDirection:'column',
-                paddingLeft:16,
-                paddingRight:16,
-                paddingTop:16,
+                flexDirection: 'column',
+                paddingLeft: 16,
+                paddingRight: 16,
+                paddingTop: 16,
             }}
         >
-            <ZIPText style={{padding:4,color:Color.themeColor, fontWeight:'bold'}}>
+            <ZIPText style={{ padding: 4, color: Color.themeColor, fontWeight: 'bold' }}>
                 {props.title}
             </ZIPText>
             <ZIPTextInput
@@ -40,12 +40,12 @@ const CreditCardItem = (props) => {
                 autoCapitalize={'none'}
                 underlineColorAndroid={'transparent'}
                 style={{
-                    height:40,
-                    paddingLeft:4,
-                    paddingRight:4,
-                    borderWidth:1,
-                    borderColor:Color.tipsColor,
-                    backgroundColor:'white'
+                    height: 40,
+                    paddingLeft: 4,
+                    paddingRight: 4,
+                    borderWidth: 1,
+                    borderColor: Color.tipsColor,
+                    backgroundColor: 'white'
                 }}
                 onChangeText={props.onChangeText}
             />
@@ -54,36 +54,36 @@ const CreditCardItem = (props) => {
 };
 
 CreditCardItem.propTypes = {
-    title:PropTypes.string.isRequired,
-    onChangeText:PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    onChangeText: PropTypes.func.isRequired,
 };
 
 class BindCreditCard extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            expireTime:'',
-            expireTimeError:false,
-            cardNum:'',
-            cardNumError:false,
-            buttonDisabled:true,
-            cvvCode:'',
-            zipCode:'',
-            holderName:'',
-            hudType:'none',
-            textOnly:false,
+            expireTime: '',
+            expireTimeError: false,
+            cardNum: '',
+            cardNumError: false,
+            buttonDisabled: true,
+            cvvCode: '',
+            zipCode: '',
+            holderName: '',
+            hudType: 'none',
+            textOnly: false,
         };
 
         if (props.fromWallet !== true) {
             props.navigator.setButtons({
-                rightButtons:[
+                rightButtons: [
                     {
-                        title:'Skip',
-                        id:'skip',
+                        title: 'Skip',
+                        id: 'skip',
                     }
                 ]
             });
-            props.navigator.setOnNavigatorEvent((event)=>{this.onNavigatorEvent(event)});
+            props.navigator.setOnNavigatorEvent((event) => { this.onNavigatorEvent(event) });
         }
     }
 
@@ -97,18 +97,18 @@ class BindCreditCard extends PureComponent {
             if (event.id === 'skip') {
                 console.log('skip');
                 storage.save({
-                    key:'isLogin',
-                    data:true,
-                    expires:null,
+                    key: 'isLogin',
+                    data: true,
+                    expires: null,
                 });
                 storage.save({
                     key: 'userInfo',
-                    data:{
-                        accessToken:userInfo.accessToken,
-                        memberId:userInfo.memberId,
+                    data: {
+                        accessToken: userInfo.accessToken,
+                        memberId: userInfo.memberId,
                         psd: userInfo.psd,
                     },
-                    expires:null,
+                    expires: null,
                 });
                 Navigation.startSingleScreenApp({
                     screen: {
@@ -154,7 +154,7 @@ class BindCreditCard extends PureComponent {
         //获取用户输入的年份
         let expireYear = parseInt(time.substring(5));
         //获取用户输入的月份
-        let expireMonth = parseInt(time.substring(0,2));
+        let expireMonth = parseInt(time.substring(0, 2));
 
         if (expireYear === nowYear) {
             error = expireMonth < nowMonth
@@ -166,8 +166,8 @@ class BindCreditCard extends PureComponent {
 
         if (this.state.expireTimeError !== error) {
             this.setState({
-                expireTimeError:error,
-            },()=>{this.completed()})
+                expireTimeError: error,
+            }, () => { this.completed() })
         }
     }
 
@@ -175,7 +175,7 @@ class BindCreditCard extends PureComponent {
         if (this.state.cardNumError || this.state.expireTimeError) {
             if (!this.state.buttonDisabled) {
                 this.setState({
-                    buttonDisabled:true,
+                    buttonDisabled: true,
                 })
             }
         } else {
@@ -188,7 +188,7 @@ class BindCreditCard extends PureComponent {
                 console.log('ok');
                 if (this.state.buttonDisabled) {
                     this.setState({
-                        buttonDisabled:false,
+                        buttonDisabled: false,
                     })
                 }
             }
@@ -198,7 +198,7 @@ class BindCreditCard extends PureComponent {
     insertCard() {
         if (this.state.hudType !== 'none') {
             this.setState({
-                hudType:'none'
+                hudType: 'none'
             })
         }
         this.hud.show();
@@ -210,26 +210,27 @@ class BindCreditCard extends PureComponent {
         let cardNum = cardNumber.join('');
 
         let param = new FormData();
-        param.append('cardNum',cardNum);
-        param.append('cardHolderName',this.state.holderName);
-        param.append('expDate',expDate);
-        param.append('cvv2',this.state.cvvCode);
-        param.append('zipcode',this.state.zipCode);
-        netWork('POST',INSERT_CARDCREDIT,param,true)
-            .then(json=>{
+        param.append('cardNum', cardNum);
+        param.append('cardHolderName', this.state.holderName);
+        param.append('expDate', expDate);
+        param.append('cvv2', this.state.cvvCode);
+        param.append('zipcode', this.state.zipCode);
+        netWork('POST', INSERT_CARDCREDIT, param, true)
+            .then(json => {
                 this.setState({
-                    hudType:'success',
-                },()=>{
-                    this.hud.show(json.msg,1500);
+                    hudType: 'success',
+                }, () => {
+                    this.hud.show(json.msg, 1500);
                 });
                 if (this.props.fromWallet) {
-                    this.time = setTimeout(()=>{
+                    this.time = setTimeout(() => {
                         this.props.loadCreditCard();
-                        this.props.navigator.pop();
-                    },1000);
+                        Navigation.pop(this.props.componentId);
+                        //   this.props.navigator.pop();
+                    }, 1000);
                     return;
                 }
-                this.time = setTimeout(()=>{
+                this.time = setTimeout(() => {
                     // this.props.navigator.push({
                     //     screen:'ChooseModel',
                     //     title:'Choose model',
@@ -237,18 +238,18 @@ class BindCreditCard extends PureComponent {
                     //     animationType:'slide-horizontal'
                     // });
                     storage.save({
-                        key:'isLogin',
-                        data:true,
-                        expires:null,
+                        key: 'isLogin',
+                        data: true,
+                        expires: null,
                     });
                     storage.save({
                         key: 'userInfo',
-                        data:{
-                            accessToken:userInfo.accessToken,
-                            memberId:userInfo.memberId,
+                        data: {
+                            accessToken: userInfo.accessToken,
+                            memberId: userInfo.memberId,
                             psd: userInfo.psd,
                         },
-                        expires:null,
+                        expires: null,
                     });
                     Navigation.startSingleScreenApp({
                         screen: {
@@ -272,48 +273,48 @@ class BindCreditCard extends PureComponent {
                         // },
                         animationType: 'fade'
                     })
-                },1500);
+                }, 1500);
             })
-            .catch(err=>{
+            .catch(err => {
                 this.setState({
-                    hudType:'error',
-                },()=>{
-                    this.hud.show(err,2000);
+                    hudType: 'error',
+                }, () => {
+                    this.hud.show(err, 2000);
                 })
             })
     }
 
     render() {
         return (
-            <View style={{flex:1}}>
-                <StatusBar barStyle="light-content" animated={true}/>
+            <View style={{ flex: 1 }}>
+                <StatusBar barStyle="light-content" animated={true} />
                 <KeyboardAwareScrollView
                     style={{
-                        flex:1,
-                        backgroundColor:Color.bgColor
+                        flex: 1,
+                        backgroundColor: Color.bgColor
                     }}
                     contentContainerStyle={{
-                        flexDirection:'column',
+                        flexDirection: 'column',
                     }}
                     keyboardShouldPersistTaps={'handled'}
                 >
                     <View
                         style={{
                             marginTop: 16,
-                            backgroundColor:'white',
-                            borderTopWidth:1,
-                            borderBottomWidth:1,
-                            borderColor:'lightgray',
+                            backgroundColor: 'white',
+                            borderTopWidth: 1,
+                            borderBottomWidth: 1,
+                            borderColor: 'lightgray',
                         }}
                     >
                         <ZIPTextInput
                             style={{
-                                height:40,
-                                fontSize:14,
-                                paddingLeft:8,
-                                paddingRight:8,
-                                color:this.state.cardNumError ? Color.red:'black',
-                                fontFamily:FontFamily,
+                                height: 40,
+                                fontSize: 14,
+                                paddingLeft: 8,
+                                paddingRight: 8,
+                                color: this.state.cardNumError ? Color.red : 'black',
+                                fontFamily: FontFamily,
                             }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -322,11 +323,11 @@ class BindCreditCard extends PureComponent {
                             maxLength={19}
                             underlineColorAndroid={'transparent'}
                             value={this.state.cardNum}
-                            onChangeText={(text)=>{
+                            onChangeText={(text) => {
                                 if (text.length < this.state.cardNum.length) {
                                     this.setState({
-                                        cardNum:text,
-                                    },()=>{
+                                        cardNum: text,
+                                    }, () => {
                                         this.completed();
                                     });
                                 } else {
@@ -339,17 +340,17 @@ class BindCreditCard extends PureComponent {
                                 }
                             }}
                         />
-                        <View style={{height:1, backgroundColor:'lightgray'}} />
+                        <View style={{ height: 1, backgroundColor: 'lightgray' }} />
                         <View style={{
-                            height:40,
-                            flexDirection:'row',
+                            height: 40,
+                            flexDirection: 'row',
                         }}>
-                            <View style={{flex:1,paddingLeft:8,paddingRight:8}}>
+                            <View style={{ flex: 1, paddingLeft: 8, paddingRight: 8 }}>
                                 <ZIPTextInput
                                     style={{
-                                        flex:1,
-                                        color:this.state.expireTimeError ? Color.red : 'black',
-                                        fontFamily:FontFamily,
+                                        flex: 1,
+                                        color: this.state.expireTimeError ? Color.red : 'black',
+                                        fontFamily: FontFamily,
                                     }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -358,40 +359,40 @@ class BindCreditCard extends PureComponent {
                                     maxLength={7}
                                     value={this.state.expireTime}
                                     underlineColorAndroid={'transparent'}
-                                    onBlur={()=>{
+                                    onBlur={() => {
                                         if (this.state.expireTime.length !== 7) {
                                             this.setState({
-                                                expireTimeError:true,
+                                                expireTimeError: true,
                                             })
                                         }
                                     }}
-                                    onChangeText={(text)=>{
+                                    onChangeText={(text) => {
                                         if (this.state.expireTime.length > 2) {
                                             if (this.state.expireTime.length < 6 && this.state.expireTime.length > text.length) {
                                                 this.setState({
-                                                    expireTime:'',
+                                                    expireTime: '',
                                                 })
                                             } else {
                                                 this.setState({
-                                                    expireTime:text,
-                                                },()=>{this.completed()})
+                                                    expireTime: text,
+                                                }, () => { this.completed() })
                                             }
                                         } else {
                                             if (text.length === 2) {
                                                 if (parseInt(text) <= 12) {
                                                     this.setState({
                                                         expireTime: text + ' / '
-                                                    },()=>{this.completed()})
+                                                    }, () => { this.completed() })
                                                 }
                                             } else {
                                                 if (parseInt(text) > 2) {
                                                     this.setState({
                                                         expireTime: '0' + text + ' / ',
-                                                    },()=>{this.completed()})
+                                                    }, () => { this.completed() })
                                                 } else {
                                                     this.setState({
                                                         expireTime: text,
-                                                    },()=>{this.completed()})
+                                                    }, () => { this.completed() })
                                                 }
                                             }
                                         }
@@ -401,17 +402,17 @@ class BindCreditCard extends PureComponent {
                                             if (this.state.expireTimeError) {
                                                 console.log('false');
                                                 this.setState({
-                                                    expireTimeError:false,
-                                                },()=>{this.completed()})
+                                                    expireTimeError: false,
+                                                }, () => { this.completed() })
                                             }
                                         }
                                     }}
                                 />
                             </View>
-                            <View style={{height:40,width:1, backgroundColor:'lightgray'}} />
-                            <View style={{flex:1,paddingLeft:8,paddingRight:8}}>
+                            <View style={{ height: 40, width: 1, backgroundColor: 'lightgray' }} />
+                            <View style={{ flex: 1, paddingLeft: 8, paddingRight: 8 }}>
                                 <ZIPTextInput
-                                    style={{flex:1, fontFamily:FontFamily}}
+                                    style={{ flex: 1, fontFamily: FontFamily }}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
                                     keyboardType={'number-pad'}
@@ -420,23 +421,23 @@ class BindCreditCard extends PureComponent {
                                     underlineColorAndroid={'transparent'}
                                     value={this.state.cvvCode}
 
-                                    onChangeText={(str)=>{
-                                        let text = str.replace(/[^0-9]/g,'');
+                                    onChangeText={(str) => {
+                                        let text = str.replace(/[^0-9]/g, '');
                                         this.setState({
-                                            cvvCode:text,
-                                        },()=>{this.completed()})
+                                            cvvCode: text,
+                                        }, () => { this.completed() })
                                     }}
                                 />
                             </View>
                         </View>
-                        <View style={{height:1, backgroundColor:'lightgray'}}/>
+                        <View style={{ height: 1, backgroundColor: 'lightgray' }} />
                         <ZIPTextInput
                             style={{
-                                height:40,
-                                fontSize:14,
-                                paddingLeft:8,
-                                paddingRight:8,
-                                fontFamily:FontFamily,
+                                height: 40,
+                                fontSize: 14,
+                                paddingLeft: 8,
+                                paddingRight: 8,
+                                fontFamily: FontFamily,
                             }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
@@ -445,59 +446,59 @@ class BindCreditCard extends PureComponent {
                             maxLength={20}
                             underlineColorAndroid={'transparent'}
                             value={this.state.zipCode}
-                            onChangeText={(str)=>{
-                                let text = str.replace(/[^0-9]/g,'');
+                            onChangeText={(str) => {
+                                let text = str.replace(/[^0-9]/g, '');
                                 this.setState({
-                                    zipCode:text,
-                                },()=>{this.completed()})
+                                    zipCode: text,
+                                }, () => { this.completed() })
                             }}
                         />
-                        <View style={{height:1, backgroundColor:'lightgray'}}/>
+                        <View style={{ height: 1, backgroundColor: 'lightgray' }} />
                         <ZIPTextInput
                             style={{
-                                height:40,
-                                fontSize:14,
-                                paddingLeft:8,
-                                paddingRight:8,
-                                fontFamily:FontFamily,
+                                height: 40,
+                                fontSize: 14,
+                                paddingLeft: 8,
+                                paddingRight: 8,
+                                fontFamily: FontFamily,
                             }}
                             autoCapitalize={'none'}
                             autoCorrect={false}
                             placeholder={'Cardholder Name'}
                             value={this.state.holderName}
                             underlineColorAndroid={'transparent'}
-                            onChangeText={(text)=>{
+                            onChangeText={(text) => {
                                 this.setState({
-                                    holderName:text
-                                },()=>{this.completed()})
+                                    holderName: text
+                                }, () => { this.completed() })
                             }}
                         />
                     </View>
 
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             //提交信用卡信息
                             this.insertCard();
                         }}
                         style={{
-                            height:40,
-                            alignItems:'center',
-                            justifyContent:'center',
-                            marginLeft:16,
-                            marginRight:16,
+                            height: 40,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginLeft: 16,
+                            marginRight: 16,
                             marginTop: 16,
-                            backgroundColor:this.state.buttonDisabled ? 'lightgray' :Color.themeColor,
-                            borderRadius:4,
+                            backgroundColor: this.state.buttonDisabled ? 'lightgray' : Color.themeColor,
+                            borderRadius: 4,
                         }}
                     >
-                        <ZIPText style={{fontSize:15,color:'white', fontWeight:'500'}}>
+                        <ZIPText style={{ fontSize: 15, color: 'white', fontWeight: '500' }}>
                             Done
                         </ZIPText>
                     </TouchableOpacity>
                 </KeyboardAwareScrollView>
                 <Hud
-                    ref={r=>this.hud = r}
+                    ref={r => this.hud = r}
                     hudType={this.state.hudType}
                     textonly={this.state.textOnly}
                 />
@@ -507,8 +508,8 @@ class BindCreditCard extends PureComponent {
 }
 
 export default connect(
-    (state)=>({}),
-    (dispatch)=>({
+    (state) => ({}),
+    (dispatch) => ({
         loadCreditCard: () => dispatch(walletActions.loadCreditCard()),
     })
 )(BindCreditCard)

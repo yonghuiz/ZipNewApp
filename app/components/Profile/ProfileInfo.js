@@ -2,6 +2,7 @@
  * Created by liuyu on 2017/8/21.
  */
 import React, {Component} from 'react'
+import {Navigation} from 'react-native-navigation'
 import PropTypes from 'prop-types'
 import {
     View,
@@ -88,7 +89,7 @@ class ProfileInfoItem extends Component {
                             </ZIPText>
                     }
                     <Icon
-                        name="ios-arrow-forward-outline"
+                        name="ios-arrow-round-forward"
                         color={Color.bgColor}
                         size={20}
                         style={{marginLeft: 8}}
@@ -122,7 +123,27 @@ ProfileInfoItem.defaultProps = {
 };
 
 class ProfileInfo extends Component {
-
+    static options() {
+        return {
+          topBar: {
+           
+            
+            backButton: 
+                {
+                    visible: true,
+                    color: 'black',
+                    id: 'back',
+                    //title: 'Back'
+                },
+                
+            rightButtons: {
+              id: 'back2',
+              text: 'Back',
+              testID: "XXXX"
+            }
+          }
+        };
+      }
     constructor(props) {
         super(props);
         this.state = {
@@ -131,24 +152,59 @@ class ProfileInfo extends Component {
             hudType: 'none',
             date: new Date(),
         };
-        if (Platform.OS !== 'android') {
-            this.props.navigator.setButtons({
-                leftButtons: [
+        Navigation.events().bindComponent(this);
+        if (Platform.OS === 'android') {
+         //   console.log ("11111");
+            Navigation.mergeOptions(this.props.componentId, {
+                popGesture: false,
+                topBar: {
+                  
+                    backButton: [
                     {
                         id: 'back',
-                        component:'BackButton',
-                    },
-                ],
-                animated: true
-            })
+                        //title: 'Back'
+                        
+                    }
+                    ]
+                }
+            
+                });
+            // this.props.navigator.setButtons({
+            //     leftButtons: [
+            //         {
+            //             id: 'back',
+            //             component:'BackButton',
+            //         },
+            //     ],
+            //     animated: true
+            // })
         }
+        
         //end chechk platform
-        this.props.navigator.setOnNavigatorEvent((event) => {
-            this.onNavigatorEvent(event)
-        });
-        this.props.navigator.setStyle({
-            disabledBackGesture:true,
-        })
+        // this.props.navigator.setOnNavigatorEvent((event) => {
+        //     this.onNavigatorEvent(event)
+        // });
+       // Navigation.events().bindComponent(this);
+        // this.props.navigator.setStyle({
+        //     disabledBackGesture:true,
+        // })
+
+    }
+   
+    
+      navigationButtonPressed({ buttonId }) {
+     
+        
+        //    alert(`navigationButtonPressed: ${buttonId}`); // eslint-disable-line no-alert
+          
+        if(buttonId ==='back2'){
+
+                        this.onBackPress();
+                    }
+                    // if(event.type === 'DeepLink'&&event.link==='goBack'){
+                    //     this.onBackPress();
+                    // }
+
 
     }
     showHud(type,msg,after=null){
@@ -171,18 +227,21 @@ class ProfileInfo extends Component {
             this.showHud("error","Please input last name.",2000);
             return;
         }
-        this.props.navigator.pop();
+        Navigation.pop(this.props.componentId);
+       // this.props.navigator.pop();
     }
-    onNavigatorEvent(event) {
+  
+
+    // onNavigatorEvent(event) {
         
-            if(event.id ==='backPress'){
-                this.onBackPress();
-            }
-            if(event.type === 'DeepLink'&&event.link==='goBack'){
-                this.onBackPress();
-            }
+    //         if(event.id ==='backPress'){
+    //             this.onBackPress();
+    //         }
+    //         if(event.type === 'DeepLink'&&event.link==='goBack'){
+    //             this.onBackPress();
+    //         }
         
-    }
+    // }
 
     _updateProfile(type,value) {
         let formData = new FormData();
@@ -235,17 +294,34 @@ console.log(err);
 
     _pushToModify(passProps) {
         if(repeatPress(this)) return;
-        this.props.navigator.push({
-            screen: 'ModifyProfile',
-            title: passProps.placeholder,
-            passProps: {
-                ...passProps,
-                fromLocker:this.props.fromLocker,
-            },
-            animationType: 'slide-horizontal',
-            navigatorStyle:navigatorStyle,
-            backButtonTitle:'Back',
-        })
+
+        Navigation.push(this.props.componentId, {
+            component: {
+                name: 'ModifyProfile',
+                passProps: {
+                    ...passProps,
+                      fromLocker:this.props.fromLocker,
+                    },
+                options: {
+                  topBar: {
+                    title: {
+                      text: passProps.placeholder
+                    }
+                  }
+                }
+              }
+          });
+        // this.props.navigator.push({
+        //     screen: 'ModifyProfile',
+        //     title: passProps.placeholder,
+        //     passProps: {
+        //         ...passProps,
+        //         fromLocker:this.props.fromLocker,
+        //     },
+        //     animationType: 'slide-horizontal',
+        //     navigatorStyle:navigatorStyle,
+        //     backButtonTitle:'Back',
+        // })
     }
 
     _openDatePicker() {
@@ -265,40 +341,147 @@ console.log(err);
                     alert('open datePicker fail');
                 })
         } else {
-            this.props.navigator.showModal({
-                screen: 'PickerScreen',
-                navigatorStyle: {
-                    navBarHidden: true,
-                    statusBarColor: Color.themeColor
-                },
-                animationType: 'none',
-                passProps: {
-                    title: 'Choose a date',
+            Navigation.showModal({
+               
+                    component: {
+                      name: 'PickerScreen',
+                      passProps: {
+                      //  title: 'Choose a date',
                     onSureClick: (data) => {
                         this._updateProfile('birth',data.Format('yyyyMMdd'));
+                      }},
+                      options: {
+                        topBar: {
+                          title: {
+                            text: 'Choose a date'
+                          }
+                        }
+                      }
                     }
-                }
-            });
+                 
+              });
+
+            // this.props.navigator.showModal({
+            //     screen: 'PickerScreen',
+            //     navigatorStyle: {
+            //         navBarHidden: true,
+            //         statusBarColor: Color.themeColor
+            //     },
+            //     animationType: 'none',
+            //     passProps: {
+            //         title: 'Choose a date',
+            //         onSureClick: (data) => {
+            //             this._updateProfile('birth',data.Format('yyyyMMdd'));
+            //         }
+            //     }
+            // });
         }
     }
 
     _openStatePicker() {
-        this.props.navigator.showModal({
-            screen:'PickerScreen',
-            navigatorStyle: {
-                navBarHidden: true,
-                statusBarColor: Color.themeColor
-            },
-            animationType: 'none',
-            passProps: {
-                title: 'Choose a state',
-                type:'picker',
-                onSureClick: (data) => {
-                    this._updateProfile('state',data);
+
+        Navigation.showModal({
+            
+                component: {
+                  name: 'PickerScreen',
+                  passProps: {
+                  //  title: 'Choose a date',
+              
+                    type:'picker',
+                    onSureClick: (data) => {
+                                this._updateProfile('state',data);
+                                
+                  }},
+                  options: {
+                    topBar: {
+                      title: {
+                        text: 'Choose a State'
+                      }
+                    }
+                  }
                 }
-            }
-        })
+           
+          });
+
+         
+        // this.props.navigator.showModal({
+        //     screen:'PickerScreen',
+        //     navigatorStyle: {
+        //         navBarHidden: true,
+        //         statusBarColor: Color.themeColor
+        //     },
+        //     animationType: 'none',
+        //     passProps: {
+        //         title: 'Choose a state',
+        //         type:'picker',
+        //         onSureClick: (data) => {
+        //             this._updateProfile('state',data);
+        //         }
+        //     }
+        // })
     }
+    showModalavatar= () =>   
+        Navigation.showModal({
+            component: {
+             //   name: Screens.Modal,
+                name: 'ActionSheetScreen',
+ 
+          
+        // this.props.navigator.showModal({
+        //     screen: 'ActionSheetScreen',
+        //     navigatorStyle: {
+        //         navBarHidden: true,
+        //         statusBarColor: Color.themeColor
+        //     },
+        //     animationType: 'none',
+            passProps: {
+                onActionClick: (index) => {
+                    if (index === 0) {
+                        this.timeout = setTimeout(() => {
+                            clearTimeout(this.timeout);
+                            this.setState({
+                                barStyle: 'default',
+                            });
+                            openCamera()
+                                .then(image=>{
+                                    this.setState({
+                                        barStyle:'light-content',
+                                    });
+                                    this.setAvatar(image);
+                                })
+                                .catch(err=>{
+                                    this.setState({
+                                        barStyle:'light-content',
+                                    });
+                                });
+                        }, 500);
+                    } else {
+                        this.timeout = setTimeout(() => {
+                            clearTimeout(this.timeout);
+                            this.setState({
+                                barStyle: 'default',
+                            });
+                            openPhotos()
+                                .then(image=>{
+                                    this.setState({
+                                        barStyle:'light-content',
+                                    });
+                                    this.setAvatar(image)
+                                })
+                                .catch(err=>{
+                                    this.setState({
+                                        barStyle:'light-content',
+                                    })
+                                })
+                        }, 500);
+
+                    }
+                },
+                actionTitles: ['Take photo from camera', 'Select from photo']
+            }
+        }
+        });
+    
 
     render() {
 
@@ -315,61 +498,7 @@ console.log(err);
                         title="AVATAR"
                         isAvatar={true}
                         avatar={this.state.avatar === '' ? null : {uri: this.state.avatar}}
-                        onPress={() => {                          
-                            this.props.navigator.showModal({
-                                screen: 'ActionSheetScreen',
-                                navigatorStyle: {
-                                    navBarHidden: true,
-                                    statusBarColor: Color.themeColor
-                                },
-                                animationType: 'none',
-                                passProps: {
-                                    onActionClick: (index) => {
-                                        if (index === 0) {
-                                            this.timeout = setTimeout(() => {
-                                                clearTimeout(this.timeout);
-                                                this.setState({
-                                                    barStyle: 'default',
-                                                });
-                                                openCamera()
-                                                    .then(image=>{
-                                                        this.setState({
-                                                            barStyle:'light-content',
-                                                        });
-                                                        this.setAvatar(image);
-                                                    })
-                                                    .catch(err=>{
-                                                        this.setState({
-                                                            barStyle:'light-content',
-                                                        });
-                                                    });
-                                            }, 500);
-                                        } else {
-                                            this.timeout = setTimeout(() => {
-                                                clearTimeout(this.timeout);
-                                                this.setState({
-                                                    barStyle: 'default',
-                                                });
-                                                openPhotos()
-                                                    .then(image=>{
-                                                        this.setState({
-                                                            barStyle:'light-content',
-                                                        });
-                                                        this.setAvatar(image)
-                                                    })
-                                                    .catch(err=>{
-                                                        this.setState({
-                                                            barStyle:'light-content',
-                                                        })
-                                                    })
-                                            }, 500);
-
-                                        }
-                                    },
-                                    actionTitles: ['Take photo from camera', 'Select from photo']
-                                }
-                            });
-                        }}
+                        onPress={this.showModalavatar}
                     />
                     <ProfileInfoItem
                         title="NICKNAME"
@@ -485,15 +614,31 @@ console.log(err);
                         noBorder={false}
                         onPress={() => {
                             if(repeatPress(this)) return;
-                            this.props.navigator.push({
-                                screen:'ModifyHouseHolder',
-                                title:'Modify Householder',
-                                passProps:{
+
+                            Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'ModifyHouseHolder',
+                                        passProps:{
                                     householderMember:profile.householderMember
                                 },
-                                navigatorStyle:navigatorStyle,
-                                animationType:'slide-horizontal',
-                            })
+                                        options: {
+                                        topBar: {
+                                            title: {
+                                            text: 'Modify Householder'
+                            }
+                          }
+                        }
+                      }
+                  });
+                            // this.props.navigator.push({
+                            //     screen:'ModifyHouseHolder',
+                            //     title:'Modify Householder',
+                            //     passProps:{
+                            //         householderMember:profile.householderMember
+                            //     },
+                            //     navigatorStyle:navigatorStyle,
+                            //     animationType:'slide-horizontal',
+                            // })
                         }}
                     />
                     <ProfileInfoItem
@@ -502,12 +647,25 @@ console.log(err);
                         noBorder={true}
                         onPress={() => {
                             if(repeatPress(this)) return;
-                            this.props.navigator.push({
-                                screen:'ModifyPassword',
-                                title:'Change password',
-                                navigatorStyle:navigatorStyle,
-                                animationType:'slide-horizontal',
-                            })
+                            Navigation.push(this.props.componentId, {
+                                    component: {
+                                        name: 'ModifyPassword',
+                                    
+                                        options: {
+                                        topBar: {
+                                            title: {
+                                            text: 'Change Password'
+                            }
+                          }
+                        }
+                      }
+                  });
+                            // this.props.navigator.push({
+                            //     screen:'ModifyPassword',
+                            //     title:'Change password',
+                            //     navigatorStyle:navigatorStyle,
+                            //     animationType:'slide-horizontal',
+                            // })
                         }}
                     />
                     <View style={{height: 20}}/>
@@ -519,15 +677,30 @@ console.log(err);
                             if(repeatPress(this)) return;
                             //退出登录
                             logout();
-                            this.props.navigator.resetTo({
-                                screen: 'Login',
-                                navigatorStyle: {
-                                    ...navigatorStyle,
-                                    navBarHidden: true,
-                                },
-                                animationType: 'fade',
-                                animated: true,
-                            });
+                            Navigation.setStackRoot(this.props.componentId, [
+                                        {
+                                        component: {
+                                            name: 'Login',
+                                           
+                                            options: {
+                                                animations: {
+                                                setStackRoot: {
+                                                    enabled: true
+                                                }
+                                                }
+                                            }
+                                            }
+                                    }
+                                    ]);
+                            // this.props.navigator.resetTo({
+                            //     screen: 'Login',
+                            //     navigatorStyle: {
+                            //         ...navigatorStyle,
+                            //         navBarHidden: true,
+                            //     },
+                            //     animationType: 'fade',
+                            //     animated: true,
+                            // });
                         }}
                     />
                 </ScrollView>

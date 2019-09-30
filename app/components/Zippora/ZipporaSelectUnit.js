@@ -20,6 +20,7 @@ import Hud from 'react-native-lyhud'
 import {
     BIND_APARTMENT
 } from '../../config/API'
+import {Navigation} from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     infoContainer: {
@@ -38,6 +39,21 @@ const styles = StyleSheet.create({
 class ZipporaSelectUnit extends PureComponent {
 
     binding = false;
+   
+    static options(passProps) {
+        return {
+        //    this.props.navigator.setButtons({
+            topBar: {
+                rightButtons: [
+                    {
+                        id: 'close',
+                       // icon: source ,
+                       text: 'close'
+                    },
+                ],
+                animated: true
+             }
+            }}
 
     constructor(props) {
         super(props);
@@ -46,37 +62,49 @@ class ZipporaSelectUnit extends PureComponent {
             selectIndex: 0,
             payOffline: true,
         }
-
-        Icon.getImageSource('md-close', 30)
-            .then(source => {
-                this.props.navigator.setButtons({
+        // Icon.getImageSource('ios-close', 30)
+        // .then(source => {
+        
+                Navigation.mergeOptions(this.props.componentId, {
+            //    this.props.navigator.setButtons({
+                topBar: {
                     rightButtons: [
                         {
                             id: 'close',
-                            icon: source,
+                           // icon: source ,
+                           text: 'close'
                         },
                     ],
                     animated: true
+                 }
                 })
-            })
-            .catch(err => {
+           
+            // })
+            // .catch(err => {
 
-            });
+            // }); 
 
-        this.props.navigator.setOnNavigatorEvent((event) => {
-            this.onNavigatorEvent(event)
-        });
+        // this.props.navigator.setOnNavigatorEvent((event) => {
+        //     this.onNavigatorEvent(event)
+        // });
     }
 
     componentDidMount() {
+        this.navigationEventListener = Navigation.events().bindComponent(this);
         this.props.loadUnitList(this.props.apt.apartmentId);
     }
+    navigationButtonPressed({ buttonId }) {
+        // will be called when "buttonOne" is clicked
+        if (buttonId === 'close') {
+            Navigation.popToRoot(this.props.componentId);
 
-    onNavigatorEvent(event) {      
-        if(event.type === 'NavBarButtonPress'&&event.id==='close'){
-            this.props.navigator.popToRoot();
-        }   
+        }
     }
+    // onNavigatorEvent(event) {      
+    //     if(event.type === 'NavBarButtonPress'&&event.id==='close'){
+    //         this.props.navigator.popToRoot();
+    //     }   
+    // }
 
     renderUnits() {
         const {
@@ -114,7 +142,8 @@ class ZipporaSelectUnit extends PureComponent {
                     style={{padding: 8, alignItems: 'center', justifyContent: 'center'}}
                     activeOpacity={1}
                     onPress={() => {
-                        this.props.navigator.pop()
+                        Navigation.pop(this.props.componentId);
+                       // this.props.navigator.pop()
                     }}
                 >
                     <ZIPText style={{color: Color.red}}>
@@ -195,7 +224,8 @@ class ZipporaSelectUnit extends PureComponent {
                     this.props.loadZipList();
                     this.time = setTimeout(() => {
                         //刷新首页数据, 跳转到首页
-                        this.props.navigator.popToRoot();
+                        Navigation.popToRoot(this.props.componentId);
+                        //this.props.navigator.popToRoot();
                     }, 1500);
                 })
             })
