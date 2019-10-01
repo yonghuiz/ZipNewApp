@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import android.app.Application;
 import android.util.Log;

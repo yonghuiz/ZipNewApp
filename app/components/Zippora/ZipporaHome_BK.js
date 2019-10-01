@@ -311,7 +311,7 @@ Navigation.mergeOptions(this.props.componentId, {
                                 {
                                     text:'Upgrade',
                                     onPress:()=>{
-                                        Linking.openURL('https://play.google.com/store/apps/details?id=com.zipnewapp');
+                                        Linking.openURL('https://play.google.com/store/apps/details?id=com.zipcodexpress');
                                     }
                                 }
                             ]

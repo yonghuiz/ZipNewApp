@@ -215,7 +215,7 @@ export default class Login extends PureComponent {
                         userInfo.memberId = json.data.memberId;
                         userInfo.psd = json.data.psd;
                         if (json.data.statusDetail.hasBindAddress == 0) {
-                            Navigation.push(this, {
+                            Navigation.push(this.props.componentId, {
                                 component: {
                                     name: 'AddAddress',
 
@@ -236,7 +236,7 @@ export default class Login extends PureComponent {
                             // })
                         } else {
                             if (json.data.serviceMode == null) {
-                                Navigation.push(this, {
+                                Navigation.push(this.props.componentId, {
                                     component: {
                                         name: 'ChooseModel',
 
@@ -608,7 +608,7 @@ export default class Login extends PureComponent {
                     userInfo.psd = json.data.psd;
                     if (json.data.statusDetail.hasBindAddress == 0) {
 
-                        Navigation.push(this, {
+                        Navigation.push(this.props.componentId, {
                             component: {
                                 name: 'AddAddress',
 
@@ -722,7 +722,7 @@ export default class Login extends PureComponent {
                     userInfo.memberId = json.data.memberId;
                     userInfo.psd = json.data.psd;
                     if (json.data.statusDetail.hasBindAddress == 0) {
-                        Navigation.push(this, {
+                        Navigation.push(this.props.componentId, {
                             component: {
                                 name: 'AddAddress',
 

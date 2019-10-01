@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "ZipNewApp-tvOS.app"
-               BlueprintName = "ZipNewApp-tvOS"
-               ReferencedContainer = "container:ZipNewApp.xcodeproj">
+               BuildableName = "zipcodeXpress-tvOS.app"
+               BlueprintName = "zipcodeXpress-tvOS"
+               ReferencedContainer = "container:zipcodeXpress.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "ZipNewApp-tvOSTests.xctest"
-               BlueprintName = "ZipNewApp-tvOSTests"
-               ReferencedContainer = "container:ZipNewApp.xcodeproj">
+               BuildableName = "zipcodeXpress-tvOSTests.xctest"
+               BlueprintName = "zipcodeXpress-tvOSTests"
+               ReferencedContainer = "container:zipcodeXpress.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "ZipNewApp-tvOSTests.xctest"
-               BlueprintName = "ZipNewApp-tvOSTests"
-               ReferencedContainer = "container:ZipNewApp.xcodeproj">
+               BuildableName = "zipcodeXpress-tvOSTests.xctest"
+               BlueprintName = "zipcodeXpress-tvOSTests"
+               ReferencedContainer = "container:zipcodeXpress.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ZipNewApp-tvOS.app"
-            BlueprintName = "ZipNewApp-tvOS"
-            ReferencedContainer = "container:ZipNewApp.xcodeproj">
+            BuildableName = "zipcodeXpress-tvOS.app"
+            BlueprintName = "zipcodeXpress-tvOS"
+            ReferencedContainer = "container:zipcodeXpress.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ZipNewApp-tvOS.app"
-            BlueprintName = "ZipNewApp-tvOS"
-            ReferencedContainer = "container:ZipNewApp.xcodeproj">
+            BuildableName = "zipcodeXpress-tvOS.app"
+            BlueprintName = "zipcodeXpress-tvOS"
+            ReferencedContainer = "container:zipcodeXpress.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "ZipNewApp-tvOS.app"
-            BlueprintName = "ZipNewApp-tvOS"
-            ReferencedContainer = "container:ZipNewApp.xcodeproj">
+            BuildableName = "zipcodeXpress-tvOS.app"
+            BlueprintName = "zipcodeXpress-tvOS"
+            ReferencedContainer = "container:zipcodeXpress.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

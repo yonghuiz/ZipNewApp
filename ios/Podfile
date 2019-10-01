@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'ZipNewApp' do
-  # Pods for ZipNewApp
+target 'zipcodeXpress' do
+  # Pods for zipcodeXpress
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -33,7 +33,7 @@ target 'ZipNewApp' do
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-  target 'ZipNewAppTests' do
+  target 'zipcodeXpressTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -41,10 +41,10 @@ target 'ZipNewApp' do
   use_native_modules!
 end
 
-target 'ZipNewApp-tvOS' do
-  # Pods for ZipNewApp-tvOS
+target 'zipcodeXpress-tvOS' do
+  # Pods for zipcodeXpress-tvOS
 
-  target 'ZipNewApp-tvOSTests' do
+  target 'zipcodeXpress-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

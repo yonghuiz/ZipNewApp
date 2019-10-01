@@ -14,11 +14,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface ZipNewAppTests : XCTestCase
+@interface zipcodeXpressTests : XCTestCase
 
 @end
 
-@implementation ZipNewAppTests
+@implementation zipcodeXpressTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

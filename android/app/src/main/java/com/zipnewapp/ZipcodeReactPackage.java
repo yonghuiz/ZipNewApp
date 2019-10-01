@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

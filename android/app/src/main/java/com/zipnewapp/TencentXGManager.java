@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

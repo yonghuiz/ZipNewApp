@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import android.content.res.AssetManager;
 import android.graphics.Color;
@@ -41,7 +41,7 @@ public class MainActivity extends NavigationActivity  {
      */
     // @Override
     // protected String getMainComponentName() {
-    //     return "ZipNewApp";
+    //     return "zipcodeXpress";
     // }
 
   //  @Override

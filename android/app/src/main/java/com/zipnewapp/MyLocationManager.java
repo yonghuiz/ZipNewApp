@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import android.app.PendingIntent;
 import android.content.Intent;

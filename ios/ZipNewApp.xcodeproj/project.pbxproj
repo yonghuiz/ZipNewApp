@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* ZipNewAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ZipNewAppTests.m */; };
+		00E356F31AD99517003FC87E /* zipcodeXpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* zipcodeXpressTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -15,11 +15,11 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* ZipNewAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ZipNewAppTests.m */; };
-		6B0DE02B017B3F7397D5A4F2 /* libPods-ZipNewAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91224F5C47DE5FEF5DA8858 /* libPods-ZipNewAppTests.a */; };
-		7621162C5910AF472717E1EF /* libPods-ZipNewApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D0C92308BC0EFA17DBE102 /* libPods-ZipNewApp.a */; };
-		A3F742B007BD02EC7736EA1F /* libPods-ZipNewApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B7F217C797F99A733F4458 /* libPods-ZipNewApp-tvOSTests.a */; };
-		FFB3C860B6AD1EF4448D82F1 /* libPods-ZipNewApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52148A4BA0FABC1D59188335 /* libPods-ZipNewApp-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* zipcodeXpressTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* zipcodeXpressTests.m */; };
+		6B0DE02B017B3F7397D5A4F2 /* libPods-zipcodeXpressTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91224F5C47DE5FEF5DA8858 /* libPods-zipcodeXpressTests.a */; };
+		7621162C5910AF472717E1EF /* libPods-zipcodeXpress.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D0C92308BC0EFA17DBE102 /* libPods-zipcodeXpress.a */; };
+		A3F742B007BD02EC7736EA1F /* libPods-zipcodeXpress-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 59B7F217C797F99A733F4458 /* libPods-zipcodeXpress-tvOSTests.a */; };
+		FFB3C860B6AD1EF4448D82F1 /* libPods-zipcodeXpress-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52148A4BA0FABC1D59188335 /* libPods-zipcodeXpress-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,45 +28,45 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = ZipNewApp;
+			remoteInfo = zipcodeXpress;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "ZipNewApp-tvOS";
+			remoteInfo = "zipcodeXpress-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* ZipNewAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZipNewAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* zipcodeXpressTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zipcodeXpressTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ZipNewAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipNewAppTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ZipNewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipNewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ZipNewApp/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ZipNewApp/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* zipcodeXpressTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zipcodeXpressTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* zipcodeXpress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zipcodeXpress.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = zipcodeXpress/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = zipcodeXpress/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ZipNewApp/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ZipNewApp/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ZipNewApp/main.m; sourceTree = "<group>"; };
-		29C5331850742BCDBFDA57A4 /* Pods-ZipNewApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewApp.debug.xcconfig"; path = "Target Support Files/Pods-ZipNewApp/Pods-ZipNewApp.debug.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* ZipNewApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZipNewApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* ZipNewApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ZipNewApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		41B76FAABF07C70316D94BB3 /* Pods-ZipNewAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewAppTests.release.xcconfig"; path = "Target Support Files/Pods-ZipNewAppTests/Pods-ZipNewAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		52148A4BA0FABC1D59188335 /* libPods-ZipNewApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZipNewApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		59B7F217C797F99A733F4458 /* libPods-ZipNewApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZipNewApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		683AA4D53773636FF0B083DA /* Pods-ZipNewApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ZipNewApp-tvOSTests/Pods-ZipNewApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		95D0C92308BC0EFA17DBE102 /* libPods-ZipNewApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZipNewApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF33B42654A228E46F097676 /* Pods-ZipNewApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ZipNewApp-tvOS/Pods-ZipNewApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		B3B7A009584BCFE8E985005E /* Pods-ZipNewApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ZipNewApp-tvOS/Pods-ZipNewApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C034AFECEC7FFC2EBDDD40FB /* Pods-ZipNewAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ZipNewAppTests/Pods-ZipNewAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D91224F5C47DE5FEF5DA8858 /* libPods-ZipNewAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZipNewAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E0053D463D40E277B066259F /* Pods-ZipNewApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ZipNewApp-tvOSTests/Pods-ZipNewApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = zipcodeXpress/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = zipcodeXpress/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = zipcodeXpress/main.m; sourceTree = "<group>"; };
+		29C5331850742BCDBFDA57A4 /* Pods-zipcodeXpress.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpress.debug.xcconfig"; path = "Target Support Files/Pods-zipcodeXpress/Pods-zipcodeXpress.debug.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* zipcodeXpress-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "zipcodeXpress-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* zipcodeXpress-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "zipcodeXpress-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41B76FAABF07C70316D94BB3 /* Pods-zipcodeXpressTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpressTests.release.xcconfig"; path = "Target Support Files/Pods-zipcodeXpressTests/Pods-zipcodeXpressTests.release.xcconfig"; sourceTree = "<group>"; };
+		52148A4BA0FABC1D59188335 /* libPods-zipcodeXpress-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zipcodeXpress-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		59B7F217C797F99A733F4458 /* libPods-zipcodeXpress-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zipcodeXpress-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		683AA4D53773636FF0B083DA /* Pods-zipcodeXpress-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpress-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-zipcodeXpress-tvOSTests/Pods-zipcodeXpress-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		95D0C92308BC0EFA17DBE102 /* libPods-zipcodeXpress.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zipcodeXpress.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF33B42654A228E46F097676 /* Pods-zipcodeXpress-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpress-tvOS.release.xcconfig"; path = "Target Support Files/Pods-zipcodeXpress-tvOS/Pods-zipcodeXpress-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		B3B7A009584BCFE8E985005E /* Pods-zipcodeXpress-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpress-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-zipcodeXpress-tvOS/Pods-zipcodeXpress-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C034AFECEC7FFC2EBDDD40FB /* Pods-zipcodeXpressTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpressTests.debug.xcconfig"; path = "Target Support Files/Pods-zipcodeXpressTests/Pods-zipcodeXpressTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D91224F5C47DE5FEF5DA8858 /* libPods-zipcodeXpressTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-zipcodeXpressTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0053D463D40E277B066259F /* Pods-zipcodeXpress-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpress-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-zipcodeXpress-tvOSTests/Pods-zipcodeXpress-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F331F5DD1AEBE4885C97DD83 /* Pods-ZipNewApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZipNewApp.release.xcconfig"; path = "Target Support Files/Pods-ZipNewApp/Pods-ZipNewApp.release.xcconfig"; sourceTree = "<group>"; };
+		F331F5DD1AEBE4885C97DD83 /* Pods-zipcodeXpress.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zipcodeXpress.release.xcconfig"; path = "Target Support Files/Pods-zipcodeXpress/Pods-zipcodeXpress.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B0DE02B017B3F7397D5A4F2 /* libPods-ZipNewAppTests.a in Frameworks */,
+				6B0DE02B017B3F7397D5A4F2 /* libPods-zipcodeXpressTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7621162C5910AF472717E1EF /* libPods-ZipNewApp.a in Frameworks */,
+				7621162C5910AF472717E1EF /* libPods-zipcodeXpress.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFB3C860B6AD1EF4448D82F1 /* libPods-ZipNewApp-tvOS.a in Frameworks */,
+				FFB3C860B6AD1EF4448D82F1 /* libPods-zipcodeXpress-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,20 +98,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3F742B007BD02EC7736EA1F /* libPods-ZipNewApp-tvOSTests.a in Frameworks */,
+				A3F742B007BD02EC7736EA1F /* libPods-zipcodeXpress-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* ZipNewAppTests */ = {
+		00E356EF1AD99517003FC87E /* zipcodeXpressTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* ZipNewAppTests.m */,
+				00E356F21AD99517003FC87E /* zipcodeXpressTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = ZipNewAppTests;
+			path = zipcodeXpressTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -122,7 +122,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* ZipNewApp */ = {
+		13B07FAE1A68108700A75B9A /* zipcodeXpress */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -133,7 +133,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = ZipNewApp;
+			name = zipcodeXpress;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -141,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				95D0C92308BC0EFA17DBE102 /* libPods-ZipNewApp.a */,
-				52148A4BA0FABC1D59188335 /* libPods-ZipNewApp-tvOS.a */,
-				59B7F217C797F99A733F4458 /* libPods-ZipNewApp-tvOSTests.a */,
-				D91224F5C47DE5FEF5DA8858 /* libPods-ZipNewAppTests.a */,
+				95D0C92308BC0EFA17DBE102 /* libPods-zipcodeXpress.a */,
+				52148A4BA0FABC1D59188335 /* libPods-zipcodeXpress-tvOS.a */,
+				59B7F217C797F99A733F4458 /* libPods-zipcodeXpress-tvOSTests.a */,
+				D91224F5C47DE5FEF5DA8858 /* libPods-zipcodeXpressTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,14 +152,14 @@
 		3A76E924B74BE2D5ACE99F96 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				29C5331850742BCDBFDA57A4 /* Pods-ZipNewApp.debug.xcconfig */,
-				F331F5DD1AEBE4885C97DD83 /* Pods-ZipNewApp.release.xcconfig */,
-				B3B7A009584BCFE8E985005E /* Pods-ZipNewApp-tvOS.debug.xcconfig */,
-				AF33B42654A228E46F097676 /* Pods-ZipNewApp-tvOS.release.xcconfig */,
-				683AA4D53773636FF0B083DA /* Pods-ZipNewApp-tvOSTests.debug.xcconfig */,
-				E0053D463D40E277B066259F /* Pods-ZipNewApp-tvOSTests.release.xcconfig */,
-				C034AFECEC7FFC2EBDDD40FB /* Pods-ZipNewAppTests.debug.xcconfig */,
-				41B76FAABF07C70316D94BB3 /* Pods-ZipNewAppTests.release.xcconfig */,
+				29C5331850742BCDBFDA57A4 /* Pods-zipcodeXpress.debug.xcconfig */,
+				F331F5DD1AEBE4885C97DD83 /* Pods-zipcodeXpress.release.xcconfig */,
+				B3B7A009584BCFE8E985005E /* Pods-zipcodeXpress-tvOS.debug.xcconfig */,
+				AF33B42654A228E46F097676 /* Pods-zipcodeXpress-tvOS.release.xcconfig */,
+				683AA4D53773636FF0B083DA /* Pods-zipcodeXpress-tvOSTests.debug.xcconfig */,
+				E0053D463D40E277B066259F /* Pods-zipcodeXpress-tvOSTests.release.xcconfig */,
+				C034AFECEC7FFC2EBDDD40FB /* Pods-zipcodeXpressTests.debug.xcconfig */,
+				41B76FAABF07C70316D94BB3 /* Pods-zipcodeXpressTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -175,9 +175,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* ZipNewApp */,
+				13B07FAE1A68108700A75B9A /* zipcodeXpress */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* ZipNewAppTests */,
+				00E356EF1AD99517003FC87E /* zipcodeXpressTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				3A76E924B74BE2D5ACE99F96 /* Pods */,
@@ -190,10 +190,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ZipNewApp.app */,
-				00E356EE1AD99517003FC87E /* ZipNewAppTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* ZipNewApp-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* ZipNewApp-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* zipcodeXpress.app */,
+				00E356EE1AD99517003FC87E /* zipcodeXpressTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* zipcodeXpress-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* zipcodeXpress-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* ZipNewAppTests */ = {
+		00E356ED1AD99517003FC87E /* zipcodeXpressTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ZipNewAppTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "zipcodeXpressTests" */;
 			buildPhases = (
 				7F9A4ED5166C75BF4FF6B015 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -215,14 +215,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = ZipNewAppTests;
-			productName = ZipNewAppTests;
-			productReference = 00E356EE1AD99517003FC87E /* ZipNewAppTests.xctest */;
+			name = zipcodeXpressTests;
+			productName = zipcodeXpressTests;
+			productReference = 00E356EE1AD99517003FC87E /* zipcodeXpressTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* ZipNewApp */ = {
+		13B07F861A680F5B00A75B9A /* zipcodeXpress */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ZipNewApp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "zipcodeXpress" */;
 			buildPhases = (
 				DCA0563172DEDE9725A9C224 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -235,14 +235,14 @@
 			);
 			dependencies = (
 			);
-			name = ZipNewApp;
-			productName = ZipNewApp;
-			productReference = 13B07F961A680F5B00A75B9A /* ZipNewApp.app */;
+			name = zipcodeXpress;
+			productName = zipcodeXpress;
+			productReference = 13B07F961A680F5B00A75B9A /* zipcodeXpress.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* ZipNewApp-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* zipcodeXpress-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ZipNewApp-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "zipcodeXpress-tvOS" */;
 			buildPhases = (
 				2AB80201B870D01C205784CB /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -255,14 +255,14 @@
 			);
 			dependencies = (
 			);
-			name = "ZipNewApp-tvOS";
-			productName = "ZipNewApp-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* ZipNewApp-tvOS.app */;
+			name = "zipcodeXpress-tvOS";
+			productName = "zipcodeXpress-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* zipcodeXpress-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* ZipNewApp-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* zipcodeXpress-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ZipNewApp-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "zipcodeXpress-tvOSTests" */;
 			buildPhases = (
 				EA3CE150BA9C816009FADA98 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -274,9 +274,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "ZipNewApp-tvOSTests";
-			productName = "ZipNewApp-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* ZipNewApp-tvOSTests.xctest */;
+			name = "zipcodeXpress-tvOSTests";
+			productName = "zipcodeXpress-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* zipcodeXpress-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -303,7 +303,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ZipNewApp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "zipcodeXpress" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -316,10 +316,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* ZipNewApp */,
-				00E356ED1AD99517003FC87E /* ZipNewAppTests */,
-				2D02E47A1E0B4A5D006451C7 /* ZipNewApp-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* ZipNewApp-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* zipcodeXpress */,
+				00E356ED1AD99517003FC87E /* zipcodeXpressTests */,
+				2D02E47A1E0B4A5D006451C7 /* zipcodeXpress-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* zipcodeXpress-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -388,7 +388,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZipNewApp-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-zipcodeXpress-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,7 +424,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZipNewAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-zipcodeXpressTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -446,7 +446,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZipNewApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-zipcodeXpress-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -468,7 +468,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZipNewApp-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-zipcodeXpress-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -520,7 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* ZipNewAppTests.m in Sources */,
+				00E356F31AD99517003FC87E /* zipcodeXpressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* ZipNewAppTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* zipcodeXpressTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,12 +555,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* ZipNewApp */;
+			target = 13B07F861A680F5B00A75B9A /* zipcodeXpress */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* ZipNewApp-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* zipcodeXpress-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -572,7 +572,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = ZipNewApp;
+			path = zipcodeXpress;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -580,14 +580,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C034AFECEC7FFC2EBDDD40FB /* Pods-ZipNewAppTests.debug.xcconfig */;
+			baseConfigurationReference = C034AFECEC7FFC2EBDDD40FB /* Pods-zipcodeXpressTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ZipNewAppTests/Info.plist;
+				INFOPLIST_FILE = zipcodeXpressTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -597,17 +597,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipNewApp.app/ZipNewApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zipcodeXpress.app/zipcodeXpress";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41B76FAABF07C70316D94BB3 /* Pods-ZipNewAppTests.release.xcconfig */;
+			baseConfigurationReference = 41B76FAABF07C70316D94BB3 /* Pods-zipcodeXpressTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = ZipNewAppTests/Info.plist;
+				INFOPLIST_FILE = zipcodeXpressTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -617,18 +617,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipNewApp.app/ZipNewApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zipcodeXpress.app/zipcodeXpress";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29C5331850742BCDBFDA57A4 /* Pods-ZipNewApp.debug.xcconfig */;
+			baseConfigurationReference = 29C5331850742BCDBFDA57A4 /* Pods-zipcodeXpress.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				INFOPLIST_FILE = ZipNewApp/Info.plist;
+				INFOPLIST_FILE = zipcodeXpress/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -636,18 +636,18 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ZipNewApp;
+				PRODUCT_NAME = zipcodeXpress;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F331F5DD1AEBE4885C97DD83 /* Pods-ZipNewApp.release.xcconfig */;
+			baseConfigurationReference = F331F5DD1AEBE4885C97DD83 /* Pods-zipcodeXpress.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = ZipNewApp/Info.plist;
+				INFOPLIST_FILE = zipcodeXpress/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -655,14 +655,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ZipNewApp;
+				PRODUCT_NAME = zipcodeXpress;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3B7A009584BCFE8E985005E /* Pods-ZipNewApp-tvOS.debug.xcconfig */;
+			baseConfigurationReference = B3B7A009584BCFE8E985005E /* Pods-zipcodeXpress-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -673,14 +673,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ZipNewApp-tvOS/Info.plist";
+				INFOPLIST_FILE = "zipcodeXpress-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ZipNewApp-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zipcodeXpress-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -690,7 +690,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF33B42654A228E46F097676 /* Pods-ZipNewApp-tvOS.release.xcconfig */;
+			baseConfigurationReference = AF33B42654A228E46F097676 /* Pods-zipcodeXpress-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -701,14 +701,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ZipNewApp-tvOS/Info.plist";
+				INFOPLIST_FILE = "zipcodeXpress-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ZipNewApp-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zipcodeXpress-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -718,7 +718,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 683AA4D53773636FF0B083DA /* Pods-ZipNewApp-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 683AA4D53773636FF0B083DA /* Pods-zipcodeXpress-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -728,24 +728,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ZipNewApp-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "zipcodeXpress-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ZipNewApp-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zipcodeXpress-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipNewApp-tvOS.app/ZipNewApp-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zipcodeXpress-tvOS.app/zipcodeXpress-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0053D463D40E277B066259F /* Pods-ZipNewApp-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = E0053D463D40E277B066259F /* Pods-zipcodeXpress-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -755,17 +755,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ZipNewApp-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "zipcodeXpress-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.ZipNewApp-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.zipcodeXpress-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZipNewApp-tvOS.app/ZipNewApp-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zipcodeXpress-tvOS.app/zipcodeXpress-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -872,7 +872,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ZipNewAppTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "zipcodeXpressTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -881,7 +881,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ZipNewApp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "zipcodeXpress" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -890,7 +890,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ZipNewApp-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "zipcodeXpress-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -899,7 +899,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ZipNewApp-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "zipcodeXpress-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -908,7 +908,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ZipNewApp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "zipcodeXpress" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

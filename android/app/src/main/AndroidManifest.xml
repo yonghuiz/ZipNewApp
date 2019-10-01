@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
  xmlns:tools="http://schemas.android.com/tools"
-    package="com.zipnewapp"
+    package="com.zipcodexpress"
     android:versionCode="1"
     android:versionName="1.0">
     <uses-permission android:name="android.permission.CAMERA" />
@@ -47,7 +47,7 @@
         <data android:scheme="${applicationId}.braintree" />
     </intent-filter>
 </activity>
-       <receiver android:name="com.zipnewapp.MessageReceiver"
+       <receiver android:name="com.zipcodexpress.MessageReceiver"
             android:exported="true" >
             <intent-filter>
                 <!-- 接收消息透传 -->

@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;

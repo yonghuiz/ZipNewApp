@@ -1,4 +1,4 @@
-package com.zipnewapp;
+package com.zipcodexpress;
 
 import com.braintreepayments.api.BraintreeFragment;
 import com.braintreepayments.api.PayPal;
