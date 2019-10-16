@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/9/14.
  */
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import {
     NativeModules,
     View,
@@ -11,7 +11,7 @@ import {
     ScrollView,
     StyleSheet,
 } from 'react-native'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as rechargeAction from '../../actions/rechargeAction'
 import * as zipporaHomeActions from '../../actions/zipporaHomeAction'
 import * as walletActions from '../../actions/walletAction'
@@ -43,30 +43,30 @@ const styles = StyleSheet.create({
     tipsText: {
         color: Color.tipsColor,
         fontSize: 12,
-        flex:1,
-        marginLeft:8,
+        flex: 1,
+        marginLeft: 8,
     },
     payWayButton: {
-        flexDirection:'row',
-        alignItems:'center',
-        padding:8,
-        paddingTop:4,
-        paddingBottom:4,
-        backgroundColor:'white',
-        marginTop:8,
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 8,
+        paddingTop: 4,
+        paddingBottom: 4,
+        backgroundColor: 'white',
+        marginTop: 8,
     },
     payButton: {
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor:Color.themeColor,
-        height:40,
-        marginTop:16,
-        borderRadius:3,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Color.themeColor,
+        height: 40,
+        marginTop: 16,
+        borderRadius: 3,
     },
     payButtonText: {
-        color:'white',
-        fontWeight:'bold',
-        fontSize:18
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 18
     },
     card: {
         height: 35,
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
 class Recharge extends PureComponent {
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            hudType:'none',
-            selectCardIndex:props.defaultIndex,
+            hudType: 'none',
+            selectCardIndex: props.defaultIndex,
         }
     }
 
@@ -113,8 +113,8 @@ class Recharge extends PureComponent {
         } = this.props;
         if (loading) {
             return (
-                <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                    <ActivityIndicator animated={true} size={'small'} color={Color.themeColor}/>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <ActivityIndicator animated={true} size={'small'} color={Color.themeColor} />
                 </View>
             )
         }
@@ -125,9 +125,9 @@ class Recharge extends PureComponent {
                     onPress={() => {
                         this.props.getRechargeConfig();
                     }}
-                    style={{justifyContent: 'center', alignItems: 'center'}}
+                    style={{ justifyContent: 'center', alignItems: 'center' }}
                 >
-                    <ZIPText style={{fontSize: 13, color: Color.red}}>
+                    <ZIPText style={{ fontSize: 13, color: Color.red }}>
                         Load error, tap to reload
                     </ZIPText>
                 </TouchableOpacity>
@@ -139,7 +139,7 @@ class Recharge extends PureComponent {
         }
 
         return (
-            <View style={{paddingTop: 8, paddingBottom: 8, flexDirection: 'row', flexWrap: 'wrap'}}>
+            <View style={{ paddingTop: 8, paddingBottom: 8, flexDirection: 'row', flexWrap: 'wrap' }}>
                 {
                     config.map((data, index) => {
                         return (
@@ -162,12 +162,12 @@ class Recharge extends PureComponent {
                                     marginTop: parseInt(index / 3) > 0 ? 10 : 0,
                                 }}
                             >
-                                <ZIPText style={{color: selectIndex === index ? 'white' : 'black', fontWeight:'bold'}}>
+                                <ZIPText style={{ color: selectIndex === index ? 'white' : 'black', fontWeight: 'bold' }}>
                                     {data.amount}
                                 </ZIPText>
                                 {
                                     data.plus !== 0 ?
-                                        <ZIPText style={{color: selectIndex === index ? 'white' : Color.red}}>
+                                        <ZIPText style={{ color: selectIndex === index ? 'white' : Color.red }}>
                                             +{data.plus}
                                         </ZIPText> :
                                         null
@@ -194,8 +194,8 @@ class Recharge extends PureComponent {
     _payWithCreditCard() {
         if (this.state.hudType !== 'none') {
             this.setState({
-                hudType:'none'
-            },()=>{
+                hudType: 'none'
+            }, () => {
                 this.hud.show('paying...')
             })
         } else {
@@ -204,9 +204,9 @@ class Recharge extends PureComponent {
 
         if (this.state.selectCardIndex < 0 || (this.state.selectCardIndex > this.props.card.length - 1)) {
             this.setState({
-                hudType:'error',
-            },()=>{
-                this.hud.show('Please select a credit card',1500);
+                hudType: 'error',
+            }, () => {
+                this.hud.show('Please select a credit card', 1500);
             });
             this.paying = false;
             return;
@@ -221,26 +221,26 @@ class Recharge extends PureComponent {
             this.props.config[this.props.selectIndex].amount,
             true
         )
-            .then(json=>{
+            .then(json => {
                 this.paying = false;
                 this.setState({
-                    hudType:'success',
-                },()=>{
-                    this.hud.show(json.msg,1500);
+                    hudType: 'success',
+                }, () => {
+                    this.hud.show(json.msg, 1500);
                 });
                 //刷新member信息
                 this.props.getMember();
-                this.time = setTimeout(()=>{
+                this.time = setTimeout(() => {
                     Navigation.popToRoot(this.props.componentId);
-                   // this.props.navigator.popToRoot();
-                },1500);
+                    // this.props.navigator.popToRoot();
+                }, 1500);
             })
-            .catch(err=>{
+            .catch(err => {
                 this.paying = false;
                 this.setState({
-                    hudType:'error'
-                },()=>{
-                    this.hud.show(err,1500);
+                    hudType: 'error'
+                }, () => {
+                    this.hud.show(err, 1500);
                 })
             })
     }
@@ -248,8 +248,8 @@ class Recharge extends PureComponent {
     _payWithPayPal() {
         if (this.state.hudType !== 'none') {
             this.setState({
-                hudType:'none'
-            },()=>{
+                hudType: 'none'
+            }, () => {
                 this.hud.show('paying...')
             })
         } else {
@@ -257,7 +257,8 @@ class Recharge extends PureComponent {
         }
         PayPal.payWithAmount(
             `${this.props.config[this.props.selectIndex].amount}`,
-            (singal,nonce)=>{
+            (singal, nonce) => {
+                console.log(nonce);
                 if (singal) {
                     netWork(
                         'GET',
@@ -267,36 +268,38 @@ class Recharge extends PureComponent {
                         '&amount=' +
                         `${this.props.config[this.props.selectIndex].amount}`,
                         true
-                    ).then(json=>{
+                    ).then(json => {
+
                         this.paying = false;
                         this.setState({
-                            hudType:'success',
-                        },()=>{
-                            this.hud.show(json.msg,1500);
+                            hudType: 'success',
+                        }, () => {
+                            this.hud.show(json.msg, 1500);
                         });
                         if (this.props.fromLocker === true) {
                             this.props.loadProfile();
                         } else {
                             this.props.getMember();
                         }
-                        this.time = setTimeout(()=>{
+                        this.time = setTimeout(() => {
                             Navigation.pop(this.props.componentId);
                             //this.props.navigator.pop();
-                        },1500);
-                    }).catch(err=>{
+                        }, 1500);
+                    }).catch(err => {
                         this.paying = false;
+                        error = 'this is error'
                         this.setState({
-                            hudType:'error',
-                        },()=>{
-                            this.hud.show(error,1500);
+                            hudType: 'error',
+                        }, () => {
+                            this.hud.show(err, 1500);
                         })
                     })
                 } else {
                     this.paying = false;
                     this.setState({
-                        hudType:'error',
-                    },()=>{
-                        this.hud.show(nonce,1500);
+                        hudType: 'error',
+                    }, () => {
+                        this.hud.show(nonce, 1500);
                     });
 
                 }
@@ -323,9 +326,9 @@ class Recharge extends PureComponent {
             return (
                 <View
                     style={{
-                        flexDirection:'row',
-                        alignItems:'center',
-                        justifyContent:'center'
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}
                 >
                     <ActivityIndicator
@@ -333,7 +336,7 @@ class Recharge extends PureComponent {
                         color="gray"
                         size="small"
                     />
-                    <ZIPText style={{marginLeft:4}}>
+                    <ZIPText style={{ marginLeft: 4 }}>
                         Loading credit card
                     </ZIPText>
                 </View>
@@ -345,13 +348,13 @@ class Recharge extends PureComponent {
                 <TouchableOpacity
                     activeOpacity={0.7}
                     style={{
-                        height:35,
-                        backgroundColor:'white',
-                        marginTop:1,
-                        alignItems:'center',
-                        justifyContent:'center'
+                        height: 35,
+                        backgroundColor: 'white',
+                        marginTop: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center'
                     }}
-                    onPress={()=>{
+                    onPress={() => {
                         this.props.loadCreditCard();
                     }}
                 >
@@ -363,14 +366,14 @@ class Recharge extends PureComponent {
         }
 
         if (card === null) {
-            return <View/>
+            return <View />
         }
 
         let cards = card.map((data, index) => {
             return (
                 <View
                     key={index}
-                    style={{flexDirection: 'column'}}
+                    style={{ flexDirection: 'column' }}
                 >
                     <TouchableOpacity
                         activeOpacity={0.7}
@@ -378,16 +381,16 @@ class Recharge extends PureComponent {
                         onPress={() => {
                             if (this.state.selectCardIndex !== index) {
                                 this.setState({
-                                    selectCardIndex:index,
+                                    selectCardIndex: index,
                                 })
                             }
                         }}
                     >
-                        <ZIPText style={{flex: 1, fontFamily:'Menlo'}}>
+                        <ZIPText style={{ flex: 1, fontFamily: 'Menlo' }}>
                             **** **** **** {data.cardLast4}
                         </ZIPText>
                         {this.state.selectCardIndex === index ?
-                            <Icon name="md-checkmark" color={Color.themeColor} size={20}/>
+                            <Icon name="md-checkmark" color={Color.themeColor} size={20} />
                             : null
                         }
                     </TouchableOpacity>
@@ -398,47 +401,47 @@ class Recharge extends PureComponent {
             <TouchableOpacity
                 onPress={() => {
                     Navigation.push(this.props.componentId, {
-            component: {
-                name: 'BindCreditCard',
-                passProps: {
-                    fromWallet:true
-                    },
-                options: {
-                  topBar: {
-                    title: {
-                      text: 'Add credit card'
-                    }
-                  }
-                }
-              }
-          })
+                        component: {
+                            name: 'BindCreditCard',
+                            passProps: {
+                                fromWallet: true
+                            },
+                            options: {
+                                topBar: {
+                                    title: {
+                                        text: 'Add credit card'
+                                    }
+                                }
+                            }
+                        }
+                    })
                     //添加信用卡
-                    
-                //     this.props.navigator.push({
-                //         screen:'BindCreditCard',
-                //         title:'Add credit card',
-                //         navigatorStyle:navigatorStyle,
-                //         animationType: 'slide-horizontal',
-                //         passProps:{
-                //             fromWallet:true,
-                //         }
-                //     })
+
+                    //     this.props.navigator.push({
+                    //         screen:'BindCreditCard',
+                    //         title:'Add credit card',
+                    //         navigatorStyle:navigatorStyle,
+                    //         animationType: 'slide-horizontal',
+                    //         passProps:{
+                    //             fromWallet:true,
+                    //         }
+                    //     })
                 }}
                 key="add"
                 style={styles.addButton}
             >
-                <Icon name="md-add" color='black' size={20}/>
+                <Icon name="md-add" color='black' size={20} />
             </TouchableOpacity>
         );
         return cards;
     }
 
     render() {
-        const {config, selectIndex, payWay} = this.props;
+        const { config, selectIndex, payWay } = this.props;
         return (
             <View style={styles.container}>
                 <ScrollView
-                    style={{flex: 1}}
+                    style={{ flex: 1 }}
                     contentContainerStyle={{
                         flexDirection: 'column'
                     }}
@@ -447,38 +450,38 @@ class Recharge extends PureComponent {
                         Please select the amount
                     </ZIPText>
                     {this._renderMoneyBox()}
-                    <View style={{padding:8, backgroundColor:'white'}}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <ZIPText style={styles.titleText}>
-                            You will pay for the amount of
+                    <View style={{ padding: 8, backgroundColor: 'white' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <ZIPText style={styles.titleText}>
+                                You will pay for the amount of
                         </ZIPText>
-                        <ZIPText style={styles.moneyText}>
-                            {config === null ? '--' : (' $' + config[selectIndex].amount)}
+                            <ZIPText style={styles.moneyText}>
+                                {config === null ? '--' : (' $' + config[selectIndex].amount)}
+                            </ZIPText>
+                        </View>
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                            <ZIPText style={styles.titleText}>
+                                You will get extra credit of
                         </ZIPText>
+                            <ZIPText style={styles.moneyText}>
+                                {config === null ? '--' : (' ' + config[selectIndex].plusUbi + ' U-COIN')}
+                            </ZIPText>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Icon name="ios-information-circle" size={16} color={Color.tipsColor} />
+                            <ZIPText style={styles.tipsText}>
+                                {'1U-coin=1cent, when you make payment' +
+                                    ', we charge your account in the order of U-coin' +
+                                    ', wallet and credit card.'}
+                            </ZIPText>
+                        </View>
                     </View>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <ZIPText style={styles.titleText}>
-                            You will get extra credit of
-                        </ZIPText>
-                        <ZIPText style={styles.moneyText}>
-                            {config === null ? '--' : (' ' + config[selectIndex].plusUbi + ' U-COIN')}
-                        </ZIPText>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <Icon name="ios-information-circle" size={16} color={Color.tipsColor}/>
-                        <ZIPText style={styles.tipsText}>
-                            {'1U-coin=1cent, when you make payment' +
-                            ', we charge your account in the order of U-coin' +
-                            ', wallet and credit card.'}
-                        </ZIPText>
-                    </View>
-                    </View>
-                    <ZIPText style={[styles.titleText,{marginTop:8}]}>
+                    <ZIPText style={[styles.titleText, { marginTop: 8 }]}>
                         Pay way
                     </ZIPText>
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             if (payWay !== 0) {
                                 this.props.selectPayWay(0);
                             }
@@ -486,18 +489,18 @@ class Recharge extends PureComponent {
                         style={styles.payWayButton}
                     >
                         <Icon
-                            name={payWay === 0 ? 'ios-radio-button-on':'ios-radio-button-off'}
+                            name={payWay === 0 ? 'ios-radio-button-on' : 'ios-radio-button-off'}
                             size={28}
                             color={Color.themeColor}
                         />
-                        <ZIPText style={{marginLeft:8}}>
+                        <ZIPText style={{ marginLeft: 8 }}>
                             Credit Card
                         </ZIPText>
                     </TouchableOpacity>
                     {this._renderCard()}
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             if (payWay !== 1) {
                                 this.props.selectPayWay(1);
                             }
@@ -505,18 +508,18 @@ class Recharge extends PureComponent {
                         style={styles.payWayButton}
                     >
                         <Icon
-                            name={payWay === 1 ? 'ios-radio-button-on':'ios-radio-button-off'}
+                            name={payWay === 1 ? 'ios-radio-button-on' : 'ios-radio-button-off'}
                             size={28}
                             color={Color.themeColor}
                         />
-                        <ZIPText style={{marginLeft:8}}>
+                        <ZIPText style={{ marginLeft: 8 }}>
                             PayPal
                         </ZIPText>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.payButton}
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             if (config !== null) {
                                 if (this.paying === false) {
                                     this._pay();
@@ -531,7 +534,7 @@ class Recharge extends PureComponent {
                 </ScrollView>
                 <Hud
                     hudType={this.state.hudType}
-                    ref={r=>this.hud = r}
+                    ref={r => this.hud = r}
                 />
             </View>
         )
@@ -544,7 +547,7 @@ export default connect(
         loadError: state.recharge.loadError,
         config: state.recharge.config,
         selectIndex: state.recharge.selectIndex,
-        payWay:state.recharge.payWay,
+        payWay: state.recharge.payWay,
         card: state.wallet.card,
         loadingCard: state.wallet.loading,
         loadCardError: state.wallet.loadError,
@@ -553,9 +556,9 @@ export default connect(
     (dispatch) => ({
         getRechargeConfig: () => dispatch(rechargeAction.getRechargeConfig()),
         selectMoneyIndex: (index) => dispatch(rechargeAction.selectIndex(index)),
-        selectPayWay:(index)=>dispatch(rechargeAction.selectPayWay(index)),
+        selectPayWay: (index) => dispatch(rechargeAction.selectPayWay(index)),
         getMember: () => dispatch(zipporaHomeActions.getMember()),
-        loadProfile: ()=> dispatch(ziplockerProfileActions.loadProfile()),
+        loadProfile: () => dispatch(ziplockerProfileActions.loadProfile()),
         loadCreditCard: () => dispatch(walletActions.loadCreditCard())
     })
 )(Recharge)

@@ -17,12 +17,11 @@ import com.facebook.react.bridge.ReactMethod;
  * Created by linyang on 2017/9/27.
  */
 
-public class PaymentManager extends ReactContextBaseJavaModule implements
-        BraintreeCancelListener,
-        BraintreeErrorListener,
-        PaymentMethodNonceCreatedListener {
+public class PaymentManager extends ReactContextBaseJavaModule
+        implements BraintreeCancelListener, BraintreeErrorListener, PaymentMethodNonceCreatedListener {
     private BraintreeFragment mBraintreeFragment = null;
     private Callback payCallback;
+
     PaymentManager(ReactApplicationContext reactContext) {
         super(reactContext);
     }
@@ -33,30 +32,31 @@ public class PaymentManager extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
-    public void payWithAmount(String amount,final Callback callback) {
+    public void payWithAmount(String amount, final Callback callback) {
         payCallback = callback;
         try {
-            mBraintreeFragment = BraintreeFragment.newInstance(getCurrentActivity(),"sandbox_hd6s9zyw_vy4r2mkgkvry9nns");
+            mBraintreeFragment = BraintreeFragment.newInstance(getCurrentActivity(),
+                    "sandbox_5rj7bnb5_ggbpfszgy9q9999n");
             mBraintreeFragment.addListener(this);
         } catch (InvalidArgumentException e) {
             onError(e);
         }
         PayPalRequest request = new PayPalRequest(amount).currencyCode("USD");
-        PayPal.requestOneTimePayment(mBraintreeFragment,request);
+        PayPal.requestOneTimePayment(mBraintreeFragment, request);
     }
 
     @Override
     public void onCancel(int requestCode) {
-        payCallback.invoke(false,"cancel");
+        payCallback.invoke(false, "cancel");
     }
 
     @Override
     public void onError(Exception error) {
-        payCallback.invoke(false,"error");
+        payCallback.invoke(false, "error");
     }
 
     @Override
     public void onPaymentMethodNonceCreated(PaymentMethodNonce paymentMethodNonce) {
-        payCallback.invoke(true,paymentMethodNonce.getNonce());
+        payCallback.invoke(true, paymentMethodNonce.getNonce());
     }
 }
