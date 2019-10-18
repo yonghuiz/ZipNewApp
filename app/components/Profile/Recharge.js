@@ -2,6 +2,7 @@
  * Created by liuyu on 2017/9/14.
  */
 import React, { PureComponent } from 'react'
+import { Navigation } from 'react-native-navigation'
 import {
     NativeModules,
     View,
@@ -287,7 +288,7 @@ class Recharge extends PureComponent {
                         }, 1500);
                     }).catch(err => {
                         this.paying = false;
-                        error = 'this is error'
+
                         this.setState({
                             hudType: 'error',
                         }, () => {
