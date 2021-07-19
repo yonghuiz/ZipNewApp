@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/11/6.
  */
-import React,{ PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     FlatList,
@@ -11,20 +11,20 @@ import { connect } from 'react-redux'
 import ZIPText from '../ZIPText'
 import LoadingView from '../LoadingView'
 import ErrorView from '../ErrorView'
-import Svg,{
+import Svg, {
     Line,
 } from 'react-native-svg'
 import * as deliveryTransactionAction from '../../actions/deliveryTransactionAction'
 
 const styles = StyleSheet.create({
     itemContainer: {
-        marginTop:10,
-        paddingLeft:16,
-        paddingRight:16,
-        paddingTop:8,
-        paddingBottom:8,
-        backgroundColor:'white',
-        flexDirection:'column'
+        marginTop: 10,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
+        backgroundColor: 'white',
+        flexDirection: 'column'
     }
 });
 
@@ -40,9 +40,9 @@ class DeliveryTransaction extends PureComponent {
             <View
                 style={styles.itemContainer}
             >
-                <View style={{flexDirection:'row', alignItems:'center'}}>
-                    <ZIPText style={{flex:1}}>
-                       {item.deliverId}
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <ZIPText style={{ flex: 1 }}>
+                        {item.deliverId}
                     </ZIPText>
                     <View
                         style={{
@@ -58,16 +58,16 @@ class DeliveryTransaction extends PureComponent {
                             paddingBottom: 4,
                         }}
                     >
-                        <ZIPText style={{color: '#B5AE35', fontSize: 12}}>
+                        <ZIPText style={{ color: '#B5AE35', fontSize: 12 }}>
                             {item.cargo.cargoStatusText}
                         </ZIPText>
                     </View>
                 </View>
-                <View style={{flexDirection:'row', alignItems:'center', marginTop:8}}>
-                    <ZIPText style={{fontSize:18,width:90}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+                    <ZIPText style={{ fontSize: 18, width: 90 }}>
                         {item.from.zipcode}
                     </ZIPText>
-                    <View style={{width:screenSize.width - 32 - 180,height:21}}>
+                    <View style={{ width: screenSize.width - 32 - 180, height: 21 }}>
                         <Svg
                             width={screenSize.width - 32 - 180}
                             height="21"
@@ -98,18 +98,18 @@ class DeliveryTransaction extends PureComponent {
                             />
                         </Svg>
                     </View>
-                    <ZIPText style={{fontSize:18,width:90, textAlign:'right'}}>
+                    <ZIPText style={{ fontSize: 18, width: 90, textAlign: 'right' }}>
                         {item.to.zipcode}
                     </ZIPText>
                 </View>
-                <View style={{flexDirection:'row', alignItems:'center', marginTop:8}}>
-                    <ZIPText style={{color:Color.titleColor, fontSize:13}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+                    <ZIPText style={{ color: Color.titleColor, fontSize: 13 }}>
                         {item.from.time}
                     </ZIPText>
-                    <View style={{flex:1}}>
+                    <View style={{ flex: 1 }}>
 
                     </View>
-                    <ZIPText style={{color:Color.titleColor, fontSize:13}}>
+                    <ZIPText style={{ color: Color.titleColor, fontSize: 13 }}>
                         {item.to.time}
                     </ZIPText>
                 </View>
@@ -125,12 +125,12 @@ class DeliveryTransaction extends PureComponent {
             list,
         } = this.props;
         if (loading && list === null) {
-            return <LoadingView/>
+            return <LoadingView />
         }
 
         if (loadError) {
             let type = error === 'time out' ? 'timeout' : 'error';
-            let text = error === 'time out' ? 'Request time out':'System error';
+            let text = error === 'time out' ? 'Request time out' : 'System error';
             return (
                 <ErrorView
                     text={text}
@@ -148,12 +148,12 @@ class DeliveryTransaction extends PureComponent {
         }
         if (list.length === 0) {
             if (loading) {
-                return <LoadingView/>
+                return <LoadingView />
             }
             return (
                 <ErrorView onReloadPress={() => {
                     this.props.loadList()
-                }} text="Have no data" type="empty"/>
+                }} text="No Data" type="empty" />
             )
         }
 
@@ -162,10 +162,10 @@ class DeliveryTransaction extends PureComponent {
                 style={{
                     flex: 1,
                 }}
-                contentContainerStyle={{flexDirection: 'column'}}
+                contentContainerStyle={{ flexDirection: 'column' }}
                 data={list}
-                renderItem={(item)=>this.renderItem(item.item)}
-                keyExtractor={(item,index)=>index}
+                renderItem={(item) => this.renderItem(item.item)}
+                keyExtractor={(item, index) => index}
                 refreshing={loading}
                 onRefresh={() => {
                     this.props.loadList()
@@ -176,13 +176,13 @@ class DeliveryTransaction extends PureComponent {
 }
 
 export default connect(
-    (state)=>({
-        loading:state.deliverytransaction.loading,
-        loadError:state.deliverytransaction.loadError,
-        error:state.deliverytransaction.error,
-        list:state.deliverytransaction.list,
+    (state) => ({
+        loading: state.deliverytransaction.loading,
+        loadError: state.deliverytransaction.loadError,
+        error: state.deliverytransaction.error,
+        list: state.deliverytransaction.list,
     }),
-    (dispatch)=>({
-        loadList:()=>dispatch(deliveryTransactionAction.loadList())
+    (dispatch) => ({
+        loadList: () => dispatch(deliveryTransactionAction.loadList())
     })
 )(DeliveryTransaction)

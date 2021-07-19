@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/11/27.
  */
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     TouchableOpacity,
@@ -12,7 +12,7 @@ import ZIPText from '../ZIPText'
 import ZIPTextInput from '../ZIPTextInput'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Hud from 'react-native-lyhud'
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as Animatable from 'react-native-animatable'
 import CommonTextInput from '../CommonTextInput'
 import {
@@ -29,17 +29,17 @@ export default class Register extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            useEmail:true,
+            useEmail: true,
 
-            email:'',
-            password:'',
-            confirmPassword:'',
+            email: '',
+            password: '',
+            confirmPassword: '',
 
-            phoneNum:'',
-            vId:'',
-            vCode:'',
+            phoneNum: '',
+            vId: '',
+            vCode: '',
 
-            hudType:'none',
+            hudType: 'none',
 
             showCount: false,
             count: 59,
@@ -67,7 +67,7 @@ export default class Register extends PureComponent {
                     flexDirection: 'row',
                 }}
             >
-                <View style={{flex: 1, marginRight: 8, flexDirection: 'column', justifyContent: 'flex-end'}}>
+                <View style={{ flex: 1, marginRight: 8, flexDirection: 'column', justifyContent: 'flex-end' }}>
                     <View
                         style={{
                             height: 50,
@@ -77,13 +77,13 @@ export default class Register extends PureComponent {
                             flexDirection: 'row'
                         }}
                     >
-                        <View style={{width: 95, height: 50, justifyContent: 'center', paddingLeft: 8}}>
-                            <ZIPText style={{fontSize: 16}}>
+                        <View style={{ width: 95, height: 50, justifyContent: 'center', paddingLeft: 8 }}>
+                            <ZIPText style={{ fontSize: 16 }}>
                                 Name
                             </ZIPText>
                         </View>
                         <ZIPTextInput
-                            style={{flex: 1}}
+                            style={{ flex: 1 }}
                             placeholder={'John Appleseed'}
                             placeholderTextColor={'lightgray'}
                             autoCapitalize={'none'}
@@ -97,11 +97,11 @@ export default class Register extends PureComponent {
                         height: 70,
                         width: 70,
                         backgroundColor: 'lightgray',
-                        alignItems:'center',
-                        justifyContent:'center',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                     }}
                 >
-                    <Icon name="ios-camera" color="white" size={30}/>
+                    <Icon name="ios-camera" color="white" size={30} />
                 </View>
             </View>
         )
@@ -143,8 +143,8 @@ export default class Register extends PureComponent {
         if (this.state.phoneNum.length === 0) {
             if (this.state.hudType !== 'error') {
                 this.setState({
-                    hudType:'error',
-                },()=>{
+                    hudType: 'error',
+                }, () => {
                     this.hud.show('Please Enter mobile number', 2000);
                 });
             } else {
@@ -156,33 +156,33 @@ export default class Register extends PureComponent {
         this.setState({
             canSendVCode: false,
         });
-        this.hud.show('sending verify code...');
+        this.hud.show('Sending verify code...');
         let param = new FormData();
         param.append('phone', this.state.phoneNum);
         netWork('POST', GET_VCODE, param, false)
             .then(json => {
-                    this.setState({
-                        showCount: true,
-                        count: 59,
-                        vId: json.data.vid,
-                    });
-                    this.interval = setInterval(() => {
-                        if (this.state.count === 1) {
-                            this.setState({
-                                showCount: false,
-                                canSendVCode: true,
-                            });
-                            clearInterval(this.interval);
-                        }
+                this.setState({
+                    showCount: true,
+                    count: 59,
+                    vId: json.data.vid,
+                });
+                this.interval = setInterval(() => {
+                    if (this.state.count === 1) {
                         this.setState({
-                            count: this.state.count - 1,
-                        })
-                    }, 1000);
+                            showCount: false,
+                            canSendVCode: true,
+                        });
+                        clearInterval(this.interval);
+                    }
                     this.setState({
-                        hudType:'success'
-                    },()=>{
-                        this.hud.show(json.msg, 1500);
-                    });
+                        count: this.state.count - 1,
+                    })
+                }, 1000);
+                this.setState({
+                    hudType: 'success'
+                }, () => {
+                    this.hud.show(json.msg, 1500);
+                });
             })
             .catch(err => {
                 this.setState({
@@ -198,30 +198,30 @@ export default class Register extends PureComponent {
             this.hud.show('please wait');
         } else {
             this.setState({
-                hudType:'none'
-            },()=>{
+                hudType: 'none'
+            }, () => {
                 this.hud.show('Please wait');
             })
         }
 
         let formData = new FormData();
 
-        formData.append('email',this.state.email);
-        formData.append('psd1',Md5.digest_s(this.state.password));
-        formData.append('psd2',Md5.digest_s(this.state.confirmPassword));
+        formData.append('email', this.state.email);
+        formData.append('psd1', Md5.digest_s(this.state.password));
+        formData.append('psd2', Md5.digest_s(this.state.confirmPassword));
 
-        netWork('POST',LOGIN_REGISTER,formData,false)
-            .then(json=>{
+        netWork('POST', LOGIN_REGISTER, formData, false)
+            .then(json => {
                 this.signing = false;
                 userInfo.accessToken = json.data.accessToken;
                 userInfo.memberId = json.data.memberId;
                 userInfo.psd = json.data.psd;
                 this.setState({
-                    hudType:'success',
-                },()=>{
-                    this.hud.show(json.msg,1500);
+                    hudType: 'success',
+                }, () => {
+                    this.hud.show(json.msg, 1500);
                 });
-                this.time = setTimeout(()=>{
+                this.time = setTimeout(() => {
                     Navigation.push(this.props.componentId, {
                         component: {
                             name: 'AddAddress',
@@ -241,14 +241,14 @@ export default class Register extends PureComponent {
                     //     animationType: 'slide-horizontal',
                     //     navigatorStyle: navigatorStyle,
                     // })
-                },1500);
+                }, 1500);
             })
-            .catch(err=>{
+            .catch(err => {
                 this.signing = false;
                 this.setState({
-                    hudType:'error',
-                },()=>{
-                    this.hud.show(err,1500);
+                    hudType: 'error',
+                }, () => {
+                    this.hud.show(err, 1500);
                 })
             })
     }
@@ -259,24 +259,24 @@ export default class Register extends PureComponent {
             this.hud.show('please wait');
         } else {
             this.setState({
-                hudType:'none'
-            },()=>{
+                hudType: 'none'
+            }, () => {
                 this.hud.show('Please wait');
             })
         }
 
         let formData = new FormData();
         formData.append('phone', this.state.phoneNum);
-        formData.append('vid',this.state.vId);
-        formData.append('vcode',this.state.vCode);
+        formData.append('vid', this.state.vId);
+        formData.append('vcode', this.state.vCode);
 
-        netWork('POST',CHECK_VCODE,formData,false)
-            .then(json=>{
+        netWork('POST', CHECK_VCODE, formData, false)
+            .then(json => {
                 this.signing = false;
                 this.setState({
-                    hudType:'success',
-                },()=>{
-                    this.hud.show(json.msg,1500);
+                    hudType: 'success',
+                }, () => {
+                    this.hud.show(json.msg, 1500);
                 });
                 this.timeout = setTimeout(() => {
                     userInfo.accessToken = json.data.accessToken;
@@ -286,7 +286,7 @@ export default class Register extends PureComponent {
                         Navigation.push(this.props.componentId, {
                             component: {
                                 name: 'AddAddress',
-    
+
                                 options: {
                                     topBar: {
                                         title: {
@@ -307,7 +307,7 @@ export default class Register extends PureComponent {
                             Navigation.push(this.props.componentId, {
                                 component: {
                                     name: 'ChooseModel',
-        
+
                                     options: {
                                         topBar: {
                                             title: {
@@ -348,19 +348,19 @@ export default class Register extends PureComponent {
                             if (json.data.serviceMode === 'ziplocker') {
                                 Navigation.setRoot({
                                     root: {
-                                      stack: {
-                                        id: 'Stack.Home3',
-                                        children: [
-                                          {
-                                            component: {
-                                               id: 'ZipLockerHome',
-                                               name: 'ZipLockerHome',
-                                           },
-                                         },
-                                        ],
-                                      }
+                                        stack: {
+                                            id: 'Stack.Home3',
+                                            children: [
+                                                {
+                                                    component: {
+                                                        id: 'ZipLockerHome',
+                                                        name: 'ZipLockerHome',
+                                                    },
+                                                },
+                                            ],
+                                        }
                                     }
-                                  });
+                                });
                                 // Navigation.startSingleScreenApp({
                                 //     screen: {
                                 //         screen: 'ZipLockerHome',
@@ -387,19 +387,19 @@ export default class Register extends PureComponent {
                             } else {
                                 Navigation.setRoot({
                                     root: {
-                                      stack: {
-                                        id: 'Stack.Home2',
-                                        children: [
-                                          {
-                                            component: {
-                                               id: 'ZipporaHome',
-                                               name: 'ZipporaHome',
-                                           },
-                                         },
-                                        ],
-                                      }
+                                        stack: {
+                                            id: 'Stack.Home2',
+                                            children: [
+                                                {
+                                                    component: {
+                                                        id: 'ZipporaHome',
+                                                        name: 'ZipporaHome',
+                                                    },
+                                                },
+                                            ],
+                                        }
                                     }
-                                  });
+                                });
                                 // Navigation.startSingleScreenApp({
                                 //     screen: {
                                 //         screen: 'ZipporaHome',
@@ -427,12 +427,12 @@ export default class Register extends PureComponent {
                     }
                 }, 1500);
             })
-            .catch(err=>{
+            .catch(err => {
                 this.signing = false;
                 this.setState({
-                    hudType:'error',
-                },()=>{
-                    this.hud.show(err,1500);
+                    hudType: 'error',
+                }, () => {
+                    this.hud.show(err, 1500);
                 })
             })
 
@@ -440,10 +440,10 @@ export default class Register extends PureComponent {
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'column', backgroundColor: 'white'}}>
-                <StatusBar barStyle="light-content" animated={true}/>
+            <View style={{ flex: 1, flexDirection: 'column', backgroundColor: 'white' }}>
+                <StatusBar barStyle="light-content" animated={true} />
                 <KeyboardAwareScrollView
-                    style={{flex: 1}}
+                    style={{ flex: 1 }}
                     contentContainerStyle={{
                         flexDirection: 'column',
                         padding: 8,
@@ -454,7 +454,7 @@ export default class Register extends PureComponent {
                     {
                         this.state.useEmail ?
                             <Animatable.View
-                                ref={r=>this.emailView = r}
+                                ref={r => this.emailView = r}
                                 style={{
                                     height: 150,
                                     flexDirection: 'column'
@@ -469,9 +469,9 @@ export default class Register extends PureComponent {
                                     underlineColorAndroid={'transparent'}
                                     value={this.state.email}
                                     keyboardType="email-address"
-                                    onChangeText={(text)=>{
+                                    onChangeText={(text) => {
                                         this.setState({
-                                            email:text,
+                                            email: text,
                                         })
                                     }}
                                 />
@@ -484,9 +484,9 @@ export default class Register extends PureComponent {
                                     underlineColorAndroid={'transparent'}
                                     secureTextEntry={true}
                                     value={this.state.password}
-                                    onChangeText={(text)=>{
+                                    onChangeText={(text) => {
                                         this.setState({
-                                            password:text,
+                                            password: text,
                                         })
                                     }}
                                 />
@@ -499,55 +499,55 @@ export default class Register extends PureComponent {
                                     underlineColorAndroid={'transparent'}
                                     secureTextEntry={true}
                                     value={this.state.confirmPassword}
-                                    onChangeText={(text)=>{
+                                    onChangeText={(text) => {
                                         this.setState({
-                                            confirmPassword:text,
+                                            confirmPassword: text,
                                         })
                                     }}
                                 />
                             </Animatable.View> :
                             <Animatable.View
-                                ref={r=>this.phoneView = r}
+                                ref={r => this.phoneView = r}
                                 style={{
                                     height: 100,
                                     flexDirection: 'column'
                                 }}
                             >
                                 {/*<TouchableOpacity*/}
-                                    {/*activeOpacity={1}*/}
-                                    {/*onPress={()=>{*/}
-                                        {/*this.props.navigator.push({*/}
-                                            {/*screen:'CountryPick',*/}
-                                            {/*title:'Select Region',*/}
-                                            {/*navigatorStyle:navigatorStyle,*/}
-                                            {/*animationType:'slide-horizontal',*/}
-                                            {/*passProps:{*/}
-                                                {/*selectRegion:(region)=>{*/}
-                                                    {/*this.setState({*/}
-                                                        {/*region,*/}
-                                                    {/*})*/}
-                                                {/*}*/}
-                                            {/*}*/}
-                                        {/*})*/}
-                                    {/*}}*/}
-                                    {/*style={{*/}
-                                        {/*flex:1,*/}
-                                        {/*borderBottomWidth: 1,*/}
-                                        {/*borderBottomColor: 'lightgray',*/}
-                                        {/*flexDirection: 'row',*/}
-                                        {/*alignItems: 'center',*/}
-                                    {/*}}*/}
+                                {/*activeOpacity={1}*/}
+                                {/*onPress={()=>{*/}
+                                {/*this.props.navigator.push({*/}
+                                {/*screen:'CountryPick',*/}
+                                {/*title:'Select Region',*/}
+                                {/*navigatorStyle:navigatorStyle,*/}
+                                {/*animationType:'slide-horizontal',*/}
+                                {/*passProps:{*/}
+                                {/*selectRegion:(region)=>{*/}
+                                {/*this.setState({*/}
+                                {/*region,*/}
+                                {/*})*/}
+                                {/*}*/}
+                                {/*}*/}
+                                {/*})*/}
+                                {/*}}*/}
+                                {/*style={{*/}
+                                {/*flex:1,*/}
+                                {/*borderBottomWidth: 1,*/}
+                                {/*borderBottomColor: 'lightgray',*/}
+                                {/*flexDirection: 'row',*/}
+                                {/*alignItems: 'center',*/}
+                                {/*}}*/}
                                 {/*>*/}
-                                    {/*<ZIPText style={{fontSize: 16, flex: 1, paddingLeft: 8}}>*/}
-                                        {/*Region*/}
-                                    {/*</ZIPText>*/}
-                                    {/*<ZIPText style={{fontSize: 16, paddingRight: 8, color: Color.themeColor}}>*/}
-                                        {/*{`${this.state.region["Countries and Regions"]}(+${this.state.region.code})`}*/}
-                                    {/*</ZIPText>*/}
+                                {/*<ZIPText style={{fontSize: 16, flex: 1, paddingLeft: 8}}>*/}
+                                {/*Region*/}
+                                {/*</ZIPText>*/}
+                                {/*<ZIPText style={{fontSize: 16, paddingRight: 8, color: Color.themeColor}}>*/}
+                                {/*{`${this.state.region["Countries and Regions"]}(+${this.state.region.code})`}*/}
+                                {/*</ZIPText>*/}
                                 {/*</TouchableOpacity>*/}
                                 <CommonTextInput
                                     leftTitle="Phone"
-                                    placeholder={'Enter mobile number(optional)'}
+                                    placeholder={'Enter mobile number (optional)'}
                                     placeholderTextColor={'lightgray'}
                                     autoCapitalize={'none'}
                                     autoCorrect={false}
@@ -564,7 +564,7 @@ export default class Register extends PureComponent {
                                 <CommonTextInput
                                     leftTitle="SMS Code"
                                     rightTitle={this.state.showCount ? `Resend after ${this.state.count}s` : 'Send'}
-                                    onRightClick={()=>{
+                                    onRightClick={() => {
                                         if (this.state.canSendVCode) {
                                             this.sendVCode();
                                         }
@@ -576,7 +576,7 @@ export default class Register extends PureComponent {
                                     underlineColorAndroid={'transparent'}
                                     keyboardType={'numeric'}
                                     value={this.state.vCode}
-                                    onChangeText={(text)=>{
+                                    onChangeText={(text) => {
                                         let vCode = text.replace(/[^0-9]/g, '');
                                         this.setState({
                                             vCode,
@@ -586,12 +586,12 @@ export default class Register extends PureComponent {
                             </Animatable.View>
                     }
                     <ZIPText
-                        style={{color:Color.themeColor, marginTop:8, marginLeft:8, fontSize:16}}
-                        onPress={()=>{
+                        style={{ color: Color.themeColor, marginTop: 8, marginLeft: 8, fontSize: 16 }}
+                        onPress={() => {
                             Keyboard.dismiss();
                             this.setState({
-                                useEmail:!this.state.useEmail,
-                            },()=>{
+                                useEmail: !this.state.useEmail,
+                            }, () => {
                                 if (this.state.useEmail) {
                                     this.emailView.slideInRight(500);
                                 } else {
@@ -600,7 +600,7 @@ export default class Register extends PureComponent {
                             })
                         }}
                     >
-                        Use {this.state.useEmail ? 'Mobile number':'Email'} to register
+                        Use {this.state.useEmail ? 'Mobile number' : 'Email'} to register
                     </ZIPText>
                     <TouchableOpacity
                         style={{
@@ -612,7 +612,7 @@ export default class Register extends PureComponent {
                             marginTop: 16,
                         }}
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             Keyboard.dismiss();
                             if (this.signInButtonColor() === 'rgba(42,187,103,0.5)') {
                                 return;
@@ -637,20 +637,20 @@ export default class Register extends PureComponent {
                     </TouchableOpacity>
                     <TouchableOpacity
                         activeOpacity={1}
-                        onPress={()=>{
+                        onPress={() => {
                             Navigation.push(this.props.componentId, {
-                        component: {
-                            name: 'NewRegister',
+                                component: {
+                                    name: 'NewRegister',
 
-                            options: {
-                                topBar: {
-                                    title: {
-                                        text: 'Sign Up',
+                                    options: {
+                                        topBar: {
+                                            title: {
+                                                text: 'Sign Up',
+                                            }
+                                        }
                                     }
                                 }
-                            }
-                        }
-                    });
+                            });
                             // this.props.navigator.push({
                             //     screen: 'NewRegister',
                             //     title: 'Sign Up',
@@ -659,22 +659,22 @@ export default class Register extends PureComponent {
                             // });
                         }}
                         style={{
-                            alignItems:'center',
-                            justifyContent:'center',
-                            paddingTop:8,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            paddingTop: 8,
                         }}
                     >
                         <ZIPText
                             style={{
-                                fontSize:15,
-                                color:Color.red
+                                fontSize: 15,
+                                color: Color.red
                             }}
                         >
                             Already registered in the apartment
                         </ZIPText>
                     </TouchableOpacity>
                 </KeyboardAwareScrollView>
-                <Hud ref={r=>this.hud = r} hudType={this.state.hudType} />
+                <Hud ref={r => this.hud = r} hudType={this.state.hudType} />
             </View>
         )
     }

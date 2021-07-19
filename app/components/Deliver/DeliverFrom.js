@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/5/16.
  */
-import React, {Component,PureComponent} from 'react'
+import React, { Component, PureComponent } from 'react'
 import {
     View,
     Text,
@@ -17,7 +17,7 @@ import * as Animatable from 'react-native-animatable'
 import {
     Button,
 } from 'react-native-elements'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import LoadingView from '../LoadingView'
 import ErrorView from '../ErrorView'
 import * as deliverFromActions from '../../actions/deliverFromAction'
@@ -27,7 +27,7 @@ import * as newStoreActions from '../../actions/newStoreAction'
 const styles = StyleSheet.create({
     menuShadow: {
         shadowColor: 'black',
-        shadowOffset: {x: -1, y: 1},
+        shadowOffset: { x: -1, y: 1 },
         shadowOpacity: 0.3,
         shadowRadius: 2,
     },
@@ -157,7 +157,7 @@ class DeliverFrom extends PureComponent {
                                     {
                                         (this.props.deliverList !== null && this.props.deliverList.length !== 0) ?
                                             <TouchableOpacity
-                                                style={[styles.menuItem, {borderBottomColor: 'white'}]}
+                                                style={[styles.menuItem, { borderBottomColor: 'white' }]}
                                                 onPress={() => {
                                                     //通过地图选择
                                                     //跳转到地图.
@@ -166,14 +166,14 @@ class DeliverFrom extends PureComponent {
                                                         const list = this.props.deliverList.map((data, index) => {
                                                             let boxText = '';
                                                             let boxEnough = false;
-                                                            data.boxModelCount.map((model,index)=>{
+                                                            data.boxModelCount.map((model, index) => {
                                                                 boxText += `${model.boxModelName}: ${model.count}`;
                                                                 if (index !== data.boxModelCount.length - 1) {
                                                                     boxText += ' ';
                                                                 }
                                                                 if (model.boxModelId == this.props.boxId) {
                                                                     boxEnough = model.count > 0;
-                                                                    console.log(boxEnough,'boxEnough');
+                                                                    console.log(boxEnough, 'boxEnough');
                                                                 }
                                                             });
                                                             return {
@@ -218,7 +218,7 @@ class DeliverFrom extends PureComponent {
     _renderRow(item) {
         let boxText = '';
         let boxEnough = false;
-        item.boxModelCount.map((data,index)=>{
+        item.boxModelCount.map((data, index) => {
             boxText += `${data.boxModelName}: ${data.count}`;
             if (index !== item.boxModelCount.length - 1) {
                 boxText += ' ';
@@ -230,7 +230,7 @@ class DeliverFrom extends PureComponent {
         return (
             <TouchableOpacity
                 activeOpacity={1}
-                style={{marginBottom: 10, backgroundColor: 'white', flexDirection: 'row', padding: 8,}}
+                style={{ marginBottom: 10, backgroundColor: 'white', flexDirection: 'row', padding: 8, }}
                 onPress={() => {
                     if (boxEnough) {
                         if (this.props.fromPage === 'newstore') {
@@ -243,27 +243,27 @@ class DeliverFrom extends PureComponent {
                 }}
             >
                 <Image
-                    style={{width: 80, height: 80, backgroundColor: Color.bgColor}}
-                    source={{uri: item.img}}
+                    style={{ width: 80, height: 80, backgroundColor: Color.bgColor }}
+                    source={{ uri: item.img }}
                 />
-                <View style={{flex: 1, paddingLeft: 8, flexDirection: 'column', justifyContent: 'space-between'}}>
-                    <Text style={{color: Color.titleColor, fontWeight: 'bold', fontSize: 16}}>
+                <View style={{ flex: 1, paddingLeft: 8, flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <Text style={{ color: Color.titleColor, fontWeight: 'bold', fontSize: 16 }}>
                         ID: {item.cabinetId}
                     </Text>
-                    <Text numberOfLines={2} style={{fontSize: 12, color: Color.tipsColor}}>
+                    <Text numberOfLines={2} style={{ fontSize: 12, color: Color.tipsColor }}>
                         {item.address}
                     </Text>
-                    <Text style={{color: Color.themeColor, fontWeight: 'bold'}}>
+                    <Text style={{ color: Color.themeColor, fontWeight: 'bold' }}>
                         {boxText}
                     </Text>
                 </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', width: 65}}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', width: 65 }}>
                     <Icon
                         name="ios-pin"
                         size={35}
                         color={Color.blue}
                     />
-                    <Text style={{fontSize: 12, color: Color.orange}}>
+                    <Text style={{ fontSize: 12, color: Color.orange }}>
                         {`${item.dis}miles`}
                     </Text>
                 </View>
@@ -293,10 +293,10 @@ class DeliverFrom extends PureComponent {
          error:'',
          * */
 
-        const {loading, deliverList, loadError, error} = this.props;
+        const { loading, deliverList, loadError, error } = this.props;
 
         if (loading) {
-            return <LoadingView/>
+            return <LoadingView />
         }
 
         if (loadError) {
@@ -315,24 +315,24 @@ class DeliverFrom extends PureComponent {
         }
 
         if (deliverList === null) {
-            return <View style={{flex: 1, backgroundColor: Color.bgColor}}/>
+            return <View style={{ flex: 1, backgroundColor: Color.bgColor }} />
         }
 
         if (deliverList.length === 0) {
             return <ErrorView onReloadPress={() => {
                 this.props.getCargoList()
-            }} text="Have no data" type="empty"/>
+            }} text="No Data" type="empty" />
         }
 
         return (
             <FlatList
-                style={{flex: 1}}
+                style={{ flex: 1 }}
                 contentContainerStyle={{
                     flexDirection: 'column'
                 }}
                 data={deliverList}
                 renderItem={(item) => this._renderRow(item.item)}
-                keyExtractor={(item,index)=>index}
+                keyExtractor={(item, index) => index}
             />
         )
     }

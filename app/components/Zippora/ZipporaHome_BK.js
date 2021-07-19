@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/8/3.
  */
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
@@ -21,7 +21,7 @@ import {
 import {
     connect
 } from 'react-redux'
-import {Navigation} from 'react-native-navigation'
+import { Navigation } from 'react-native-navigation'
 import Icon from 'react-native-vector-icons/Ionicons'
 import MaterIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import * as Animatable from 'react-native-animatable';
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     userInfoContainer: {
         //height: 40,
-        padding:8,
+        padding: 8,
         backgroundColor: Color.assistColor,
         flexDirection: 'row',
         alignItems: 'center',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         shadowColor: 'black',
-        shadowOffset: {width: 2, height: 2},
+        shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 3,
     },
@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     apartmentInfoContainer: {
-        paddingTop:4,
-        paddingBottom:4,
+        paddingTop: 4,
+        paddingBottom: 4,
         alignItems: 'center',
         paddingLeft: 16,
         paddingRight: 16,
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 3,
     },
     zipporaOrderContainer: {
-        borderTopWidth:1,
-        borderTopColor:Color.bgColor,
+        borderTopWidth: 1,
+        borderTopColor: Color.bgColor,
     },
     zipporaContainer: {
         height: 36,
@@ -132,31 +132,31 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 3,
     },
     selfStoreHeader: {
-        padding:8,
-        backgroundColor:Color.themeColor,
-        marginTop:10,
-        marginLeft:10,
-        marginRight:10,
+        padding: 8,
+        backgroundColor: Color.themeColor,
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
     },
     selfStoreItem: {
-        paddingLeft:10,
-        paddingRight:10,
-        marginTop:4
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop: 4
     },
     selfStoreItemInfo: {
-        padding:4,
-        backgroundColor:'white',
-        flexDirection:'column',
-        paddingTop:0
+        padding: 4,
+        backgroundColor: 'white',
+        flexDirection: 'column',
+        paddingTop: 0
     },
     selfStoreItemInfoContainer: {
-        flexDirection:'row',
-        paddingTop:4
+        flexDirection: 'row',
+        paddingTop: 4
     },
     selfStoreItemTitle: {
-        width:95,
-        fontSize:14,
-        textAlign:'right'
+        width: 95,
+        fontSize: 14,
+        textAlign: 'right'
     }
 });
 
@@ -166,7 +166,7 @@ class ZipporaHome extends Component {
     messageClickCount = 0;
     constructor(props) {
         super(props);
-     //   Navigation.events().bindComponent(this);
+        //   Navigation.events().bindComponent(this);
         // MaterIcon.getImageSource('message', 26,).then(source => {
         //     this.props.navigator.setButtons({
         //         rightButtons: [
@@ -199,13 +199,13 @@ class ZipporaHome extends Component {
         //         icon:require('../../assets/images/profile.png')
         //     }]
         // });
-     //   this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+        //   this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
         // rz this.props.navigator.setOnNavigatorEvent((event) => {
         //     this.onNavigatorEvent(event)
         // });
         this.state = {
             hudType: 'error',
-            
+
         };
     }
 
@@ -213,17 +213,17 @@ class ZipporaHome extends Component {
         let haveLoadList = false;
         if (Platform.OS !== 'android') {
             //enableDebug(true);
-            let registerHolder = addEventListener('register',(data)=>{
-                console.log('注册成功',data,userInfo.memberId);
+            let registerHolder = addEventListener('register', (data) => {
+                console.log('注册成功', data, userInfo.memberId);
                 setAccount(`${userInfo.memberId}`);
             });
 
-            let errorHolder = addEventListener('error',err=>{
-                console.log('注册失败',err);
+            let errorHolder = addEventListener('error', err => {
+                console.log('注册失败', err);
             });
 
-            let notificationHolder = addEventListener('notification',notif=>{
-                console.log('收到通知',notif);
+            let notificationHolder = addEventListener('notification', notif => {
+                console.log('收到通知', notif);
                 haveLoadList = true;
                 this.props.loadZipList()
             });
@@ -232,19 +232,19 @@ class ZipporaHome extends Component {
             if (!errorHolder) console.log('fail to add event to handle error');
             if (!notificationHolder) console.log('fail to add event to handle notification');
 
-            setCredential(2200268639,'I3MVLZF8738W');
+            setCredential(2200268639, 'I3MVLZF8738W');
         } else {
-          //rz  MyLocationManager.initMapBox();
+            //rz  MyLocationManager.initMapBox();
             //allEvents();
-            let registerHolder = addEventListener('register',(data)=>{
-                console.log('注册成功',data,userInfo.memberId);
+            let registerHolder = addEventListener('register', (data) => {
+                console.log('注册成功', data, userInfo.memberId);
             });
 
-            let errorHolder = addEventListener('error',err=>{
-                console.log('注册失败',err);
+            let errorHolder = addEventListener('error', err => {
+                console.log('注册失败', err);
             });
-            let notificationHolder = addEventListener('notification',notif=>{
-                console.log('收到通知',notif);
+            let notificationHolder = addEventListener('notification', notif => {
+                console.log('收到通知', notif);
                 haveLoadList = true;
                 this.props.loadZipList()
             });
@@ -255,22 +255,22 @@ class ZipporaHome extends Component {
             if (!errorHolder) console.log('fail to add event to handle error');
             if (!notificationHolder) console.log('fail to add event to handle notification');
 
-            setCredential(2100268641,'A6P73LN27FCB');
+            setCredential(2100268641, 'A6P73LN27FCB');
             register(`${userInfo.memberId}`);
         }
-//RZ
-Navigation.mergeOptions(this.props.componentId, {
-    topBar: {
-      visible: true,
-      title: {
-        text: 'Zippora Package Locker',
-        alignment: 'center'|'fill'
-        }
-    }
-  
-});
+        //RZ
+        Navigation.mergeOptions(this.props.componentId, {
+            topBar: {
+                visible: true,
+                title: {
+                    text: 'Zippora Package Locker',
+                    alignment: 'center' | 'fill'
+                }
+            }
 
-     //   setTimeout(() => {
+        });
+
+        //   setTimeout(() => {
 
         //     this.props.navigator.setTitle({
         //         title: 'Zippora Package Locker',
@@ -279,21 +279,21 @@ Navigation.mergeOptions(this.props.componentId, {
         //     this.props.navigator.setStyle({
         //         navBarTitleTextCentered: true,
         //     });
-    //    }, 1000);
+        //    }, 1000);
         if (!haveLoadList) {
             this.props.loadZipList();
         }
         this.props.getMember();
 
-       //rz this.checkVersion()
+        //rz this.checkVersion()
     }
 
     checkVersion() {
         let appVersion = DeviceInfoManager.appVersion;
-        netWork('GET',GET_APP_VERSION,null,false)
-            .then(json=>{
+        netWork('GET', GET_APP_VERSION, null, false)
+            .then(json => {
                 console.log('==deviceVersion', appVersion);
-                console.log('==serverAppVersion',json.data);
+                console.log('==serverAppVersion', json.data);
                 let androidVersion = json.data.android.version;
                 let androidDesc = json.data.android.desc;
                 let iosVersion = json.data.ios.version;
@@ -306,12 +306,12 @@ Navigation.mergeOptions(this.props.componentId, {
                             androidDesc,
                             [
                                 {
-                                    text:'Cancel',
+                                    text: 'Cancel',
                                 },
                                 {
-                                    text:'Upgrade',
-                                    onPress:()=>{
-                                        Linking.openURL('https://play.google.com/store/apps/details?id=com.zipcodexpress');
+                                    text: 'Upgrade',
+                                    onPress: () => {
+                                        Linking.openURL('https://play.google.com/store/apps/details?id=com.zipcodexpress1');
                                     }
                                 }
                             ]
@@ -325,11 +325,11 @@ Navigation.mergeOptions(this.props.componentId, {
                             iosDesc,
                             [
                                 {
-                                    text:'Cancel',
+                                    text: 'Cancel',
                                 },
                                 {
-                                    text:'Upgrade',
-                                    onPress:()=>{
+                                    text: 'Upgrade',
+                                    onPress: () => {
                                         Linking.openURL('https://itunes.apple.com/us/app/zipcodexpress/id1320712564')
                                     }
                                 }
@@ -338,7 +338,7 @@ Navigation.mergeOptions(this.props.componentId, {
                     }
                 }
             })
-            .catch(err=>{})
+            .catch(err => { })
     }
 
     // onNavigatorEvent(event) {
@@ -370,7 +370,7 @@ Navigation.mergeOptions(this.props.componentId, {
     //             Navigation.push(this.props.componentId, {
     //                 component: {
     //                     name: 'Profile',
-                       
+
     //                     options: {
     //                       topBar: {
     //                         title: {
@@ -506,7 +506,7 @@ Navigation.mergeOptions(this.props.componentId, {
     //             Navigation.push(this.props.componentId, {
     //                 component: {
     //                     name: 'Profile',
-                       
+
     //                     options: {
     //                       topBar: {
     //                         title: {
@@ -536,11 +536,11 @@ Navigation.mergeOptions(this.props.componentId, {
                 <View style={styles.selfStoreItemInfo}>
                     <View style={styles.selfStoreItemInfoContainer}>
                         <ZIPText
-                            style={[styles.selfStoreItemTitle,{fontSize:18,width:95}]}
+                            style={[styles.selfStoreItemTitle, { fontSize: 18, width: 95 }]}
                         >
                             Pickup Code:
                         </ZIPText>
-                        <ZIPText style={{flex:1, color:Color.red, fontSize:18, fontFamily:'Menlo'}}>
+                        <ZIPText style={{ flex: 1, color: Color.red, fontSize: 18, fontFamily: 'Menlo' }}>
                             {` ${item.pickCode}`}
                         </ZIPText>
                     </View>
@@ -550,7 +550,7 @@ Navigation.mergeOptions(this.props.componentId, {
                         >
                             Time:
                         </ZIPText>
-                        <ZIPText style={{flex:1, color:'#5698C5'}}>
+                        <ZIPText style={{ flex: 1, color: '#5698C5' }}>
                             {` ${item.storeTime}`}
                         </ZIPText>
                     </View>
@@ -560,7 +560,7 @@ Navigation.mergeOptions(this.props.componentId, {
                         >
                             Zippora ID:
                         </ZIPText>
-                        <ZIPText style={{flex:1}}>
+                        <ZIPText style={{ flex: 1 }}>
                             {` ${item.cabinetId}`}
                         </ZIPText>
                     </View>
@@ -570,7 +570,7 @@ Navigation.mergeOptions(this.props.componentId, {
                         >
                             Address:
                         </ZIPText>
-                        <ZIPText style={{flex:1}}>
+                        <ZIPText style={{ flex: 1 }}>
                             {` ${item.address}`}
                         </ZIPText>
                     </View>
@@ -598,22 +598,22 @@ Navigation.mergeOptions(this.props.componentId, {
                 <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => {
-                        if(repeatPress(this)) return;
+                        if (repeatPress(this)) return;
                         Navigation.push(this.props.componentId, {
-                    component: {
-                        name: 'ZipporaAPTInfo',
-                        passProps: {
-                                 info: item,
-                            },
-                        options: {
-                          topBar: {
-                            title: {
-                              text: 'Apartment Info'
+                            component: {
+                                name: 'ZipporaAPTInfo',
+                                passProps: {
+                                    info: item,
+                                },
+                                options: {
+                                    topBar: {
+                                        title: {
+                                            text: 'Apartment Info'
+                                        }
+                                    }
+                                }
                             }
-                          }
-                        }
-                      }
-                  });
+                        });
                         //RZ
                         // this.props.navigator.push({
                         //     screen: 'ZipporaAPTInfo',
@@ -630,32 +630,32 @@ Navigation.mergeOptions(this.props.componentId, {
                 >
                     <Image
                         source={require('../../assets/images/room.png')}
-                        style={{marginRight: 16}}
+                        style={{ marginRight: 16 }}
                     />
-                    <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-around'}}>
+                    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-around' }}>
                         <ZIPText>
                             {`Unit: ${item.unitName}, ${item.apartmentName}`}
                         </ZIPText>
-                        <ZIPText style={{color: Color.tipsColor, marginTop: 2}}>
+                        <ZIPText style={{ color: Color.tipsColor, marginTop: 2 }}>
                             <ZIPText>
                                 {item.zipporaCount}
                             </ZIPText>
                             {
                                 item.approveStatus == 1 ?
-                                    ` ${item.zipporaCount>1?'zipporas':'zippora'}, renew on ${item.chargeDay}${timeUnit} monthly` :
-                                    ` ${item.zipporaCount>1?'zipporas':'zippora'}, `
+                                    ` ${item.zipporaCount > 1 ? 'zipporas' : 'zippora'}, renew on ${item.chargeDay}${timeUnit} monthly` :
+                                    ` ${item.zipporaCount > 1 ? 'zipporas' : 'zippora'}, `
                             }
                             {
                                 item.approveStatus == 0 ?
-                                    <Text style={{color:'red'}}>
-                                        Pending audit
+                                    <Text style={{ color: 'red' }}>
+                                        Pending Management Approval
                                     </Text>
                                     : item.approveStatus == 2 ? 'Rejected' : null
                             }
                         </ZIPText>
                     </View>
                     <Icon
-                        style={{marginLeft: 16}}
+                        style={{ marginLeft: 16 }}
                         name="ios-arrow-forward"
                         color={Color.themeColor}
                         size={30}
@@ -678,15 +678,15 @@ Navigation.mergeOptions(this.props.componentId, {
                                         }}
                                     />
 
-                                    <ZIPText style={{marginLeft: 10, color: Color.tipsColor}}>
+                                    <ZIPText style={{ marginLeft: 10, color: Color.tipsColor }}>
                                         {data.cabinetId}
                                     </ZIPText>
-                                    <View style={{flex: 1, justifyContent: 'center'}}>
-                                        <ZIPText style={{textAlign: 'right', color: Color.tipsColor}}>
+                                    <View style={{ flex: 1, justifyContent: 'center' }}>
+                                        <ZIPText style={{ textAlign: 'right', color: Color.tipsColor }}>
                                             <ZIPText>
                                                 {`${data.storeCount} `}
                                             </ZIPText>
-                                            {data.storeCount>1?'packages':'package'} to pick up
+                                            {data.storeCount > 1 ? 'packages' : 'package'} to pick up
                                         </ZIPText>
                                     </View>
                                 </View>
@@ -698,14 +698,14 @@ Navigation.mergeOptions(this.props.componentId, {
 
                                             return (
                                                 <View key={data.storeId}
-                                                      style={{
-                                                          flexDirection: 'column',
-                                                          marginTop: index === 0 ? 0 : 4,
-                                                          borderTopColor:'lightgray',
-                                                          borderTopWidth:1,
-                                                          marginLeft:40,
-                                                      }}>
-                                                    <ZIPText style={{fontSize: 14, color: Color.assistColor}}>
+                                                    style={{
+                                                        flexDirection: 'column',
+                                                        marginTop: index === 0 ? 0 : 4,
+                                                        borderTopColor: 'lightgray',
+                                                        borderTopWidth: 1,
+                                                        marginLeft: 40,
+                                                    }}>
+                                                    <ZIPText style={{ fontSize: 14, color: Color.assistColor }}>
                                                         {data.courierCompanyName || 'NULL'}
                                                     </ZIPText>
                                                     <ZIPText
@@ -719,7 +719,7 @@ Navigation.mergeOptions(this.props.componentId, {
                                                     >
                                                         Pickup Code:
                                                         <ZIPText
-                                                            style={{fontFamily: 'Menlo',color:Color.red}}
+                                                            style={{ fontFamily: 'Menlo', color: Color.red }}
                                                         >
                                                             {` ${data.pickCode}`}
                                                         </ZIPText>
@@ -727,12 +727,12 @@ Navigation.mergeOptions(this.props.componentId, {
                                                     <Text
                                                         numberOfLines={1}
                                                         style={{
-                                                        //flex: 1,
-                                                        //textAlign: 'right',
-                                                        fontSize: 13,
-                                                        color: Color.tipsColor,
-                                                        fontFamily: 'Menlo'
-                                                    }}>
+                                                            //flex: 1,
+                                                            //textAlign: 'right',
+                                                            fontSize: 13,
+                                                            color: Color.tipsColor,
+                                                            fontFamily: 'Menlo'
+                                                        }}>
                                                         {data.storeTime}
                                                     </Text>
                                                 </View>
@@ -770,7 +770,7 @@ Navigation.mergeOptions(this.props.componentId, {
                     onPress={() => {
                         this.props.getMember();
                     }}
-                    style={{height: 40, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center'}}>
+                    style={{ height: 40, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
                     <ZIPText>
                         Tap to reload member info
                     </ZIPText>
@@ -787,22 +787,22 @@ Navigation.mergeOptions(this.props.componentId, {
             <View style={styles.userInfoContainer}>
                 <TouchableOpacity
                     activeOpacity={1}
-                    style={{flexDirection: 'row', alignItems: 'center'}}
+                    style={{ flexDirection: 'row', alignItems: 'center' }}
                     onPress={() => {
-                        if(repeatPress(this)) return;
+                        if (repeatPress(this)) return;
                         Navigation.push(this.props.componentId, {
-                    component: {
-                        name: 'Profile',
-                       
-                        options: {
-                          topBar: {
-                            title: {
-                              text: 'Personal Center'
+                            component: {
+                                name: 'Profile',
+
+                                options: {
+                                    topBar: {
+                                        title: {
+                                            text: 'Personal Center'
+                                        }
+                                    }
+                                }
                             }
-                          }
-                        }
-                      }
-                  });
+                        });
                         //RZ
                         // this.props.navigator.push({
                         //     screen: 'Profile',
@@ -812,63 +812,63 @@ Navigation.mergeOptions(this.props.componentId, {
                         //     animationType: 'slide-horizontal',
                         // })
                     }}>
-                    <View style={{height: 32, width: 32,  borderRadius: 16, padding: 1}}>
+                    <View style={{ height: 32, width: 32, borderRadius: 16, padding: 1 }}>
                         <Image
-                            style={{flex: 1, borderRadius: 15, backgroundColor: 'transparent', width: 30, height: 30}}
-                            source={member.profile.avatar === '' ? require('../../assets/images/proimage.png') : {uri: member.profile.avatar}}
+                            style={{ flex: 1, borderRadius: 15, backgroundColor: 'transparent', width: 30, height: 30 }}
+                            source={member.profile.avatar === '' ? require('../../assets/images/proimage.png') : { uri: member.profile.avatar }}
                         />
                     </View>
-                    <ZIPText style={{color: 'white', fontSize: 14, marginLeft: 4}}>
+                    <ZIPText style={{ color: 'white', fontSize: 14, marginLeft: 4 }}>
                         {(member.profile.nickName === null || member.profile.nickName === '') ? member.member.phone : member.profile.nickName}
                     </ZIPText>
                 </TouchableOpacity>
                 <TouchableOpacity
                     activeOpacity={1}
-                    style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}
+                    style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}
                     onPress={() => {
-                        if(repeatPress(this)) return;
+                        if (repeatPress(this)) return;
                         //check whether email is verified
-                        var showScreen=(newScreen,newTitle)=>{
+                        var showScreen = (newScreen, newTitle) => {
                             Navigation.push(this.props.componentId, {
-                    component: {
-                        name: newScreen,
-                       
-                        options: {
-                          topBar: {
-                            title: {
-                              text: newTitle
-                            }
-                          }
-                        }
-                      }
-                  });
-                        //     this.props.navigator.push({
-                        //     screen: newScreen,
-                        //     title: newTitle,
-                        //     animationType: 'slide-horizontal',
-                        //     animationType: 'slide-horizontal',
-                        //     backButtonTitle: 'Back',
-                        // })
+                                component: {
+                                    name: newScreen,
+
+                                    options: {
+                                        topBar: {
+                                            title: {
+                                                text: newTitle
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                            //     this.props.navigator.push({
+                            //     screen: newScreen,
+                            //     title: newTitle,
+                            //     animationType: 'slide-horizontal',
+                            //     animationType: 'slide-horizontal',
+                            //     backButtonTitle: 'Back',
+                            // })
                         }
 
-                        if(member.member.statusDetail.isEmailVerified==='0'){
-                            this.hud.show('Please verify your email before subscribe a new apartment',2500);
+                        if (member.member.statusDetail.isEmailVerified === '0') {
+                            this.hud.show('Please verify your email before subscribe a new apartment', 2500);
                             setTimeout(() => {
-                                showScreen('VerifyEmail','Verify Email');
+                                showScreen('VerifyEmail', 'Verify Email');
                             }, 2500);
-                             
+
                         }
-                        else if((member.profile.firstName||'').trim()===''||(member.profile.lastName||'').trim()===''){
-                            this.hud.show('Please input your first name and last name before subscribe a new apartment',3000);
+                        else if ((member.profile.firstName || '').trim() === '' || (member.profile.lastName || '').trim() === '') {
+                            this.hud.show('Please input your first name and last name before subscribe a new apartment', 3000);
                             setTimeout(() => {
-                                showScreen('ProfileInfo','ProfileInfo');
+                                showScreen('ProfileInfo', 'ProfileInfo');
                             }, 3000);
                         }
-                        else{
-                            showScreen('NewApartment','New Apartment');
+                        else {
+                            showScreen('NewApartment', 'New Apartment');
                         }
-                        
-                    
+
+
 
                         // this.props.navigator.push({
                         //     screen: 'NewApartment',
@@ -878,9 +878,9 @@ Navigation.mergeOptions(this.props.componentId, {
                         // })
                     }}
                 >
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Icon name="md-add" size={20} color="white" style={{marginTop: 2, marginRight: 2}}/>
-                        <ZIPText style={{color: 'white', fontSize: 14}}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Icon name="md-add" size={20} color="white" style={{ marginTop: 2, marginRight: 2 }} />
+                        <ZIPText style={{ color: 'white', fontSize: 14 }}>
                             Subscribe a new apartment
                         </ZIPText>
                     </View>
@@ -898,7 +898,7 @@ Navigation.mergeOptions(this.props.componentId, {
         } = this.props;
 
         if (loading && list === null) {
-            return <LoadingView/>
+            return <LoadingView />
         }
 
         if (loadError) {
@@ -924,7 +924,7 @@ Navigation.mergeOptions(this.props.componentId, {
         if (list[0].data.length === 0 && list[1].data.length === 0) {
             return (
                 <ErrorView
-                    text="have no data"
+                    text="No Data"
                     onReloadPress={() => {
                         this.props.loadZipList();
                     }}
@@ -936,10 +936,10 @@ Navigation.mergeOptions(this.props.componentId, {
         return (
             <SectionList
                 sections={list}
-                onRefresh={()=>this.props.loadZipList()}
+                onRefresh={() => this.props.loadZipList()}
                 refreshing={loading}
-                renderItem={(item)=>{
-                    console.log('selction list:item',list,item);
+                renderItem={(item) => {
+                    console.log('selction list:item', list, item);
                     if (item.section.section === 'apartment') {
                         return this._renderItem(item.item);
                     } else {
@@ -947,7 +947,7 @@ Navigation.mergeOptions(this.props.componentId, {
                     }
 
                 }}
-                renderSectionHeader={(item)=>{
+                renderSectionHeader={(item) => {
                     if (item.section.section === 'apartment') {
                         return (
                             <View />
@@ -962,14 +962,14 @@ Navigation.mergeOptions(this.props.componentId, {
                             <View
                                 style={styles.selfStoreHeader}
                             >
-                                <ZIPText style={{color:'white'}}>
+                                <ZIPText style={{ color: 'white' }}>
                                     My deposit
                                 </ZIPText>
                             </View>
                         )
                     }
                 }}
-                keyExtractor={(item,index)=>{
+                keyExtractor={(item, index) => {
                     if (item.apartmentId !== undefined) {
                         return item.apartmentId;
                     } else {
@@ -993,16 +993,16 @@ Navigation.mergeOptions(this.props.componentId, {
                                         Navigation.push(this.props.componentId, {
                                             component: {
                                                 name: 'BarScan',
-                                               
+
                                                 options: {
-                                                  topBar: {
-                                                    title: {
-                                                      text: 'Scan'
+                                                    topBar: {
+                                                        title: {
+                                                            text: 'Scan'
+                                                        }
                                                     }
-                                                  }
                                                 }
-                                              }
-                                          });
+                                            }
+                                        });
                                         //RZ
                                         // this.props.navigator.push({
                                         //     screen: 'BarScan',
@@ -1016,19 +1016,19 @@ Navigation.mergeOptions(this.props.componentId, {
                                 });
                             break;
                         case 'authorized':
-                                Navigation.push(this.props.componentId, {
-                                    component: {
-                                        name: 'BarScan',
-                                       
-                                        options: {
-                                          topBar: {
+                            Navigation.push(this.props.componentId, {
+                                component: {
+                                    name: 'BarScan',
+
+                                    options: {
+                                        topBar: {
                                             title: {
-                                              text: 'Scan'
+                                                text: 'Scan'
                                             }
-                                          }
                                         }
-                                      }
-                                  });
+                                    }
+                                }
+                            });
                             // this.props.navigator.push({
                             //     screen: 'BarScan',
                             //     title: 'Scan',
@@ -1055,19 +1055,19 @@ Navigation.mergeOptions(this.props.componentId, {
             Permission.checkCamera((status) => {
                 switch (status) {
                     case 'authorized':
-                            Navigation.push(this.props.componentId, {
-                                component: {
-                                    name: 'BarScan',
-                                   
-                                    options: {
-                                      topBar: {
+                        Navigation.push(this.props.componentId, {
+                            component: {
+                                name: 'BarScan',
+
+                                options: {
+                                    topBar: {
                                         title: {
-                                          text: 'Scan'
+                                            text: 'Scan'
                                         }
-                                      }
                                     }
-                                  }
-                              });
+                                }
+                            }
+                        });
                         // this.props.navigator.push({
                         //     screen: 'BarScan',
                         //     title: 'Scan',
@@ -1079,19 +1079,19 @@ Navigation.mergeOptions(this.props.componentId, {
                         Permission.requestCamera((status) => {
                             switch (status) {
                                 case 'authorized':
-                                        Navigation.push(this.props.componentId, {
-                                            component: {
-                                                name: 'BarScan',
-                                               
-                                                options: {
-                                                  topBar: {
+                                    Navigation.push(this.props.componentId, {
+                                        component: {
+                                            name: 'BarScan',
+
+                                            options: {
+                                                topBar: {
                                                     title: {
-                                                      text: 'Scan'
+                                                        text: 'Scan'
                                                     }
-                                                  }
                                                 }
-                                              }
-                                          });
+                                            }
+                                        }
+                                    });
                                     // this.props.navigator.push({
                                     //     screen: 'BarScan',
                                     //     title: 'Scan',
@@ -1136,7 +1136,7 @@ Navigation.mergeOptions(this.props.componentId, {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar barStyle={'light-content'} animated={true}/>
+                <StatusBar barStyle={'light-content'} animated={true} />
                 {this._renderMemberInfo()}
                 {this._renderList()}
                 <AnimateTouchable
@@ -1144,7 +1144,7 @@ Navigation.mergeOptions(this.props.componentId, {
                     activeOpacity={0.8}
                     style={styles.scanButton}
                     onPress={() => {
-                        if(repeatPress(this)) return;
+                        if (repeatPress(this)) return;
                         if (this.props.canToScan) {
                             this.pushToBarScan()
                         }
@@ -1154,10 +1154,10 @@ Navigation.mergeOptions(this.props.componentId, {
                         name="qrcode"
                         size={32}
                         color={'white'}
-                        style={{paddingTop: 2}}
+                        style={{ paddingTop: 2 }}
                     />
                 </AnimateTouchable>
-                <Hud hudType={this.state.hudType} ref={r => this.hud = r}/>
+                <Hud hudType={this.state.hudType} ref={r => this.hud = r} />
             </View>
         )
     }
@@ -1172,12 +1172,12 @@ export default connect(
         loadingMember: state.zipporaHome.loadingMember,
         member: state.zipporaHome.member,
         loadMemberError: state.zipporaHome.loadMemberError,
-        canToScan:state.zipporaHome.canToScan,
+        canToScan: state.zipporaHome.canToScan,
         //memberError:state.zipporaHome.memberError,
     }),
     (dispatch) => ({
         loadZipList: () => dispatch(zipporaHomeActions.loadZipList()),
         getMember: () => dispatch(zipporaHomeActions.getMember()),
-        setCanScan:(canScan)=>dispatch(zipporaHomeActions.setCanScan(canScan))
+        setCanScan: (canScan) => dispatch(zipporaHomeActions.setCanScan(canScan))
     })
 )(ZipporaHome)

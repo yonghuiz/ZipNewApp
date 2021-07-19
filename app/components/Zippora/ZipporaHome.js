@@ -289,7 +289,7 @@ class ZipporaHome extends Component {
         this.props.getMember();
         SplashScreen.hide();
         this.checkVersion();
-       
+
     }
 
     checkVersion() {
@@ -315,7 +315,7 @@ class ZipporaHome extends Component {
                                 {
                                     text: 'Upgrade',
                                     onPress: () => {
-                                        Linking.openURL('https://play.google.com/store/apps/details?id=com.zipcodexpress');
+                                        Linking.openURL('https://play.google.com/store/apps/details?id=com.zipcodexpress1');
                                     }
                                 }
                             ]
@@ -652,7 +652,7 @@ class ZipporaHome extends Component {
                             {
                                 item.approveStatus == 0 ?
                                     <Text style={{ color: 'red' }}>
-                                        Pending audit
+                                        Pending Management Approval
                                     </Text>
                                     : item.approveStatus == 2 ? 'Rejected' : null
                             }
@@ -928,7 +928,7 @@ class ZipporaHome extends Component {
         if (list[0].data.length === 0 && list[1].data.length === 0) {
             return (
                 <ErrorView
-                    text="have no data"
+                    text="No Data"
                     onReloadPress={() => {
                         this.props.loadZipList();
                     }}

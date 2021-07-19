@@ -1,4 +1,4 @@
-package com.zipcodexpress;
+package com.zipcodexpress1;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -45,8 +45,9 @@ public class DeviceInfoManager extends ReactContextBaseJavaModule {
     }
 
     private WifiInfo getWifiInfo() {
-        if ( this.wifiInfo == null ) {
-            WifiManager manager = (WifiManager) reactContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (this.wifiInfo == null) {
+            WifiManager manager = (WifiManager) reactContext.getApplicationContext()
+                    .getSystemService(Context.WIFI_SERVICE);
             this.wifiInfo = manager.getConnectionInfo();
         }
         return this.wifiInfo;
@@ -73,18 +74,16 @@ public class DeviceInfoManager extends ReactContextBaseJavaModule {
     }
 
     private Boolean isEmulator() {
-        return Build.FINGERPRINT.startsWith("generic")
-                || Build.FINGERPRINT.startsWith("unknown")
-                || Build.MODEL.contains("google_sdk")
-                || Build.MODEL.contains("Emulator")
-                || Build.MODEL.contains("Android SDK built for x86")
-                || Build.MANUFACTURER.contains("Genymotion")
+        return Build.FINGERPRINT.startsWith("generic") || Build.FINGERPRINT.startsWith("unknown")
+                || Build.MODEL.contains("google_sdk") || Build.MODEL.contains("Emulator")
+                || Build.MODEL.contains("Android SDK built for x86") || Build.MANUFACTURER.contains("Genymotion")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
                 || "google_sdk".equals(Build.PRODUCT);
     }
 
     private Boolean isTablet() {
-        int layout = getReactApplicationContext().getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        int layout = getReactApplicationContext().getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK;
         return layout == Configuration.SCREENLAYOUT_SIZE_LARGE || layout == Configuration.SCREENLAYOUT_SIZE_XLARGE;
     }
 
@@ -105,8 +104,7 @@ public class DeviceInfoManager extends ReactContextBaseJavaModule {
     }
 
     @Override
-    public @Nullable
-    Map<String, Object> getConstants() {
+    public @Nullable Map<String, Object> getConstants() {
         HashMap<String, Object> constants = new HashMap<String, Object>();
 
         PackageManager packageManager = this.reactContext.getPackageManager();
@@ -130,10 +128,10 @@ public class DeviceInfoManager extends ReactContextBaseJavaModule {
 
         try {
             BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
-            if(myDevice!=null){
+            if (myDevice != null) {
                 deviceName = myDevice.getName();
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         constants.put("serialNumber", Build.SERIAL);
@@ -152,11 +150,14 @@ public class DeviceInfoManager extends ReactContextBaseJavaModule {
         constants.put("isEmulator", this.isEmulator());
         constants.put("isTablet", this.isTablet());
         constants.put("is24Hour", this.is24Hour());
-        if (getCurrentActivity() != null &&
-                (getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED ||
-                        getCurrentActivity().checkCallingOrSelfPermission(Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED ||
-                        getCurrentActivity().checkCallingOrSelfPermission("android.permission.READ_PHONE_NUMBERS") == PackageManager.PERMISSION_GRANTED)) {
-            TelephonyManager telMgr = (TelephonyManager) this.reactContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        if (getCurrentActivity() != null && (getCurrentActivity()
+                .checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED
+                || getCurrentActivity()
+                        .checkCallingOrSelfPermission(Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED
+                || getCurrentActivity().checkCallingOrSelfPermission(
+                        "android.permission.READ_PHONE_NUMBERS") == PackageManager.PERMISSION_GRANTED)) {
+            TelephonyManager telMgr = (TelephonyManager) this.reactContext.getApplicationContext()
+                    .getSystemService(Context.TELEPHONY_SERVICE);
             constants.put("phoneNumber", telMgr.getLine1Number());
         }
         return constants;

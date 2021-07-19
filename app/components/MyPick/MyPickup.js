@@ -1,14 +1,14 @@
 /**
  * Created by liuyu on 2017/11/4.
  */
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     Text,
     FlatList,
     TouchableOpacity,
 } from 'react-native'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as myPickActions from '../../actions/myPickupAction'
 import LoadingView from '../LoadingView'
 import ErrorView from '../ErrorView'
@@ -18,7 +18,7 @@ import ZIPText from '../ZIPText'
 class SepComponent extends PureComponent {
     render() {
         return (
-            <View style={{height:10}}/>
+            <View style={{ height: 10 }} />
         )
     }
 }
@@ -40,7 +40,7 @@ class MyPickup extends PureComponent {
 
         if (loading && list === null) {
             return (
-                <LoadingView/>
+                <LoadingView />
             )
         }
 
@@ -62,12 +62,12 @@ class MyPickup extends PureComponent {
         }
         if (list.length === 0) {
             if (loading) {
-                return <LoadingView/>
+                return <LoadingView />
             }
             return (
                 <ErrorView onReloadPress={() => {
                     this.props.loadPickList()
-                }} text="Have no data" type="empty"/>
+                }} text="No Data" type="empty" />
             )
         }
 
@@ -76,7 +76,7 @@ class MyPickup extends PureComponent {
                 style={{
                     flex: 1,
                 }}
-                contentContainerStyle={{flexDirection: 'column'}}
+                contentContainerStyle={{ flexDirection: 'column' }}
                 ItemSeparatorComponent={SepComponent}
                 data={list}
                 renderItem={(item) => this._renderItem(item.item)}
@@ -95,24 +95,24 @@ class MyPickup extends PureComponent {
         return (
             <TouchableOpacity
                 style={{
-                    paddingTop:8,
-                    paddingBottom:8,
-                    flexDirection:'column',
-                    backgroundColor:'white',
+                    paddingTop: 8,
+                    paddingBottom: 8,
+                    flexDirection: 'column',
+                    backgroundColor: 'white',
                 }}
                 activeOpacity={1}
-                onPress={()=>{
+                onPress={() => {
                     this.props.navigator.push({
                         screen: 'DeliverInfo',
                         title: 'MyPickup info',
-                        passProps: {deliverInfo:item},
+                        passProps: { deliverInfo: item },
                         animationType: 'slide-horizontal',
                         navigatorStyle: navigatorStyle,
                     })
                 }}
             >
-                <View style={{paddingLeft:16,paddingRight:16,flexDirection:'row', alignItems:'center'}}>
-                    <ZIPText style={{flex: 1}}>
+                <View style={{ paddingLeft: 16, paddingRight: 16, flexDirection: 'row', alignItems: 'center' }}>
+                    <ZIPText style={{ flex: 1 }}>
                         Order ID: {item.deliverId}
                     </ZIPText>
                     <View
@@ -129,24 +129,24 @@ class MyPickup extends PureComponent {
                             paddingBottom: 4,
                         }}
                     >
-                        <ZIPText style={{color: '#B5AE35', fontSize: 12}}>
+                        <ZIPText style={{ color: '#B5AE35', fontSize: 12 }}>
                             {item.cargo.cargoStatusText}
                         </ZIPText>
                     </View>
                 </View>
-                <View style={{marginTop:8,height:1, backgroundColor:Color.tipsColor}}/>
+                <View style={{ marginTop: 8, height: 1, backgroundColor: Color.tipsColor }} />
                 <View
                     style={{
-                        paddingLeft:16,
-                        paddingRight:16,
-                        flexDirection:'row',
-                        marginTop:8
+                        paddingLeft: 16,
+                        paddingRight: 16,
+                        flexDirection: 'row',
+                        marginTop: 8
                     }}
                 >
                     <ZIPText
                         style={{
-                            color:Color.titleColor,
-                            flex:1,
+                            color: Color.titleColor,
+                            flex: 1,
                         }}
                     >
                         {`${item.cargo.cargoTypeName}   ${item.cargo.cargoWeight}   ${item.to.box.boxModelName}`}
@@ -157,26 +157,26 @@ class MyPickup extends PureComponent {
                 </View>
                 <View
                     style={{
-                        paddingLeft:16,
-                        paddingRight:16,
-                        flexDirection:'row',
-                        alignItems:'center',
-                        marginTop:8,
+                        paddingLeft: 16,
+                        paddingRight: 16,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginTop: 8,
                     }}
                 >
                     <ZIPText
                         style={{
-                            width:55,
-                            fontSize:16,
-                            textAlign:'right'
+                            width: 55,
+                            fontSize: 16,
+                            textAlign: 'right'
                         }}
                     >
                         FROM:
                     </ZIPText>
                     <ZIPText
                         style={{
-                            flex:1,
-                            marginLeft:16,
+                            flex: 1,
+                            marginLeft: 16,
                         }}
                     >
                         {item.from.name}
@@ -184,26 +184,26 @@ class MyPickup extends PureComponent {
                 </View>
                 <View
                     style={{
-                        paddingLeft:16,
-                        paddingRight:16,
-                        flexDirection:'row',
-                        alignItems:'center',
-                        marginTop:4,
+                        paddingLeft: 16,
+                        paddingRight: 16,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginTop: 4,
                     }}
                 >
                     <ZIPText
                         style={{
-                            width:55,
-                            fontSize:16,
-                            textAlign:'right'
+                            width: 55,
+                            fontSize: 16,
+                            textAlign: 'right'
                         }}
                     >
                         TO:
                     </ZIPText>
                     <ZIPText
                         style={{
-                            flex:1,
-                            marginLeft:16,
+                            flex: 1,
+                            marginLeft: 16,
                         }}
                     >
                         ID: {item.to.cabinetId}
@@ -211,20 +211,20 @@ class MyPickup extends PureComponent {
                 </View>
                 <View
                     style={{
-                        paddingLeft:16,
-                        paddingRight:16,
-                        flexDirection:'row',
-                        alignItems:'center',
-                        marginTop:4,
+                        paddingLeft: 16,
+                        paddingRight: 16,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        marginTop: 4,
                     }}
                 >
-                    <View style={{width:50}}>
+                    <View style={{ width: 50 }}>
 
                     </View>
                     <ZIPText
                         style={{
-                            flex:1,
-                            marginLeft:16,
+                            flex: 1,
+                            marginLeft: 16,
                         }}
                     >
                         {item.to.address}
@@ -232,16 +232,16 @@ class MyPickup extends PureComponent {
                 </View>
                 <View
                     style={{
-                        paddingLeft:16,
-                        paddingRight:16,
-                        marginTop:16,
-                        flexDirection:'row',
-                        alignItems:'center'
+                        paddingLeft: 16,
+                        paddingRight: 16,
+                        marginTop: 16,
+                        flexDirection: 'row',
+                        alignItems: 'center'
                     }}
                 >
-                    <View style={{width:10,height:10, borderRadius:5, backgroundColor:Color.themeColor}}/>
+                    <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: Color.themeColor }} />
                     <ZIPText
-                        style={{flex:1, marginLeft:8}}
+                        style={{ flex: 1, marginLeft: 8 }}
                     >
                         {item.deliverTraceList[0].text}
                     </ZIPText>
@@ -255,7 +255,7 @@ class MyPickup extends PureComponent {
 
     render() {
         return (
-            <View style={{flex: 1, backgroundColor: Color.bgColor}}>
+            <View style={{ flex: 1, backgroundColor: Color.bgColor }}>
                 {this._renderList()}
             </View>
         )

@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/5/16.
  */
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     View,
@@ -48,9 +48,9 @@ const ItemCell = (props) => {
             paddingRight: 8,
             alignItems: 'center',
         }}
-                   onPress={props.onPress}
+            onPress={props.onPress}
         >
-            <ZIPText style={{color: Color.titleColor}}>
+            <ZIPText style={{ color: Color.titleColor }}>
                 {props.title}
             </ZIPText>
             {
@@ -66,7 +66,7 @@ const ItemCell = (props) => {
                         }}
                     >
                         {props.subTitle === null ?
-                            <ActivityIndicator animating={true} size={'small'}/> :
+                            <ActivityIndicator animating={true} size={'small'} /> :
                             <ZIPText>
                                 {props.subTitle}
                             </ZIPText>
@@ -75,7 +75,7 @@ const ItemCell = (props) => {
                     <ZIPTextInput
                         autoCapitalize={'none'}
                         autoCorrect={false}
-                        style={{flex: 1, marginLeft: 8, fontFamily:FontFamily}}
+                        style={{ flex: 1, marginLeft: 8, fontFamily: FontFamily }}
                         onChangeText={props.onChangeText}
                         underlineColorAndroid={'transparent'}
                         value={props.value}
@@ -84,7 +84,7 @@ const ItemCell = (props) => {
                     />
             }
             {
-                props.noInput ? <Icon name="ios-arrow-forward" color={Color.blue} type="ionicon"/> : null
+                props.noInput ? <Icon name="ios-arrow-forward" color={Color.blue} type="ionicon" /> : null
             }
         </Container>
     )
@@ -97,8 +97,8 @@ ItemCell.propTypes = {
     subTitle: PropTypes.string,
     onPress: PropTypes.func,
     value: PropTypes.string,
-    maxLength:PropTypes.number,
-    keyboardType:TextInput.propTypes.keyboardType,
+    maxLength: PropTypes.number,
+    keyboardType: TextInput.propTypes.keyboardType,
 };
 
 ItemCell.defaultProps = {
@@ -106,8 +106,8 @@ ItemCell.defaultProps = {
     onChangeText: () => {
     },
     noInput: false,
-    maxLength:30,
-    keyboardType:'default',
+    maxLength: 30,
+    keyboardType: 'default',
 };
 
 export default class AddAddress extends Component {
@@ -125,16 +125,16 @@ export default class AddAddress extends Component {
             lon: null,
             getLocationError: false,
             states: '',
-            loading:false,
-            loadError:false,
-            data:null,
-            selectState:null,
-            firstName:'',
-            lastName:'',
-            address:'',
-            city:'',
-            zipCode:'',
-            completed:false,
+            loading: false,
+            loadError: false,
+            data: null,
+            selectState: null,
+            firstName: '',
+            lastName: '',
+            address: '',
+            city: '',
+            zipCode: '',
+            completed: false,
         };
     }
 
@@ -177,21 +177,21 @@ export default class AddAddress extends Component {
 
     loadStateList() {
         this.setState({
-            loading:true,
-            loadError:false,
+            loading: true,
+            loadError: false,
         });
-        netWork('GET',GET_STATE_LIST,null,true)
-            .then(json=>{
+        netWork('GET', GET_STATE_LIST, null, true)
+            .then(json => {
                 this.setState({
-                    loading:false,
-                    data:json.data.stateList,
-                    selectState:json.data.stateList[0].stateCode,
+                    loading: false,
+                    data: json.data.stateList,
+                    selectState: json.data.stateList[0].stateCode,
                 })
             })
-            .catch(err=>{
+            .catch(err => {
                 this.setState({
-                    loading:false,
-                    loadError:true,
+                    loading: false,
+                    loadError: true,
                 })
             })
     }
@@ -302,10 +302,10 @@ export default class AddAddress extends Component {
                         currentLocation: `${lat},${lon}`,
                         lat: lat,
                         lon: lon,
-                    },()=>{
+                    }, () => {
                         if (this.state.completed !== this.isCompleted()) {
                             this.setState({
-                                completed:this.isCompleted()
+                                completed: this.isCompleted()
                             })
                         }
                     })
@@ -315,10 +315,10 @@ export default class AddAddress extends Component {
                         currentLocation: address,
                         lat: lat,
                         lon: lon,
-                    },()=>{
+                    }, () => {
                         if (this.state.completed !== this.isCompleted()) {
                             this.setState({
-                                completed:this.isCompleted()
+                                completed: this.isCompleted()
                             })
                         }
                     })
@@ -339,23 +339,23 @@ export default class AddAddress extends Component {
                 flexDirection: 'column',
                 backgroundColor: Color.bgColor,
             }}>
-                <StatusBar barStyle="light-content" animated={true}/>
+                <StatusBar barStyle="light-content" animated={true} />
                 <KeyboardAwareScrollView
                     keyboardShouldPersistTaps={'always'}
-                    style={{flex: 1}}
-                    contentContainerStyle={{padding: 16}}
+                    style={{ flex: 1 }}
+                    contentContainerStyle={{ padding: 16 }}
                 >
                     <ItemCell
                         title="First Name"
                         onChangeText={(text) => {
-                            let result=text.replace(/^\s+/g,"");
-                            let reg=result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g," ");
+                            let result = text.replace(/^\s+/g, "");
+                            let reg = result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g, " ");
                             this.setState({
-                                firstName:reg,
-                            },()=>{
+                                firstName: reg,
+                            }, () => {
                                 if (this.state.completed !== this.isCompleted()) {
                                     this.setState({
-                                        completed:this.isCompleted()
+                                        completed: this.isCompleted()
                                     })
                                 }
                             })
@@ -365,14 +365,14 @@ export default class AddAddress extends Component {
                     <ItemCell
                         title="Last Name"
                         onChangeText={(text) => {
-                            let result=text.replace(/^\s+/g,"");
-                            let reg=result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g," ");
+                            let result = text.replace(/^\s+/g, "");
+                            let reg = result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g, " ");
                             this.setState({
-                                lastName:reg,
-                            },()=>{
+                                lastName: reg,
+                            }, () => {
                                 if (this.state.completed !== this.isCompleted()) {
                                     this.setState({
-                                        completed:this.isCompleted()
+                                        completed: this.isCompleted()
                                     })
                                 }
                             })
@@ -382,14 +382,14 @@ export default class AddAddress extends Component {
                     <ItemCell
                         title="Address"
                         onChangeText={(text) => {
-                            let result=text.replace(/^\s+/g,"");
-                            let reg=result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g," ");
+                            let result = text.replace(/^\s+/g, "");
+                            let reg = result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g, " ");
                             this.setState({
-                                address:reg,
-                            },()=>{
+                                address: reg,
+                            }, () => {
                                 if (this.state.completed !== this.isCompleted()) {
                                     this.setState({
-                                        completed:this.isCompleted()
+                                        completed: this.isCompleted()
                                     })
                                 }
                             });
@@ -399,14 +399,14 @@ export default class AddAddress extends Component {
                     <ItemCell
                         title="City"
                         onChangeText={(text) => {
-                            let result=text.replace(/^\s+/g,"");
-                            let reg=result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g," ");
+                            let result = text.replace(/^\s+/g, "");
+                            let reg = result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g, " ");
                             this.setState({
-                                city:reg,
-                            },()=>{
+                                city: reg,
+                            }, () => {
                                 if (this.state.completed !== this.isCompleted()) {
                                     this.setState({
-                                        completed:this.isCompleted()
+                                        completed: this.isCompleted()
                                     })
                                 }
                             })
@@ -428,7 +428,7 @@ export default class AddAddress extends Component {
                                     alignItems: 'center',
                                 }}
                             >
-                                <ZIPText style={{color: Color.titleColor}}>
+                                <ZIPText style={{ color: Color.titleColor }}>
                                     State
                                 </ZIPText>
                                 <View
@@ -443,33 +443,33 @@ export default class AddAddress extends Component {
                                 >
                                     {
                                         this.state.loading ?
-                                            <ActivityIndicator animating={true} size={'small'}/> :
+                                            <ActivityIndicator animating={true} size={'small'} /> :
                                             this.state.loadingError ?
-                                                <ZIPText style={{flex:1, textAlign:'center', color:Color.red}} onPress={()=>{this.loadStateList()}}>
+                                                <ZIPText style={{ flex: 1, textAlign: 'center', color: Color.red }} onPress={() => { this.loadStateList() }}>
                                                     load error, tap to reload
                                                 </ZIPText> :
                                                 this.state.data === null ?
-                                                    <View/> :
+                                                    <View /> :
                                                     <Picker
-                                                        onValueChange={(value,index)=>{
+                                                        onValueChange={(value, index) => {
                                                             //console.log(value);
                                                             this.setState({
-                                                                selectState:value,
-                                                                state:this.state.data[index].state,
-                                                            },()=>{
+                                                                selectState: value,
+                                                                state: this.state.data[index].state,
+                                                            }, () => {
                                                                 if (this.state.completed !== this.isCompleted()) {
                                                                     this.setState({
-                                                                        completed:this.isCompleted()
+                                                                        completed: this.isCompleted()
                                                                     })
                                                                 }
                                                             });
                                                         }}
                                                         selectedValue={this.state.selectState}
-                                                        style={{height:35,width:150}}
-                                                        itemStyle={{width:screenSize.width, backgroundColor:'white'}}
+                                                        style={{ height: 35, width: 150 }}
+                                                        itemStyle={{ width: screenSize.width, backgroundColor: 'white' }}
                                                     >
                                                         {
-                                                            this.state.data.map((data,index)=>{
+                                                            this.state.data.map((data, index) => {
                                                                 return (
                                                                     <Picker.Item
                                                                         key={index}
@@ -482,7 +482,7 @@ export default class AddAddress extends Component {
                                                     </Picker>
 
                                     }
-                                    <Icon name="ios-arrow-forward" color={Color.blue} type="ionicon"/>
+                                    <Icon name="ios-arrow-forward" color={Color.blue} type="ionicon" />
                                 </View>
                             </View>
                             :
@@ -503,11 +503,11 @@ export default class AddAddress extends Component {
                                             type: 'picker',
                                             onSureClick: (data) => {
                                                 this.setState({
-                                                    states:data,
-                                                },()=>{
+                                                    states: data,
+                                                }, () => {
                                                     if (this.state.completed !== this.isCompleted()) {
                                                         this.setState({
-                                                            completed:this.isCompleted()
+                                                            completed: this.isCompleted()
                                                         })
                                                     }
                                                 })
@@ -520,16 +520,16 @@ export default class AddAddress extends Component {
 
                     }
                     <ItemCell
-                        title="Zip Code"
+                        title="Postal Code"
                         onChangeText={(text) => {
-                            let result=text.replace(/(^\s+)|(\s+$)/g,"");
+                            let result = text.replace(/(^\s+)|(\s+$)/g, "");
                             //let reg=result.replace(/(^\s{2,})|(\s{2,}$)|(\s{2,})/g," ");
                             this.setState({
-                                zipCode:result,
-                            },()=>{
+                                zipCode: result,
+                            }, () => {
                                 if (this.state.completed !== this.isCompleted()) {
                                     this.setState({
-                                        completed:this.isCompleted()
+                                        completed: this.isCompleted()
                                     })
                                 }
                             });
@@ -576,11 +576,11 @@ export default class AddAddress extends Component {
                     />
                     <Button
                         raised
-                        containerViewStyle={{marginLeft: 0, marginRight: 0, marginTop: 20}}
+                        containerViewStyle={{ marginLeft: 0, marginRight: 0, marginTop: 20 }}
                         backgroundColor={Color.blue}
                         title="Next"
                         textStyle={{
-                            fontFamily:FontFamily,
+                            fontFamily: FontFamily,
                         }}
                         disabled={!this.state.completed}
                         onPress={() => {
@@ -594,7 +594,7 @@ export default class AddAddress extends Component {
                 </KeyboardAwareScrollView>
                 <Hud textOnly={true} ref={r => {
                     this.hud = r
-                }}/>
+                }} />
             </View>
         )
     }

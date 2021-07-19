@@ -1,4 +1,4 @@
-package com.zipcodexpress;
+package com.zipcodexpress1;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -20,7 +20,7 @@ public class ZipcodeReactPackage implements ReactPackage {
         modules.add(new MyLocationManager(reactContext));
         modules.add(new DeviceOperateManager(reactContext));
         modules.add(new PaymentManager(reactContext));
-        modules.add(new TencentXGManager(reactContext));
+        // modules.add(new TencentXGManager(reactContext));
         modules.add(new DeviceInfoManager(reactContext));
         return modules;
     }
@@ -28,6 +28,6 @@ public class ZipcodeReactPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Collections.emptyList();
-        //return Arrays.<ViewManager>asList();
+        // return Arrays.<ViewManager>asList();
     }
 }

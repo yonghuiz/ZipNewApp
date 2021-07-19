@@ -221,7 +221,7 @@ afterEvaluate {
             ? variant.packageApplicationProvider.get()
             : tasks.findByName("package${targetName}")
         if (variant.hasProperty("packageLibrary")) {
-            packageTask = variant.packageLibrary
+            packageTask a= variant.packageLibrary
         }
 
         // pre bundle build task for Android plugin 3.2+

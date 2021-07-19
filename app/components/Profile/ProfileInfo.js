@@ -1,8 +1,8 @@
 /**
  * Created by liuyu on 2017/8/21.
  */
-import React, {Component} from 'react'
-import {Navigation} from 'react-native-navigation'
+import React, { Component } from 'react'
+import { Navigation } from 'react-native-navigation'
 import PropTypes from 'prop-types'
 import {
     View,
@@ -17,7 +17,7 @@ import {
     DatePickerAndroid,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Hud from 'react-native-lyhud'
 import Md5 from '../../config/md5'
 import * as zipporaHomeActions from '../../actions/zipporaHomeAction'
@@ -83,7 +83,7 @@ class ProfileInfoItem extends Component {
                     </ZIPText>
                     {
                         this.props.isAvatar ?
-                            <Image source={this.props.avatar} style={styles.itemAvatar}/> :
+                            <Image source={this.props.avatar} style={styles.itemAvatar} /> :
                             <ZIPText style={styles.itemSubTitle}>
                                 {this.props.subTitle}
                             </ZIPText>
@@ -92,12 +92,12 @@ class ProfileInfoItem extends Component {
                         name="ios-arrow-round-forward"
                         color={Color.bgColor}
                         size={20}
-                        style={{marginLeft: 8}}
+                        style={{ marginLeft: 8 }}
                     />
                 </View>
                 {
                     this.props.noBorder ? null :
-                        <View style={{height: 1, backgroundColor: Color.bgColor}}/>
+                        <View style={{ height: 1, backgroundColor: Color.bgColor }} />
                 }
             </TouchableOpacity>
         )
@@ -125,25 +125,25 @@ ProfileInfoItem.defaultProps = {
 class ProfileInfo extends Component {
     static options() {
         return {
-          topBar: {
-           
-            
-            backButton: 
+            topBar: {
+
+
+                backButton:
                 {
                     visible: true,
                     color: 'black',
                     id: 'back',
                     //title: 'Back'
                 },
-                
-            rightButtons: {
-              id: 'back2',
-              text: 'Back',
-              testID: "XXXX"
+
+                rightButtons: {
+                    id: 'back2',
+                    text: 'Back',
+                    testID: "XXXX"
+                }
             }
-          }
         };
-      }
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -154,21 +154,21 @@ class ProfileInfo extends Component {
         };
         Navigation.events().bindComponent(this);
         if (Platform.OS === 'android') {
-         //   console.log ("11111");
+            //   console.log ("11111");
             Navigation.mergeOptions(this.props.componentId, {
                 popGesture: false,
                 topBar: {
-                  
+
                     backButton: [
-                    {
-                        id: 'back',
-                        //title: 'Back'
-                        
-                    }
+                        {
+                            id: 'back',
+                            //title: 'Back'
+
+                        }
                     ]
                 }
-            
-                });
+
+            });
             // this.props.navigator.setButtons({
             //     leftButtons: [
             //         {
@@ -179,83 +179,83 @@ class ProfileInfo extends Component {
             //     animated: true
             // })
         }
-        
+
         //end chechk platform
         // this.props.navigator.setOnNavigatorEvent((event) => {
         //     this.onNavigatorEvent(event)
         // });
-       // Navigation.events().bindComponent(this);
+        // Navigation.events().bindComponent(this);
         // this.props.navigator.setStyle({
         //     disabledBackGesture:true,
         // })
 
     }
-   
-    
-      navigationButtonPressed({ buttonId }) {
-     
-        
-        //    alert(`navigationButtonPressed: ${buttonId}`); // eslint-disable-line no-alert
-          
-        if(buttonId ==='back2'){
 
-                        this.onBackPress();
-                    }
-                    // if(event.type === 'DeepLink'&&event.link==='goBack'){
-                    //     this.onBackPress();
-                    // }
+
+    navigationButtonPressed({ buttonId }) {
+
+
+        //    alert(`navigationButtonPressed: ${buttonId}`); // eslint-disable-line no-alert
+
+        if (buttonId === 'back2') {
+
+            this.onBackPress();
+        }
+        // if(event.type === 'DeepLink'&&event.link==='goBack'){
+        //     this.onBackPress();
+        // }
 
 
     }
-    showHud(type,msg,after=null){
+    showHud(type, msg, after = null) {
         if (this.state.hudType !== type) {
             this.setState({
-                hudType:type,
-            },()=>{this.hud.show(msg,after);})
+                hudType: type,
+            }, () => { this.hud.show(msg, after); })
         } else {
-            this.hud.show(msg,after);
+            this.hud.show(msg, after);
         }
     }
-    onBackPress(){
-        const profileInfo = this.props.fromLocker === true ? this.props.profile:this.props.member;
-        const {member, profile} = profileInfo;
-        if((profile.firstName||'').trim()===''){
-            this.showHud("error","Please input first name.",2000);
+    onBackPress() {
+        const profileInfo = this.props.fromLocker === true ? this.props.profile : this.props.member;
+        const { member, profile } = profileInfo;
+        if ((profile.firstName || '').trim() === '') {
+            this.showHud("error", "Please input first name.", 2000);
             return;
         }
-        if((profile.lastName||'').trim()===''){
-            this.showHud("error","Please input last name.",2000);
+        if ((profile.lastName || '').trim() === '') {
+            this.showHud("error", "Please input last name.", 2000);
             return;
         }
         Navigation.pop(this.props.componentId);
-       // this.props.navigator.pop();
+        // this.props.navigator.pop();
     }
-  
+
 
     // onNavigatorEvent(event) {
-        
+
     //         if(event.id ==='backPress'){
     //             this.onBackPress();
     //         }
     //         if(event.type === 'DeepLink'&&event.link==='goBack'){
     //             this.onBackPress();
     //         }
-        
+
     // }
 
-    _updateProfile(type,value) {
+    _updateProfile(type, value) {
         let formData = new FormData();
         formData.append(type, value);
         netWork('POST', MODIFY_PROFILE, formData, true)
             .then(json => {
-               if (this.props.fromLocker===true) {
-                   this.props.loadProfile();
+                if (this.props.fromLocker === true) {
+                    this.props.loadProfile();
                 } else {
                     this.props.getMember();
                 }
             })
             .catch(err => {
-console.log(err);
+                console.log(err);
             })
     }
 
@@ -267,7 +267,7 @@ console.log(err);
         });
         const uri = Platform.OS === 'android' ? image : 'file://' + image;
         let formData = new FormData();
-        let file = {uri: uri, type: 'multipart/form-data', name: Md5.digest_s(uri) + '.jpg'};
+        let file = { uri: uri, type: 'multipart/form-data', name: Md5.digest_s(uri) + '.jpg' };
         formData.append('avatar', file);
         netWork('POST', MODIFY_PROFILE, formData, true)
             .then(json => {
@@ -293,24 +293,24 @@ console.log(err);
     }
 
     _pushToModify(passProps) {
-        if(repeatPress(this)) return;
+        if (repeatPress(this)) return;
 
         Navigation.push(this.props.componentId, {
             component: {
                 name: 'ModifyProfile',
                 passProps: {
                     ...passProps,
-                      fromLocker:this.props.fromLocker,
-                    },
+                    fromLocker: this.props.fromLocker,
+                },
                 options: {
-                  topBar: {
-                    title: {
-                      text: passProps.placeholder
+                    topBar: {
+                        title: {
+                            text: passProps.placeholder
+                        }
                     }
-                  }
                 }
-              }
-          });
+            }
+        });
         // this.props.navigator.push({
         //     screen: 'ModifyProfile',
         //     title: passProps.placeholder,
@@ -331,35 +331,36 @@ console.log(err);
                 minDate: new Date(this.state.date.getFullYear() - 90, 0, 1),
                 maxDate: new Date(),
             })
-                .then(data=>{
+                .then(data => {
                     //data.action data.year, data.month + 1, data.day
-                    let date = new Date(data.year,data.month,data.day);
-                    this._updateProfile('birth',date.Format('yyyyMMdd'));
+                    let date = new Date(data.year, data.month, data.day);
+                    this._updateProfile('birth', date.Format('yyyyMMdd'));
                 })
-                .catch(err=>{
+                .catch(err => {
                     //err.code, err.message
                     alert('open datePicker fail');
                 })
         } else {
             Navigation.showModal({
-               
-                    component: {
-                      name: 'PickerScreen',
-                      passProps: {
-                      //  title: 'Choose a date',
-                    onSureClick: (data) => {
-                        this._updateProfile('birth',data.Format('yyyyMMdd'));
-                      }},
-                      options: {
-                        topBar: {
-                          title: {
-                            text: 'Choose a date'
-                          }
+
+                component: {
+                    name: 'PickerScreen',
+                    passProps: {
+                        //  title: 'Choose a date',
+                        onSureClick: (data) => {
+                            this._updateProfile('birth', data.Format('yyyyMMdd'));
                         }
-                      }
+                    },
+                    options: {
+                        topBar: {
+                            title: {
+                                text: 'Choose a date'
+                            }
+                        }
                     }
-                 
-              });
+                }
+
+            });
 
             // this.props.navigator.showModal({
             //     screen: 'PickerScreen',
@@ -381,29 +382,30 @@ console.log(err);
     _openStatePicker() {
 
         Navigation.showModal({
-            
-                component: {
-                  name: 'PickerScreen',
-                  passProps: {
-                  //  title: 'Choose a date',
-              
-                    type:'picker',
-                    onSureClick: (data) => {
-                                this._updateProfile('state',data);
-                                
-                  }},
-                  options: {
-                    topBar: {
-                      title: {
-                        text: 'Choose a State'
-                      }
-                    }
-                  }
-                }
-           
-          });
 
-         
+            component: {
+                name: 'PickerScreen',
+                passProps: {
+                    //  title: 'Choose a date',
+
+                    type: 'picker',
+                    onSureClick: (data) => {
+                        this._updateProfile('state', data);
+
+                    }
+                },
+                options: {
+                    topBar: {
+                        title: {
+                            text: 'Choose a State'
+                        }
+                    }
+                }
+            }
+
+        });
+
+
         // this.props.navigator.showModal({
         //     screen:'PickerScreen',
         //     navigatorStyle: {
@@ -420,84 +422,84 @@ console.log(err);
         //     }
         // })
     }
-    showModalavatar= () =>   
+    showModalavatar = () =>
         Navigation.showModal({
             component: {
-             //   name: Screens.Modal,
+                //   name: Screens.Modal,
                 name: 'ActionSheetScreen',
- 
-          
-        // this.props.navigator.showModal({
-        //     screen: 'ActionSheetScreen',
-        //     navigatorStyle: {
-        //         navBarHidden: true,
-        //         statusBarColor: Color.themeColor
-        //     },
-        //     animationType: 'none',
-            passProps: {
-                onActionClick: (index) => {
-                    if (index === 0) {
-                        this.timeout = setTimeout(() => {
-                            clearTimeout(this.timeout);
-                            this.setState({
-                                barStyle: 'default',
-                            });
-                            openCamera()
-                                .then(image=>{
-                                    this.setState({
-                                        barStyle:'light-content',
-                                    });
-                                    this.setAvatar(image);
-                                })
-                                .catch(err=>{
-                                    this.setState({
-                                        barStyle:'light-content',
-                                    });
-                                });
-                        }, 500);
-                    } else {
-                        this.timeout = setTimeout(() => {
-                            clearTimeout(this.timeout);
-                            this.setState({
-                                barStyle: 'default',
-                            });
-                            openPhotos()
-                                .then(image=>{
-                                    this.setState({
-                                        barStyle:'light-content',
-                                    });
-                                    this.setAvatar(image)
-                                })
-                                .catch(err=>{
-                                    this.setState({
-                                        barStyle:'light-content',
-                                    })
-                                })
-                        }, 500);
 
-                    }
-                },
-                actionTitles: ['Take photo from camera', 'Select from photo']
+
+                // this.props.navigator.showModal({
+                //     screen: 'ActionSheetScreen',
+                //     navigatorStyle: {
+                //         navBarHidden: true,
+                //         statusBarColor: Color.themeColor
+                //     },
+                //     animationType: 'none',
+                passProps: {
+                    onActionClick: (index) => {
+                        if (index === 0) {
+                            this.timeout = setTimeout(() => {
+                                clearTimeout(this.timeout);
+                                this.setState({
+                                    barStyle: 'default',
+                                });
+                                openCamera()
+                                    .then(image => {
+                                        this.setState({
+                                            barStyle: 'light-content',
+                                        });
+                                        this.setAvatar(image);
+                                    })
+                                    .catch(err => {
+                                        this.setState({
+                                            barStyle: 'light-content',
+                                        });
+                                    });
+                            }, 500);
+                        } else {
+                            this.timeout = setTimeout(() => {
+                                clearTimeout(this.timeout);
+                                this.setState({
+                                    barStyle: 'default',
+                                });
+                                openPhotos()
+                                    .then(image => {
+                                        this.setState({
+                                            barStyle: 'light-content',
+                                        });
+                                        this.setAvatar(image)
+                                    })
+                                    .catch(err => {
+                                        this.setState({
+                                            barStyle: 'light-content',
+                                        })
+                                    })
+                            }, 500);
+
+                        }
+                    },
+                    actionTitles: ['Take photo from camera', 'Select from photo']
+                }
             }
-        }
         });
-    
+
 
     render() {
 
-        const profileInfo = this.props.fromLocker === true ? this.props.profile:this.props.member;
+        const profileInfo = this.props.fromLocker === true ? this.props.profile : this.props.member;
 
-        const {member, profile} = profileInfo;
+        const { member, profile } = profileInfo;
         return (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 <ScrollView
                     style={styles.container}
                 >
-                    <StatusBar barStyle={this.state.barStyle} animated={true}/>
+                    <StatusBar barStyle={this.state.barStyle} animated={true} />
                     <ProfileInfoItem
                         title="AVATAR"
                         isAvatar={true}
-                        avatar={this.state.avatar === '' ? null : {uri: this.state.avatar}}
+                        avatar={this.state.avatar === '' ? null : { uri: this.state.avatar }}
                         onPress={this.showModalavatar}
                     />
                     <ProfileInfoItem
@@ -506,7 +508,7 @@ console.log(err);
                         onPress={() => {
                             this._pushToModify({
                                 type: 'nickName',
-                                placeholder: 'Nick name',
+                                placeholder: 'Nickname',
                                 value: profile.nickName || ''
                             });
                         }}
@@ -514,12 +516,12 @@ console.log(err);
                     <ProfileInfoItem
                         title="EMAIL"
                         subTitle={member.email || ''}
-                        // onPress={() => {
-                        //     this._pushToModify({type: 'email', placeholder: 'Email', value: member.email || ''});
-                        // }}
+                    // onPress={() => {
+                    //     this._pushToModify({type: 'email', placeholder: 'Email', value: member.email || ''});
+                    // }}
                     />
                     <ProfileInfoItem
-                        title="FIRSTNAME"
+                        title="FIRST NAME"
                         subTitle={profile.firstName || ''}
                         onPress={() => {
                             this._pushToModify({
@@ -530,7 +532,7 @@ console.log(err);
                         }}
                     />
                     <ProfileInfoItem
-                        title="LASTNAME"
+                        title="LAST NAME"
                         subTitle={profile.lastName || ''}
                         onPress={() => {
                             this._pushToModify({
@@ -566,20 +568,20 @@ console.log(err);
                         title="CITY"
                         subTitle={profile.city || ''}
                         onPress={() => {
-                            this._pushToModify({type: 'city', placeholder: 'City', value: profile.city || ''});
+                            this._pushToModify({ type: 'city', placeholder: 'City', value: profile.city || '' });
                         }}
                     />
                     <ProfileInfoItem
-                        title="STATE"
+                        title="STATE/PROVINCE"
                         subTitle={profile.state || ''}
                         onPress={() => {
-                            if(repeatPress(this)) return;
+                            if (repeatPress(this)) return;
                             //弹出州选择
                             this._openStatePicker();
                         }}
                     />
                     <ProfileInfoItem
-                        title="ZIPCODE"
+                        title="POSTAL CODE"
                         subTitle={profile.zipcode || ''}
                         onPress={() => {
                             this._pushToModify({
@@ -593,7 +595,7 @@ console.log(err);
                         title="DATE OF BIRTH"
                         subTitle={profile.birth || ''}
                         onPress={() => {
-                            if(repeatPress(this)) return;
+                            if (repeatPress(this)) return;
                             //弹出日期选择
                             this._openDatePicker()
 
@@ -604,32 +606,32 @@ console.log(err);
                         subTitle={member.phone || ''}
                         noBorder={true}
                         onPress={() => {
-                            this._pushToModify({type: 'phone', placeholder: 'Phone', value: member.phone || ''});
+                            this._pushToModify({ type: 'phone', placeholder: 'Phone', value: member.phone || '' });
                         }}
                     />
-                    <View style={{height:20}} />
+                    <View style={{ height: 20 }} />
                     <ProfileInfoItem
-                        title="HOUSE HOLDER"
+                        title="HOUSEHOLDER"
                         subTitle={''}
                         noBorder={false}
                         onPress={() => {
-                            if(repeatPress(this)) return;
+                            if (repeatPress(this)) return;
 
                             Navigation.push(this.props.componentId, {
-                                    component: {
-                                        name: 'ModifyHouseHolder',
-                                        passProps:{
-                                    householderMember:profile.householderMember
-                                },
-                                        options: {
+                                component: {
+                                    name: 'ModifyHouseHolder',
+                                    passProps: {
+                                        householderMember: profile.householderMember
+                                    },
+                                    options: {
                                         topBar: {
                                             title: {
-                                            text: 'Modify Householder'
-                            }
-                          }
-                        }
-                      }
-                  });
+                                                text: 'Modify Householder'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
                             // this.props.navigator.push({
                             //     screen:'ModifyHouseHolder',
                             //     title:'Modify Householder',
@@ -646,20 +648,20 @@ console.log(err);
                         subTitle={''}
                         noBorder={true}
                         onPress={() => {
-                            if(repeatPress(this)) return;
+                            if (repeatPress(this)) return;
                             Navigation.push(this.props.componentId, {
-                                    component: {
-                                        name: 'ModifyPassword',
-                                    
-                                        options: {
+                                component: {
+                                    name: 'ModifyPassword',
+
+                                    options: {
                                         topBar: {
                                             title: {
-                                            text: 'Change Password'
-                            }
-                          }
-                        }
-                      }
-                  });
+                                                text: 'Change Password'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
                             // this.props.navigator.push({
                             //     screen:'ModifyPassword',
                             //     title:'Change password',
@@ -668,30 +670,30 @@ console.log(err);
                             // })
                         }}
                     />
-                    <View style={{height: 20}}/>
+                    <View style={{ height: 20 }} />
                     <ProfileInfoItem
                         title="LOG OUT"
                         subTitle={''}
                         noBorder={true}
                         onPress={() => {
-                            if(repeatPress(this)) return;
+                            if (repeatPress(this)) return;
                             //退出登录
                             logout();
                             Navigation.setStackRoot(this.props.componentId, [
-                                        {
-                                        component: {
-                                            name: 'Login',
-                                           
-                                            options: {
-                                                animations: {
+                                {
+                                    component: {
+                                        name: 'Login',
+
+                                        options: {
+                                            animations: {
                                                 setStackRoot: {
                                                     enabled: true
                                                 }
-                                                }
                                             }
-                                            }
+                                        }
                                     }
-                                    ]);
+                                }
+                            ]);
                             // this.props.navigator.resetTo({
                             //     screen: 'Login',
                             //     navigatorStyle: {
@@ -704,7 +706,7 @@ console.log(err);
                         }}
                     />
                 </ScrollView>
-                <Hud hudType={this.state.hudType} ref={r => this.hud = r}/>
+                <Hud hudType={this.state.hudType} ref={r => this.hud = r} />
             </View>
         )
     }
@@ -713,7 +715,7 @@ console.log(err);
 export default connect(
     (state) => ({
         member: state.zipporaHome.member,
-        profile:state.ziplockerProfile.profile,
+        profile: state.ziplockerProfile.profile,
     }),
     (dispatch) => ({
         getMember: () => dispatch(zipporaHomeActions.getMember()),

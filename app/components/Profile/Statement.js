@@ -15,53 +15,53 @@ import ErrorView from '../ErrorView'
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        backgroundColor:Color.bgColor,
-        flexDirection:'column',
+        flex: 1,
+        backgroundColor: Color.bgColor,
+        flexDirection: 'column',
     },
     contentContainer: {
-        paddingLeft:8,
-        paddingRight:8,
-        paddingTop:8
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 8
     },
     itemHeader: {
-        paddingTop:8,
-        paddingBottom:8,
+        paddingTop: 8,
+        paddingBottom: 8,
     },
     itemHeaderText: {
-        fontFamily:'Menlo',
-        fontSize:12
+        fontFamily: 'Menlo',
+        fontSize: 12
     },
     itemInfoContainer: {
-        flexDirection:'row',
-        padding:8,
-        backgroundColor:'white',
-        borderRadius:3,
+        flexDirection: 'row',
+        padding: 8,
+        backgroundColor: 'white',
+        borderRadius: 3,
     },
     itemInfoTitleContainer: {
-        flexDirection:'column'
+        flexDirection: 'column'
     },
     itemInfoTitle: {
-        color:Color.titleColor,
-        marginTop:8,
+        color: Color.titleColor,
+        marginTop: 8,
         //fontFamily:'Menlo'
-        fontSize:13,
+        fontSize: 13,
     },
     itemInfoSubTitleContainer: {
-        flexDirection:'column',
-        flex:1,
-        marginLeft:8
+        flexDirection: 'column',
+        flex: 1,
+        marginLeft: 8
     },
     itemInfoSubTitle: {
-        marginTop:8,
+        marginTop: 8,
         //fontFamily:'Menlo'
-        fontSize:13,
+        fontSize: 13,
     }
 });
 
 class StatementSep extends PureComponent {
     render() {
-        return <View style={{height:10}}/>
+        return <View style={{ height: 10 }} />
     }
 }
 
@@ -81,7 +81,7 @@ class Statement extends PureComponent {
                 </View>
                 <View style={styles.itemInfoContainer}>
                     <View style={styles.itemInfoTitleContainer}>
-                        <ZIPText style={[styles.itemInfoTitle,{marginTop:0}]}>
+                        <ZIPText style={[styles.itemInfoTitle, { marginTop: 0 }]}>
                             TYPE:
                         </ZIPText>
                         <ZIPText style={styles.itemInfoTitle}>
@@ -138,8 +138,8 @@ class Statement extends PureComponent {
 
         if (loading === false && list.length === 0) {
             return <ErrorView
-                text="have no data"
-                onReloadPress={()=>{this.props.loadStatement()}}
+                text="No Data"
+                onReloadPress={() => { this.props.loadStatement() }}
                 type={'empty'}
             />
         }
@@ -150,23 +150,23 @@ class Statement extends PureComponent {
                 contentContainerStyle={styles.contentContainer}
                 data={list}
                 refreshing={loading}
-                onRefresh={()=>loadStatement()}
+                onRefresh={() => loadStatement()}
                 ItemSeparatorComponent={StatementSep}
-                renderItem={(item)=>this._renderItem(item.item)}
-                keyExtractor={(item,index)=>index}
+                renderItem={(item) => this._renderItem(item.item)}
+                keyExtractor={(item, index) => index}
             />
         )
     }
 }
 
 export default connect(
-    (state)=>({
-        loading:state.statement.loading,
-        list:state.statement.list,
-        loadError:state.statement.loadError,
-        error:state.statement.error,
+    (state) => ({
+        loading: state.statement.loading,
+        list: state.statement.list,
+        loadError: state.statement.loadError,
+        error: state.statement.error,
     }),
-    (dispatch)=>({
-        loadStatement:()=>dispatch(statementActions.loadStatement())
+    (dispatch) => ({
+        loadStatement: () => dispatch(statementActions.loadStatement())
     })
 )(Statement)

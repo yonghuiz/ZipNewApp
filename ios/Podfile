@@ -3,6 +3,8 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 target 'zipcodeXpress' do
   # Pods for zipcodeXpress
+  pod 'Braintree'
+  pod 'Braintree/PayPal'
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -28,10 +30,14 @@ target 'zipcodeXpress' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
-
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+ 
+
+  use_native_modules!
+
 
   target 'zipcodeXpressTests' do
     inherit! :search_paths
@@ -48,5 +54,35 @@ target 'zipcodeXpress-tvOS' do
     inherit! :search_paths
     # Pods for testing
   end
-
+  
+  post_install do |installer|
+    installer.aggregate_targets.each do |aggregate_target|
+        puts aggregate_target.name
+        if aggregate_target.name == 'zipcodeXpress'
+            aggregate_target.xcconfigs.each do |config_name, config_file|
+                aggregate_target.pod_targets.each do |pod_target|
+                    pod_target.specs.each do |spec|
+                        if spec.attributes_hash['ios'] != nil
+                            frameworkPaths = spec.attributes_hash['ios']['vendored_frameworks']
+                        else
+                            frameworkPaths = spec.attributes_hash['vendored_frameworks']
+                        end
+                        if frameworkPaths != nil
+                            frameworkNames = Array(frameworkPaths).map(&:to_s).map do |filename|
+                                extension = File.extname filename
+                                File.basename filename, extension
+                            end
+                            frameworkNames.each do |name|
+                                puts "Removing #{name} from OTHER_LDFLAGS"
+                                config_file.frameworks.delete(name)
+                            end
+                        end
+                    end
+                end
+                xcconfig_path = aggregate_target.xcconfig_path(config_name)
+                config_file.save_as(xcconfig_path)
+            end
+        end
+    end
+end
 end

@@ -56,7 +56,7 @@ export default class ResetPassword extends PureComponent {
         this.setState({
             hudType: 'none'
         }, () => {
-            this.hud.show('sending code');
+            this.hud.show('Sending code');
         });
 
         let param = new FormData();

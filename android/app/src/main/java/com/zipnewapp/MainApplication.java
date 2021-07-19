@@ -1,4 +1,4 @@
-package com.zipcodexpress;
+package com.zipcodexpress1;
 
 import android.app.Application;
 import android.util.Log;
@@ -17,7 +17,8 @@ import com.facebook.soloader.SoLoader;
 
 import com.horcrux.svg.SvgPackage;
 //import org.reactnative.camera.RNCameraPackage;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
+//import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import fr.bamlab.rnimageresizer.ImageResizerPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
@@ -35,48 +36,42 @@ import java.util.Arrays;
 import java.util.List;
 
 //public class MainApplication extends Application implements ReactApplication {
-  public class MainApplication extends NavigationApplication {
+public class MainApplication extends NavigationApplication {
 
-    @Override
-        protected ReactGateway createReactGateway() {
-            ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
-                @Override
-                protected String getJSMainModuleName() {
-                    return "index.android";
-                }
-            };
-            return new ReactGateway(this, isDebug(), host);
-        }
-    
-        @Override
-        public boolean isDebug() {
-            return BuildConfig.DEBUG;
-        }
-    
-        protected List<ReactPackage> getPackages() {
-            // Add additional packages you require here
-            // No need to add RnnPackage and MainReactPackage
-            return Arrays.<ReactPackage>asList(
-              new MainReactPackage(),
-           
-            new SplashScreenReactPackage(),
-              new SvgPackage(),
-              //new RNCameraPackage(),
-              new RCTCameraPackage(),
-              new RNCWebViewPackage(),
-              new MapsPackage(),
-              new ImageResizerPackage(),
-              new AsyncStoragePackage(),
-              new PickerPackage(),
-              new VectorIconsPackage(),
-             new ZipcodeReactPackage(),
-              new ImagePickerPackage()
-                // eg. new VectorIconsPackage()
-            );
-        }
-    
-        @Override
-        public List<ReactPackage> createAdditionalReactPackages() {
-            return getPackages();
+  @Override
+  protected ReactGateway createReactGateway() {
+    ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
+      @Override
+      protected String getJSMainModuleName() {
+        return "index.android";
+      }
+    };
+    return new ReactGateway(this, isDebug(), host);
+  }
+
+  @Override
+  public boolean isDebug() {
+    return BuildConfig.DEBUG;
+  }
+
+  protected List<ReactPackage> getPackages() {
+    // Add additional packages you require here
+    // No need to add RnnPackage and MainReactPackage
+    return Arrays.<ReactPackage>asList(new MainReactPackage(),
+
+        new SplashScreenReactPackage(), new SvgPackage(),
+        // new RNCameraPackage(),
+       // new RCTCameraPackage(), 
+       new RNCameraPackage(),
+       new RNCWebViewPackage(), new MapsPackage(), new ImageResizerPackage(),
+        new AsyncStoragePackage(), new PickerPackage(), new VectorIconsPackage(), new ZipcodeReactPackage(),
+        new ImagePickerPackage()
+    // eg. new VectorIconsPackage()
+    );
+  }
+
+  @Override
+  public List<ReactPackage> createAdditionalReactPackages() {
+    return getPackages();
   }
 }

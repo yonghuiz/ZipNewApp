@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/11/3.
  */
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     StatusBar,
@@ -14,22 +14,22 @@ import ScrollableTabView from 'react-native-scrollable-tab-view'
 import ZiplockerTabBar from './TabBar/ZiplockerTabBar'
 import Deliver from '../components/Deliver/Deliver'
 import MyPickup from '../components/MyPick/MyPickup'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
-import {Navigation} from 'react-native-navigation'
+import { Navigation } from 'react-native-navigation'
 import * as Animatable from 'react-native-animatable'
 import * as deliverAction from '../actions/deliverAction'
 import * as myPickActions from '../actions/myPickupAction'
 import MaterIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Permissions from 'react-native-permissions'
-import {
-    allEvents,
-    addEventListener,
-    setCredential,
-    setAccount,
-    enableDebug,
-    register,
-} from './XGPush'
+// import {
+//     allEvents,
+//     addEventListener,
+//     setCredential,
+//     setAccount,
+//     enableDebug,
+//     register,
+// } from './XGPush'
 const {
     DeviceOperate,
     Permission,
@@ -47,7 +47,7 @@ class ZipLockerHome extends PureComponent {
         this.state = {
             page: 0,
         };
-        Icon.getImageSource('ios-menu', 30,)
+        Icon.getImageSource('ios-menu', 30)
             .then(source => {
                 this.props.navigator.setButtons({
                     leftButtons: [
@@ -166,65 +166,65 @@ class ZipLockerHome extends PureComponent {
     }
 
     componentDidMount() {
-        this.timeout = setTimeout(()=>{
+        this.timeout = setTimeout(() => {
             this.props.navigator.setTitle({
-                title:'Ziplocker'
+                title: 'Ziplocker'
             })
-        },500);
-        if (Platform.OS !== 'android') {
-            //enableDebug(true);
-            let registerHolder = addEventListener('register',(data)=>{
-                console.log('注册成功',data,userInfo.memberId);
-                setAccount(`${userInfo.memberId}`);
-            });
+        }, 500);
+        // if (Platform.OS !== 'android') {
+        //     //enableDebug(true);
+        //     let registerHolder = addEventListener('register',(data)=>{
+        //         console.log('注册成功',data,userInfo.memberId);
+        //         setAccount(`${userInfo.memberId}`);
+        //     });
 
-            let errorHolder = addEventListener('error',err=>{
-                console.log('注册失败',err);
-            });
+        //     let errorHolder = addEventListener('error',err=>{
+        //         console.log('注册失败',err);
+        //     });
 
-            let notificationHolder = addEventListener('notification',notif=>{
-                console.log('收到通知',notif);
-                if (this.props.deliverLoading === false) {
-                    this.props.getDeliverList();
-                }
-                if (this.props.PickupLoading === false) {
-                    this.props.loadPickList();
-                }
-            });
+        //     let notificationHolder = addEventListener('notification',notif=>{
+        //         console.log('收到通知',notif);
+        //         if (this.props.deliverLoading === false) {
+        //             this.props.getDeliverList();
+        //         }
+        //         if (this.props.PickupLoading === false) {
+        //             this.props.loadPickList();
+        //         }
+        //     });
 
-            if (!registerHolder) console.log('fail to add event to handle register');
-            if (!errorHolder) console.log('fail to add event to handle error');
-            if (!notificationHolder) console.log('fail to add event to handle notification');
+        //     if (!registerHolder) console.log('fail to add event to handle register');
+        //     if (!errorHolder) console.log('fail to add event to handle error');
+        //     if (!notificationHolder) console.log('fail to add event to handle notification');
 
-            setCredential(2200268639,'I3MVLZF8738W');
-        } else {
-            //allEvents();
-            let registerHolder = addEventListener('register',(data)=>{
-                console.log('注册成功',data,userInfo.memberId);
-            });
+        //     setCredential(2200268639,'I3MVLZF8738W');
+        // } else {
+        //     //allEvents();
+        //     let registerHolder = addEventListener('register',(data)=>{
+        //         console.log('注册成功',data,userInfo.memberId);
+        //     });
 
-            let errorHolder = addEventListener('error',err=>{
-                console.log('注册失败',err);
-            });
-            let notificationHolder = addEventListener('notification',notif=>{
-                console.log('收到通知',notif);
-                if (this.props.deliverLoading === false) {
-                    this.props.getDeliverList();
-                }
-                if (this.props.PickupLoading === false) {
-                    this.props.loadPickList();
-                }
-            });
+        //     let errorHolder = addEventListener('error',err=>{
+        //         console.log('注册失败',err);
+        //     });
+        //     let notificationHolder = addEventListener('notification',notif=>{
+        //         console.log('收到通知',notif);
+        //         if (this.props.deliverLoading === false) {
+        //             this.props.getDeliverList();
+        //         }
+        //         if (this.props.PickupLoading === false) {
+        //             this.props.loadPickList();
+        //         }
+        //     });
 
 
 
-            if (!registerHolder) console.log('fail to add event to handle register');
-            if (!errorHolder) console.log('fail to add event to handle error');
-            if (!notificationHolder) console.log('fail to add event to handle notification');
+        //     if (!registerHolder) console.log('fail to add event to handle register');
+        //     if (!errorHolder) console.log('fail to add event to handle error');
+        //     if (!notificationHolder) console.log('fail to add event to handle notification');
 
-            setCredential(2100268641,'A6P73LN27FCB');
-            register(`${userInfo.memberId}`);
-        }
+        //     setCredential(2100268641,'A6P73LN27FCB');
+        //     register(`${userInfo.memberId}`);
+        // }
 
         //enableDebug(true);
         // let registerHolder = addEventListener('register', (data) => {
@@ -352,13 +352,13 @@ class ZipLockerHome extends PureComponent {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <StatusBar barStyle="light-content" animated={true}/>
+            <View style={{ flex: 1 }}>
+                <StatusBar barStyle="light-content" animated={true} />
                 <ScrollableTabView
                     renderTabBar={() => (
-                        <ZiplockerTabBar/>
+                        <ZiplockerTabBar />
                     )}
-                    style={{backgroundColor: Color.bgColor}}
+                    style={{ backgroundColor: Color.bgColor }}
                     scrollEnabled={Platform.OS !== 'android'}
                 >
                     <Deliver
@@ -376,7 +376,7 @@ class ZipLockerHome extends PureComponent {
                                 this.scan.zoomIn(800);
                             }
                         }}
-                        //style={{flex:1, backgroundColor:'red'}}
+                    //style={{flex:1, backgroundColor:'red'}}
                     />
                     <MyPickup
                         navigator={this.props.navigator}
@@ -409,7 +409,7 @@ class ZipLockerHome extends PureComponent {
                         alignItems: 'center',
                         justifyContent: 'center',
                         shadowColor: 'black',
-                        shadowOffset: {width: 2, height: 2},
+                        shadowOffset: { width: 2, height: 2 },
                         shadowOpacity: 0.3,
                         shadowRadius: 3,
                     }}
@@ -423,7 +423,7 @@ class ZipLockerHome extends PureComponent {
                         name="qrcode"
                         size={32}
                         color={'white'}
-                        style={{paddingTop: 2}}
+                        style={{ paddingTop: 2 }}
                     />
                 </AnimateTouchable>
             </View>
@@ -434,12 +434,12 @@ class ZipLockerHome extends PureComponent {
 export default connect(
     (state) => ({
         deliverLoading: state.deliver.loading,
-        canScan:state.deliver.canScan,
+        canScan: state.deliver.canScan,
         PickupLoading: state.myPickup.loading,
     }),
     (dispatch) => ({
         getDeliverList: () => dispatch(deliverAction.getDeliverList()),
         loadPickList: () => dispatch(myPickActions.loadPickList()),
-        setCanScan:(canScan)=>dispatch(deliverAction.setCanScan(canScan))
+        setCanScan: (canScan) => dispatch(deliverAction.setCanScan(canScan))
     })
 )(ZipLockerHome)

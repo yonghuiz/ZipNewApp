@@ -1,11 +1,11 @@
 /**
  * Created by liuyu on 2017/5/15.
  */
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {Navigation} from 'react-native-navigation'
+import { Navigation } from 'react-native-navigation'
 import {
-    AppRegistry,
+
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -18,7 +18,7 @@ import {
     Platform,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as zipporaHomeActions from '../../actions/zipporaHomeAction'
 import ZIPText from '../ZIPText'
 // rz const appPackage = require('../../../package.json')
@@ -33,7 +33,7 @@ class ProfileItem extends Component {
             >
                 <View style={styles.itemContainer}>
                     <Image source={this.props.icon}
-                           style={{width: 20, height: 20}} resizeMode="stretch"/>
+                        style={{ width: 20, height: 20 }} resizeMode="stretch" />
                     <ZIPText style={styles.itemText}>
                         {this.props.title}
                     </ZIPText>
@@ -48,7 +48,7 @@ class ProfileItem extends Component {
                         name="ios-arrow-forward"
                         color={'black'}
                         size={20}
-                        style={{marginRight: 8, marginTop: 3}}
+                        style={{ marginRight: 8, marginTop: 3 }}
                     />
 
                 </View>
@@ -83,34 +83,34 @@ class Profile extends Component {
         console.log('willMount');
     }
 
-    items = [{title: 'Wallet', icon: require('../../assets/images/wallet.png')},
-        {title: 'Zippora log', icon: require('../../assets/images/zipporalog.png')},
-        {title: 'Statement', icon: require('../../assets/images/statement.png')},
-        {title: 'About Us', icon: require('../../assets/images/aboutus.png')}];
+    items = [{ title: 'Wallet', icon: require('../../assets/images/wallet.png') },
+    { title: 'Zippora Log', icon: require('../../assets/images/zipporalog.png') },
+    { title: 'Statement', icon: require('../../assets/images/statement.png') },
+    { title: 'About Us', icon: require('../../assets/images/aboutus.png') }];
 
-    render(){
-        return(
-            <View style={{flex:1}}>
-                <View style={{flex:0.9}}>
-                {this._renderContent()}
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
+                <View style={{ flex: 0.9 }}>
+                    {this._renderContent()}
                 </View>
-                <View style={{flex:0.1,backgroundColor:'white'}}>
-                    <Text style={{position: 'absolute',width:'100%',textAlign:'center',bottom:10}}>
-                    Version:{appPackage.version}
+                <View style={{ flex: 0.1, backgroundColor: 'white' }}>
+                    <Text style={{ position: 'absolute', width: '100%', textAlign: 'center', bottom: 10 }}>
+                        Version:{appPackage.version}
                     </Text>
                 </View>
             </View>
         )
     }
     _renderContent() {
-        const {loadingMember, member} = this.props;
+        const { loadingMember, member } = this.props;
         const avatar = member === null ? require('../../assets/images/proimage.png') :
-            member.profile.avatar === ''  ?
-            require('../../assets/images/proimage.png') :
-            {uri:this.props.member.profile.avatar};
+            member.profile.avatar === '' ?
+                require('../../assets/images/proimage.png') :
+                { uri: this.props.member.profile.avatar };
         return (
             <ScrollView
-                style={{flex: 1, flexDirection: 'column', backgroundColor:'white'}}
+                style={{ flex: 1, flexDirection: 'column', backgroundColor: 'white' }}
                 refreshControl={
                     <RefreshControl
                         refreshing={loadingMember}
@@ -123,21 +123,21 @@ class Profile extends Component {
                 <TouchableOpacity
                     activeOpacity={1}
                     onPress={() => {
-                        if(repeatPress(this)) return;
+                        if (repeatPress(this)) return;
                         if (member !== null) {
                             Navigation.push(this.props.componentId, {
-                    component: {
-                        name: 'ProfileInfo',
-                       
-                        options: {
-                          topBar: {
-                            title: {
-                              text: 'Profile Info'
-                            }
-                          }
-                        }
-                      }
-                  });
+                                component: {
+                                    name: 'ProfileInfo',
+
+                                    options: {
+                                        topBar: {
+                                            title: {
+                                                text: 'Profile Info'
+                                            }
+                                        }
+                                    }
+                                }
+                            });
 
 
                             // this.props.navigator.push({
@@ -153,12 +153,12 @@ class Profile extends Component {
                     }}
                     style={styles.chail}
                 >
-                    <View style={{width: 16}}/>
+                    <View style={{ width: 16 }} />
                     <View
-                        style={{flexDirection: 'row', alignItems: 'center',flex:1,}}
+                        style={{ flexDirection: 'row', alignItems: 'center', flex: 1, }}
                     >
-                        <Image source={avatar} style={{width: 60, height: 60, borderRadius:30}}/>
-                        <View style={{flexDirection: 'column', justifyContent: 'space-around', height: 60, marginLeft:8}}>
+                        <Image source={avatar} style={{ width: 60, height: 60, borderRadius: 30 }} />
+                        <View style={{ flexDirection: 'column', justifyContent: 'space-around', height: 60, marginLeft: 8 }}>
                             <ZIPText style={styles.instructions}>
                                 {member === null ? '--' : (member.profile.nickName || '--')}
                             </ZIPText>
@@ -167,7 +167,7 @@ class Profile extends Component {
                             </ZIPText>
                         </View>
                     </View>
-                    <View style={{width: 20}}>
+                    <View style={{ width: 20 }}>
                         <Icon
                             name="ios-arrow-forward"
                             color={'white'}
@@ -192,18 +192,18 @@ class Profile extends Component {
                         icon={data.icon}
                         subtitle={this.props.member === null ? '--' : `$${this.props.member.wallet.money}`}
                         onPress={() => {
-                            if(repeatPress(this)) return;
+                            if (repeatPress(this)) return;
                             //跳转到wallet
                             Navigation.push(this.props.componentId, {
                                 component: {
                                     name: 'Wallet',
-                                
+
                                     options: {
-                                    topBar: {
-                                        title: {
-                                        text: 'Wallet'
+                                        topBar: {
+                                            title: {
+                                                text: 'Wallet'
+                                            }
                                         }
-                                    }
                                     }
                                 }
                             });
@@ -225,7 +225,7 @@ class Profile extends Component {
                     title={data.title}
                     icon={data.icon}
                     onPress={() => {
-                        if(repeatPress(this)) return;
+                        if (repeatPress(this)) return;
                         if (this.props.member === null) {
                             return;
                         }
@@ -235,13 +235,13 @@ class Profile extends Component {
                                 Navigation.push(this.props.componentId, {
                                     component: {
                                         name: 'ZipporaLog',
-                                    
+
                                         options: {
-                                        topBar: {
-                                            title: {
-                                            text: 'Zippora Log',
+                                            topBar: {
+                                                title: {
+                                                    text: 'Zippora Log',
+                                                }
                                             }
-                                        }
                                         }
                                     }
                                 });
@@ -254,16 +254,16 @@ class Profile extends Component {
                                 // });
                                 break;
                             case 2:
-                                    Navigation.push(this.props.componentId, {
+                                Navigation.push(this.props.componentId, {
                                     component: {
                                         name: 'Statement',
-                                    
+
                                         options: {
-                                        topBar: {
-                                            title: {
-                                            text: 'Statement',
+                                            topBar: {
+                                                title: {
+                                                    text: 'Statement',
+                                                }
                                             }
-                                        }
                                         }
                                     }
                                 });
@@ -281,13 +281,13 @@ class Profile extends Component {
                                 Navigation.push(this.props.componentId, {
                                     component: {
                                         name: 'AboutUs',
-                                    
+
                                         options: {
-                                        topBar: {
-                                            title: {
-                                            text: 'About Us',
+                                            topBar: {
+                                                title: {
+                                                    text: 'About Us',
+                                                }
                                             }
-                                        }
                                         }
                                     }
                                 });

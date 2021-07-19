@@ -144,7 +144,7 @@ export default class Login extends PureComponent {
             canSendVCode: false,
             textOnly: true,
         });
-        this.hud.show('sending verify code...');
+        this.hud.show('Sending verify code...');
         let param = new FormData();
         param.append('phone', this.state.phoneNum);
         netWork('POST', GET_VCODE, param, false)

@@ -46,7 +46,7 @@ class VerifyEmail extends PureComponent {
         this.setState({
             hudType: 'none'
         }, () => {
-            this.hud.show('sending code to your email');
+            this.hud.show('Sending code to your email');
         });
 
         let param = new FormData();

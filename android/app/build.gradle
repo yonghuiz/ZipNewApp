@@ -128,11 +128,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.zipcodexpress"
+        applicationId "com.zipcodexpress1"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 17
-        versionName "1.2.4"
+        versionCode 20
+        versionName '1.2.7'
          missingDimensionStrategy 'react-native-camera', 'general'
          missingDimensionStrategy "RNN.reactNativeVersion", "reactNative60"
           ndk {
@@ -225,13 +225,13 @@ dependencies {
  
  implementation 'com.braintreepayments.api:braintree:2.8.1'
 //信鸽稳定版
-    implementation 'com.tencent.xinge:xinge:3.1.81-alpha'
+    //implementation 'com.tencent.xinge:xinge:3.1.81-alpha'
 
     //wup包 如果和其他腾讯系的sdk 发生wup冲突，这个依赖可不添加
-    implementation 'com.tencent.wup:wup:1.0.0.E-alpha'
+    //implementation 'com.tencent.wup:wup:1.0.0.E-alpha'
 
     //mid包
-    implementation 'com.tencent.mid:mid:3.72.4-alpha'
+   // implementation 'com.tencent.mid:mid:3.72.4-alpha'
 
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";

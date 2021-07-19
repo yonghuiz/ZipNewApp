@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0in-dc-4W1">
+                    <rect key="frame" x="101" y="276" width="172" height="48"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with zipcodeXpress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf9-EM-Dda">
+                    <rect key="frame" x="111.5" y="578.5" width="152.5" height="23.5"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dW-9S-M3y">
+                    <rect key="frame" x="26.5" y="612" width="323.5" height="25"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package receiving becomes " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6z-iC-yoc">
+                            <rect key="frame" x="0.0" y="0.0" width="182.5" height="25"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="so easy and safe!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUf-fb-G7v">
+                            <rect key="frame" x="182.5" y="0.0" width="141" height="25"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="hUf-fb-G7v" secondAttribute="bottom" id="Ilm-Vu-GXb"/>
+                        <constraint firstItem="hUf-fb-G7v" firstAttribute="top" secondItem="9dW-9S-M3y" secondAttribute="top" id="SOc-MP-3bi"/>
+                        <constraint firstAttribute="bottom" secondItem="S6z-iC-yoc" secondAttribute="bottom" id="TgK-pa-YOh"/>
+                        <constraint firstItem="hUf-fb-G7v" firstAttribute="leading" secondItem="S6z-iC-yoc" secondAttribute="trailing" id="UJ4-kk-L1I"/>
+                        <constraint firstItem="S6z-iC-yoc" firstAttribute="top" secondItem="9dW-9S-M3y" secondAttribute="top" id="cCY-jO-KSX"/>
+                        <constraint firstAttribute="trailing" secondItem="hUf-fb-G7v" secondAttribute="trailing" id="fZe-LH-qCN"/>
+                        <constraint firstItem="S6z-iC-yoc" firstAttribute="leading" secondItem="9dW-9S-M3y" secondAttribute="leading" id="pid-aM-zMO"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchImage" translatesAutoresizingMaskIntoConstraints="NO" id="w5S-1k-LYD">
+                    <rect key="frame" x="73" y="140" width="230" height="106"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9dW-9S-M3y" firstAttribute="top" secondItem="xf9-EM-Dda" secondAttribute="bottom" constant="10" id="0I5-Ln-LcI"/>
+                <constraint firstItem="9dW-9S-M3y" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4mP-sh-5QT"/>
+                <constraint firstItem="w5S-1k-LYD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MQG-hy-oN1"/>
+                <constraint firstItem="0in-dc-4W1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="N5t-B3-qlu"/>
+                <constraint firstItem="xf9-EM-Dda" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="S7g-tA-nVP"/>
+                <constraint firstItem="0in-dc-4W1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.9" id="jfC-lf-rFj"/>
+                <constraint firstItem="0in-dc-4W1" firstAttribute="top" secondItem="w5S-1k-LYD" secondAttribute="bottom" constant="30" id="kGg-ks-9Ad"/>
+                <constraint firstAttribute="bottom" secondItem="9dW-9S-M3y" secondAttribute="bottom" constant="30" id="lPJ-Zj-miq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="510.5" y="441.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="launchIcon" width="172" height="48"/>
+        <image name="launchImage" width="230" height="106"/>
+    </resources>
+</document>

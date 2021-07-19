@@ -210,7 +210,7 @@ export default class NewRegister extends PureComponent {
                     />
                     <CommonTextInput
                         leftTitle="Phone"
-                        placeholder={'Enter mobile number(optional)'}
+                        placeholder={'Enter mobile number (optional)'}
                         placeholderTextColor={'lightgray'}
                         autoCapitalize={'none'}
                         autoCorrect={false}

@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/7/31.
  */
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
@@ -14,7 +14,7 @@ import {
 import {
     Button,
 } from 'react-native-elements'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as deliverSearchActions from '../../actions/deliverSearchAction'
 import * as newDeliverActions from '../../actions/newDeliverAction'
 import LoadingView from '../LoadingView'
@@ -62,9 +62,9 @@ class DeliverSearch extends Component {
          error:'',
          list:null,
          * */
-        const {loading, loadError, error, list} = this.props;
+        const { loading, loadError, error, list } = this.props;
         if (loading) {
-            return <LoadingView/>
+            return <LoadingView />
         }
         if (loadError) {
             let type = error === 'time out' ? 'timeout' : 'error';
@@ -81,18 +81,18 @@ class DeliverSearch extends Component {
         }
 
         if (list === null) {
-            return <View style={{flex: 1, backgroundColor: Color.bgColor}}/>
+            return <View style={{ flex: 1, backgroundColor: Color.bgColor }} />
         }
 
         if (list.length === 0) {
             return <ErrorView onReloadPress={() => {
                 this.props.getCabinet()
-            }} text="Have no data" type="empty"/>
+            }} text="No Data" type="empty" />
         }
 
         return (
             <FlatList
-                style={{flex: 1}}
+                style={{ flex: 1 }}
                 contentContainerStyle={{
                     flexDirection: 'column'
                 }}
@@ -105,7 +105,7 @@ class DeliverSearch extends Component {
     _renderRow(item) {
         let boxText = '';
         let boxEnough = false;
-        item.boxModelCount.map((data,index)=>{
+        item.boxModelCount.map((data, index) => {
             boxText += `${data.boxModelName}: ${data.count}`;
             if (index !== item.boxModelCount.length - 1) {
                 boxText += ' ';
@@ -117,7 +117,7 @@ class DeliverSearch extends Component {
         return (
             <TouchableOpacity
                 activeOpacity={1}
-                style={{marginBottom: 10, backgroundColor: 'white', flexDirection: 'row', padding: 8,}}
+                style={{ marginBottom: 10, backgroundColor: 'white', flexDirection: 'row', padding: 8, }}
                 onPress={() => {
                     if (boxEnough) {
                         this.props.setFromCargo(item);
@@ -126,27 +126,27 @@ class DeliverSearch extends Component {
                 }}
             >
                 <Image
-                    style={{width: 80, height: 80, backgroundColor: Color.bgColor}}
-                    source={{uri: item.img}}
+                    style={{ width: 80, height: 80, backgroundColor: Color.bgColor }}
+                    source={{ uri: item.img }}
                 />
-                <View style={{flex: 1, paddingLeft: 8, flexDirection: 'column', justifyContent: 'space-between'}}>
-                    <Text style={{color: Color.titleColor, fontWeight: 'bold', fontSize: 16}}>
+                <View style={{ flex: 1, paddingLeft: 8, flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <Text style={{ color: Color.titleColor, fontWeight: 'bold', fontSize: 16 }}>
                         ID: {item.cabinetId}
                     </Text>
-                    <Text numberOfLines={2} style={{fontSize: 12, color: Color.tipsColor}}>
+                    <Text numberOfLines={2} style={{ fontSize: 12, color: Color.tipsColor }}>
                         {item.address}
                     </Text>
-                    <Text style={{color: Color.themeColor, fontWeight: 'bold'}}>
+                    <Text style={{ color: Color.themeColor, fontWeight: 'bold' }}>
                         {boxText}
                     </Text>
                 </View>
-                <View style={{alignItems: 'center', justifyContent: 'center', width: 65}}>
+                <View style={{ alignItems: 'center', justifyContent: 'center', width: 65 }}>
                     <Icon
                         name="ios-pin"
                         size={35}
                         color={Color.blue}
                     />
-                    <Text style={{fontSize: 12, color: Color.orange}}>
+                    <Text style={{ fontSize: 12, color: Color.orange }}>
                         {`${item.dis}miles`}
                     </Text>
                 </View>
@@ -164,7 +164,7 @@ class DeliverSearch extends Component {
 
     render() {
         return (
-            <View style={{flex: 1, backgroundColor: Color.bgColor, flexDirection: 'column'}}>
+            <View style={{ flex: 1, backgroundColor: Color.bgColor, flexDirection: 'column' }}>
                 <View style={styles.searchView}>
                     <TextInput
                         placeholder='Enter zip code or address'

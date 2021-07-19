@@ -1,4 +1,4 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "vsintellicode.python.completionsEnabled": false
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "vsintellicode.python.completionsEnabled": false
 }

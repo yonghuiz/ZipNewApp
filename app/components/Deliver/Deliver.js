@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/5/15.
  */
-import React, {Component, PureComponent} from 'react'
+import React, { Component, PureComponent } from 'react'
 import {
     View,
     Text,
@@ -17,7 +17,7 @@ import Svg, {
     Rect,
     Line,
 } from 'react-native-svg'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as deliverAction from '../../actions/deliverAction'
 import LoadingView from '../LoadingView'
 import ErrorView from '../ErrorView'
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 class ItemSeparatorComponent extends Component {
     render() {
         return (
-            <View style={{height: 20}}>
+            <View style={{ height: 20 }}>
 
             </View>
         )
@@ -87,7 +87,7 @@ class Deliver extends PureComponent {
                     this.props.navigator.push({
                         screen: 'DeliverInfo',
                         title: 'Deliver info',
-                        passProps: {deliverInfo:item},
+                        passProps: { deliverInfo: item },
                         animationType: 'slide-horizontal',
                         navigatorStyle: navigatorStyle,
                     })
@@ -101,8 +101,8 @@ class Deliver extends PureComponent {
                     backgroundColor: 'white'
                 }}
             >
-                <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <ZIPText style={{flex: 1}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <ZIPText style={{ flex: 1 }}>
                         Order ID: {item.deliverId}
                     </ZIPText>
                     <View
@@ -119,12 +119,12 @@ class Deliver extends PureComponent {
                             paddingBottom: 4,
                         }}
                     >
-                        <ZIPText style={{color: '#B5AE35', fontSize: 12}}>
+                        <ZIPText style={{ color: '#B5AE35', fontSize: 12 }}>
                             {item.cargo.cargoStatusText}
                         </ZIPText>
                     </View>
                 </View>
-                <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                     <View
                         style={{
                             width: 40,
@@ -132,30 +132,30 @@ class Deliver extends PureComponent {
                             justifyContent: 'center'
                         }}
                     >
-                        <ZIPText style={{fontSize:20}}>
+                        <ZIPText style={{ fontSize: 20 }}>
                             To
                         </ZIPText>
                     </View>
-                    <ZIPText style={{flex: 1, color: Color.titleColor}}>
+                    <ZIPText style={{ flex: 1, color: Color.titleColor }}>
                         {item.to.address}
                     </ZIPText>
                 </View>
-                <View style={{flexDirection:'row', alignItems:'center', marginTop:10}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
                     <View
                         style={{
-                            width:40,
-                            flexDirection:'column',
-                            alignItems:'center',
+                            width: 40,
+                            flexDirection: 'column',
+                            alignItems: 'center',
                         }}
                     >
-                        <View style={{width:1,height:10, backgroundColor:Color.themeColor}}/>
-                        <View style={{width:10,height:10, borderRadius:5, backgroundColor:Color.themeColor}}/>
-                        <View style={{width:1,height:10, backgroundColor:Color.themeColor}}/>
+                        <View style={{ width: 1, height: 10, backgroundColor: Color.themeColor }} />
+                        <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: Color.themeColor }} />
+                        <View style={{ width: 1, height: 10, backgroundColor: Color.themeColor }} />
                     </View>
-                    <ZIPText style={{flex:1,color:Color.titleColor}}>
+                    <ZIPText style={{ flex: 1, color: Color.titleColor }}>
                         {item.deliverTraceList[0].text}
                     </ZIPText>
-                    <ZIPText style={{color:Color.titleColor}}>
+                    <ZIPText style={{ color: Color.titleColor }}>
                         {item.deliverTraceList[0].time}
                     </ZIPText>
                 </View>
@@ -164,9 +164,9 @@ class Deliver extends PureComponent {
     }
 
     renderList() {
-        const {loading, error, list, errText} = this.props;
+        const { loading, error, list, errText } = this.props;
         if (loading && list === null) {
-            return <LoadingView/>
+            return <LoadingView />
         }
         if (error) {
             let type = errText === 'time out' ? 'timeout' : 'error';
@@ -186,12 +186,12 @@ class Deliver extends PureComponent {
         }
         if (list.length === 0) {
             if (loading) {
-                return <LoadingView/>
+                return <LoadingView />
             }
             return (
                 <ErrorView onReloadPress={() => {
                     this.props.getDeliverList()
-                }} text="Have no data" type="empty"/>
+                }} text="No Data" type="empty" />
             )
         }
         return (
@@ -199,7 +199,7 @@ class Deliver extends PureComponent {
                 style={{
                     flex: 1,
                 }}
-                contentContainerStyle={{flexDirection: 'column'}}
+                contentContainerStyle={{ flexDirection: 'column' }}
                 ItemSeparatorComponent={ItemSeparatorComponent}
                 data={list}
                 renderItem={(item) => this._renderItem(item.item)}
@@ -220,7 +220,7 @@ class Deliver extends PureComponent {
          getAroundError:false,
          aroundErrorText:'',
          * */
-        const {aroundInfo, getAroundError, aroundErrorText} = this.props;
+        const { aroundInfo, getAroundError, aroundErrorText } = this.props;
         if (getAroundError) {
             return (
                 <TouchableOpacity
@@ -230,7 +230,7 @@ class Deliver extends PureComponent {
                     }}
                     style={[styles.assistHeader]}
                 >
-                    <Text style={{flex: 1, color: Color.red}}>
+                    <Text style={{ flex: 1, color: Color.red }}>
                         {aroundErrorText + ' tap to reload'}
                     </Text>
                 </TouchableOpacity>
@@ -257,10 +257,10 @@ class Deliver extends PureComponent {
                         style={styles.assistHeader}
                     >
                         <ZIPText style={styles.assistTitle}>
-                            There is <ZIPText style={{color: Color.red}}>{aroundInfo.cabinetList.length}</ZIPText> Lockers, <Text style={{color: Color.red}}>{aroundInfo.courierList.length} </Text>
+                            There is <ZIPText style={{ color: Color.red }}>{aroundInfo.cabinetList.length}</ZIPText> Lockers, <Text style={{ color: Color.red }}>{aroundInfo.courierList.length} </Text>
                             couriers within 2 miles
                         </ZIPText>
-                        <Image source={require('../../assets/images/ditu.png')}/>
+                        <Image source={require('../../assets/images/ditu.png')} />
                     </TouchableOpacity>
                 )
             }
@@ -270,20 +270,20 @@ class Deliver extends PureComponent {
 
     render() {
         return (
-            <View style={{flex: 1, flexDirection: 'column', backgroundColor: Color.bgColor}}>
+            <View style={{ flex: 1, flexDirection: 'column', backgroundColor: Color.bgColor }}>
                 {this._renderAroundInfo()}
-                <View style={{padding: 16,paddingBottom:8,paddingTop:8, flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={{flex: 1, fontSize: 18}}>
+                <View style={{ padding: 16, paddingBottom: 8, paddingTop: 8, flexDirection: 'row', alignItems: 'center' }}>
+                    <Text style={{ flex: 1, fontSize: 18 }}>
                         My delivery orders
                     </Text>
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={() => {
                             this.props.navigator.push({
-                                screen:'NewDeliver',
-                                title:'New delivery',
-                                navigatorStyle:navigatorStyle,
-                                animationType:'slide-horizontal'
+                                screen: 'NewDeliver',
+                                title: 'New delivery',
+                                navigatorStyle: navigatorStyle,
+                                animationType: 'slide-horizontal'
                             })
                         }}
                         style={{
@@ -293,8 +293,8 @@ class Deliver extends PureComponent {
                             alignItems: 'center'
                         }}
                     >
-                        <Icon name="md-add" color="white" size={16}/>
-                        <ZIPText style={{color: 'white', marginLeft:4}}>
+                        <Icon name="md-add" color="white" size={16} />
+                        <ZIPText style={{ color: 'white', marginLeft: 4 }}>
                             New deliver
                         </ZIPText>
                     </TouchableOpacity>

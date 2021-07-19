@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>zipcodeXpress.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>5E042802270ED4FE6F4B380CC116E46981477AE8</string>
+				<key>dateExpires</key>
+				<string>8/25/21</string>
+				<key>type</key>
+				<string>iOS Development</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>5E042802270ED4FE6F4B380CC116E46981477AE8</string>
+						<key>dateExpires</key>
+						<string>8/25/21</string>
+						<key>type</key>
+						<string>iOS Development</string>
+					</dict>
+					<key>name</key>
+					<string>QBImagePicker.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>RCRRXD48ME</string>
+						<key>name</key>
+						<string>ZipcodeXpress Inc.</string>
+					</dict>
+				</dict>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>5E042802270ED4FE6F4B380CC116E46981477AE8</string>
+						<key>dateExpires</key>
+						<string>8/25/21</string>
+						<key>type</key>
+						<string>iOS Development</string>
+					</dict>
+					<key>name</key>
+					<string>RSKImageCropper.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>RCRRXD48ME</string>
+						<key>name</key>
+						<string>ZipcodeXpress Inc.</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>RCRRXD48ME.com.unibox.express</string>
+				<key>aps-environment</key>
+				<string>development</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>RCRRXD48ME</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>zipcodeXpress.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>456b9553-3fd8-4430-97cf-bf832a5ff22f</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: com.unibox.express</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>RCRRXD48ME</string>
+				<key>name</key>
+				<string>ZipcodeXpress Inc.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

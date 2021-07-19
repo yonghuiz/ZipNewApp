@@ -1,4 +1,4 @@
-package com.zipcodexpress;
+package com.zipcodexpress1;
 
 import com.braintreepayments.api.BraintreeFragment;
 import com.braintreepayments.api.PayPal;
@@ -36,7 +36,8 @@ public class PaymentManager extends ReactContextBaseJavaModule
         payCallback = callback;
         try {
             mBraintreeFragment = BraintreeFragment.newInstance(getCurrentActivity(),
-                    "sandbox_5rj7bnb5_ggbpfszgy9q9999n");
+                    // "sandbox_5rj7bnb5_ggbpfszgy9q9999n");
+                    "production_9qb7f6qw_pjmkcpqhmttyn2py");
             mBraintreeFragment.addListener(this);
         } catch (InvalidArgumentException e) {
             onError(e);

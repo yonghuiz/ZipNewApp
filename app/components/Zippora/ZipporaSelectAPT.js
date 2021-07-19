@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/8/4.
  */
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
@@ -10,7 +10,7 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as uploadCerActions from '../../actions/uploadCerAction';
 import * as selectAPTActions from '../../actions/selectAPTAction'
 import LoadingView from '../LoadingView'
@@ -18,7 +18,7 @@ import ErrorView from '../ErrorView'
 import Hud from 'react-native-lyhud'
 import ZIPText from '../ZIPText'
 import Icon from 'react-native-vector-icons/Ionicons'
-import {Navigation} from 'react-native-navigation'
+import { Navigation } from 'react-native-navigation'
 
 const styles = StyleSheet.create({
     container: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 class SelectAPTSepComponent extends Component {
     render() {
         return (
-            <View style={{height: 10}}/>
+            <View style={{ height: 10 }} />
         )
     }
 }
@@ -53,16 +53,16 @@ class ZipporaSelectAPT extends Component {
             .then(source => {
 
                 Navigation.mergeOptions(this.props.componentId, {
-                    visible:true,
+                    visible: true,
                     topBar: {
-                      rightButtons: [
-                        {
-                          id: 'close',
-                          Icon: source
-                        }
-                      ]
+                        rightButtons: [
+                            {
+                                id: 'close',
+                                Icon: source
+                            }
+                        ]
                     }
-                  });
+                });
 
                 // this.props.navigator.setButtons({
                 //     rightButtons: [
@@ -88,24 +88,24 @@ class ZipporaSelectAPT extends Component {
         this.props.loadApt(this.props.zipCode);
     }
 
-    
-      componentWillUnmount() {
+
+    componentWillUnmount() {
         // Not mandatory
-        
+
         if (this.navigationEventListener) {
-          this.navigationEventListener.remove();
+            this.navigationEventListener.remove();
         }
-      }
-    
-      navigationButtonPressed({ buttonId }) {
+    }
+
+    navigationButtonPressed({ buttonId }) {
         // will be called when "buttonOne" is clicked
         if (buttonId === 'close') {
             Navigation.popToRoot(this.props.componentId);
 
         }
-     } 
-      
-    
+    }
+
+
     // onNavigatorEvent(event) {      
     //     if(event.type === 'NavBarButtonPress'&&event.id==='close'){
     //         this.props.navigator.popToRoot();
@@ -118,23 +118,23 @@ class ZipporaSelectAPT extends Component {
                 activeOpacity={1}
                 onPress={() => {
                     if (item.hasBinded == 1) {
-                        this.hud.show('You have already subscribed to this apartment',2000);
+                        this.hud.show('You have already subscribed to this apartment', 2000);
                         return;
                     }
                     this.props.setApt(item);
                     Navigation.push(this.props.componentId, {
-                    component: {
-                        name: 'ZipporaSelectUnit',
-                       
-                        options: {
-                          topBar: {
-                            title: {
-                              text: 'Select Unit'
+                        component: {
+                            name: 'ZipporaSelectUnit',
+
+                            options: {
+                                topBar: {
+                                    title: {
+                                        text: 'Select Unit'
+                                    }
+                                }
                             }
-                          }
                         }
-                      }
-                  });
+                    });
                     // this.props.navigator.push({
                     //     screen: 'ZipporaSelectUnit',
                     //     title: 'Select Unit',
@@ -145,10 +145,10 @@ class ZipporaSelectAPT extends Component {
                 }}
                 style={styles.itemContainer}
             >
-                <Image source={require('../../assets/images/apartment.png')}/>
-                <View style={{marginLeft: 16, flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <ZIPText style={{color: Color.titleColor, fontSize: 17, fontWeight: '500', padding: 2}}>
+                <Image source={require('../../assets/images/apartment.png')} />
+                <View style={{ marginLeft: 16, flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <ZIPText style={{ color: Color.titleColor, fontSize: 17, fontWeight: '500', padding: 2 }}>
                             {item.apartmentName}
                         </ZIPText>
                         {
@@ -165,14 +165,14 @@ class ZipporaSelectAPT extends Component {
                                         justifyContent: 'center',
                                     }}
                                 >
-                                    <ZIPText style={{fontSize: 12, color: 'white'}}>
+                                    <ZIPText style={{ fontSize: 12, color: 'white' }}>
                                         Subscribed
                                     </ZIPText>
                                 </View> :
                                 null
                         }
                     </View>
-                    <ZIPText numberOfLines={2} style={{color: Color.tipsColor, fontSize: 13}}>
+                    <ZIPText numberOfLines={2} style={{ color: Color.tipsColor, fontSize: 13 }}>
                         {item.address}
                     </ZIPText>
                 </View>
@@ -182,9 +182,9 @@ class ZipporaSelectAPT extends Component {
 
     render() {
 
-        const {loading, loadError, error, list} = this.props;
+        const { loading, loadError, error, list } = this.props;
         if (loading) {
-            return <LoadingView/>
+            return <LoadingView />
         }
         console.log(this.props);
 
@@ -206,12 +206,12 @@ class ZipporaSelectAPT extends Component {
             return (
                 <ErrorView onReloadPress={() => {
                     this.props.loadApt()
-                }} text="Have no data" type="empty"/>
+                }} text="No Data" type="empty" />
             )
         }
 
         return (
-            <View style={{flex:1, backgroundColor:Color.bgColor}}>
+            <View style={{ flex: 1, backgroundColor: Color.bgColor }}>
                 <FlatList
                     style={styles.container}
                     data={list}
@@ -220,7 +220,7 @@ class ZipporaSelectAPT extends Component {
                     //ListFooterComponent={SelectAPTFooterComponent}
                     keyExtractor={(item, index) => (index)}
                 />
-                <Hud hudType={'none'} textOnly={true} ref={r=>this.hud = r}/>
+                <Hud hudType={'none'} textOnly={true} ref={r => this.hud = r} />
             </View>
         )
     }

@@ -5281,12 +5281,12 @@ react-native-animatable@^1.3.2:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-camera@0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.12.0.tgz#51afa8acf1696d9d973074b6454c5ba2cce6ac18"
-  integrity sha512-Ja0/cfiaE/p8qbNpvRu/r6gaJqpXsZyVWO0g8s3yrdC/JgyMMMrzemGmptSCdkYvrfuEN8pga94O+a07uD4i3w==
+react-native-camera@^3.40.0:
+  version "3.40.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.40.0.tgz#69845991e46b0892cc2b50322d49b18f292c3202"
+  integrity sha512-Ur0hZqZcl3SntTVMB9GxuiLYpQxqwgzhQVb+7EGae4WjfDzQEwlGF0bJ7UpZyeUTb1oZmsiSib58xUckn11XMw==
   dependencies:
-    prop-types "^15.5.10"
+    prop-types "^15.6.2"
 
 react-native-checkbox@^2.0.0:
   version "2.0.0"
@@ -5317,9 +5317,9 @@ react-native-geolocation-service@^3.1.0:
     "@react-native-community/geolocation" "^1.4.2"
 
 react-native-image-crop-picker@^0.25.2:
-  version "0.25.2"
-  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.25.2.tgz#241e598e6bd601248c319483c19508f9bc9a203e"
-  integrity sha512-LZX9gJb5q1q6Oo1jXj1FyNEEDkvfynZMeE3M9jhFjJdvknMf/eui7GlmSokzQ4A1MLxKmcLSVDGw2L1HTBAO6A==
+  version "0.25.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.25.3.tgz#46ee28b4a0a187240e388bd28a44cf8c274caec6"
+  integrity sha512-jQ416WXEiEQ3w057QOYU++8/mDqYb2A/AGZY/NwR5eKda/z8a4wncWKj7oF9KBAHNKE1TmPrl9Rm0GZ0Jrzp6A==
 
 react-native-image-picker@^1.1.0:
   version "1.1.0"

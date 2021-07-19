@@ -471,7 +471,7 @@ class Recharge extends PureComponent {
                         <View style={{ flexDirection: 'row' }}>
                             <Icon name="ios-information-circle" size={16} color={Color.tipsColor} />
                             <ZIPText style={styles.tipsText}>
-                                {'1U-coin=1cent, when you make payment' +
+                                {'1U-coin=1cent, when you make the payment' +
                                     ', we charge your account in the order of U-coin' +
                                     ', wallet and credit card.'}
                             </ZIPText>
@@ -480,25 +480,7 @@ class Recharge extends PureComponent {
                     <ZIPText style={[styles.titleText, { marginTop: 8 }]}>
                         Pay way
                     </ZIPText>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => {
-                            if (payWay !== 0) {
-                                this.props.selectPayWay(0);
-                            }
-                        }}
-                        style={styles.payWayButton}
-                    >
-                        <Icon
-                            name={payWay === 0 ? 'ios-radio-button-on' : 'ios-radio-button-off'}
-                            size={28}
-                            color={Color.themeColor}
-                        />
-                        <ZIPText style={{ marginLeft: 8 }}>
-                            Credit Card
-                        </ZIPText>
-                    </TouchableOpacity>
-                    {this._renderCard()}
+
                     <TouchableOpacity
                         activeOpacity={1}
                         onPress={() => {

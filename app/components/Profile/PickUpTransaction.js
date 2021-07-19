@@ -1,13 +1,13 @@
 /**
  * Created by liuyu on 2017/11/6.
  */
-import React,{ PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     FlatList,
     StyleSheet
 } from 'react-native'
-import Svg,{
+import Svg, {
     Line
 } from 'react-native-svg'
 import ZIPText from '../ZIPText'
@@ -18,13 +18,13 @@ import * as pickuptransactionAction from '../../actions/pickUpTransactionAction'
 
 const styles = StyleSheet.create({
     itemContainer: {
-        marginTop:10,
-        paddingLeft:16,
-        paddingRight:16,
-        paddingTop:8,
-        paddingBottom:8,
-        backgroundColor:'white',
-        flexDirection:'column'
+        marginTop: 10,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
+        backgroundColor: 'white',
+        flexDirection: 'column'
     }
 });
 
@@ -40,8 +40,8 @@ class PickUpTransaction extends PureComponent {
             <View
                 style={styles.itemContainer}
             >
-                <View style={{flexDirection:'row', alignItems:'center'}}>
-                    <ZIPText style={{flex:1}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <ZIPText style={{ flex: 1 }}>
                         {item.deliverId}
                     </ZIPText>
                     <View
@@ -58,16 +58,16 @@ class PickUpTransaction extends PureComponent {
                             paddingBottom: 4,
                         }}
                     >
-                        <ZIPText style={{color: '#B5AE35', fontSize: 12}}>
+                        <ZIPText style={{ color: '#B5AE35', fontSize: 12 }}>
                             {item.cargo.cargoStatusText}
                         </ZIPText>
                     </View>
                 </View>
-                <View style={{flexDirection:'row', alignItems:'center', marginTop:8}}>
-                    <ZIPText style={{fontSize:18,width:90}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+                    <ZIPText style={{ fontSize: 18, width: 90 }}>
                         {item.from.zipcode}
                     </ZIPText>
-                    <View style={{width:screenSize.width - 32 - 180,height:21}}>
+                    <View style={{ width: screenSize.width - 32 - 180, height: 21 }}>
                         <Svg
                             width={screenSize.width - 32 - 180}
                             height="21"
@@ -98,22 +98,22 @@ class PickUpTransaction extends PureComponent {
                             />
                         </Svg>
                     </View>
-                    <ZIPText style={{fontSize:18,width:90, textAlign:'right'}}>
+                    <ZIPText style={{ fontSize: 18, width: 90, textAlign: 'right' }}>
                         {item.to.zipcode}
                     </ZIPText>
                 </View>
-                <View style={{flexDirection:'row', alignItems:'center', marginTop:8}}>
-                    <ZIPText style={{color:Color.titleColor, fontSize:13}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+                    <ZIPText style={{ color: Color.titleColor, fontSize: 13 }}>
                         {item.from.time}
                     </ZIPText>
-                    <View style={{flex:1}}>
+                    <View style={{ flex: 1 }}>
 
                     </View>
-                    <ZIPText style={{color:Color.titleColor, fontSize:13}}>
+                    <ZIPText style={{ color: Color.titleColor, fontSize: 13 }}>
                         {item.to.time}
                     </ZIPText>
                 </View>
-                <ZIPText style={{marginTop:8, fontSize:15, textAlign:'right'}}>
+                <ZIPText style={{ marginTop: 8, fontSize: 15, textAlign: 'right' }}>
                     Pickup code: {item.to.pickCode}
                 </ZIPText>
             </View>
@@ -129,12 +129,12 @@ class PickUpTransaction extends PureComponent {
         } = this.props;
         console.log(loading);
         if (loading && list === null) {
-            return <LoadingView/>
+            return <LoadingView />
         }
 
         if (loadError) {
             let type = error === 'time out' ? 'timeout' : 'error';
-            let text = error === 'time out' ? 'Request time out':'System error';
+            let text = error === 'time out' ? 'Request time out' : 'System error';
             return (
                 <ErrorView
                     text={text}
@@ -152,12 +152,12 @@ class PickUpTransaction extends PureComponent {
         }
         if (list.length === 0) {
             if (loading) {
-                return <LoadingView/>
+                return <LoadingView />
             }
             return (
                 <ErrorView onReloadPress={() => {
                     this.props.loadList()
-                }} text="Have no data" type="empty"/>
+                }} text="No Data" type="empty" />
             )
         }
 
@@ -166,10 +166,10 @@ class PickUpTransaction extends PureComponent {
                 style={{
                     flex: 1,
                 }}
-                contentContainerStyle={{flexDirection: 'column'}}
+                contentContainerStyle={{ flexDirection: 'column' }}
                 data={list}
-                renderItem={(item)=>this.renderItem(item.item)}
-                keyExtractor={(item,index)=>index}
+                renderItem={(item) => this.renderItem(item.item)}
+                keyExtractor={(item, index) => index}
                 refreshing={loading}
                 onRefresh={() => {
                     this.props.loadList()
@@ -180,13 +180,13 @@ class PickUpTransaction extends PureComponent {
 }
 
 export default connect(
-    (state)=>({
-        loading:state.pickuptransaction.loading,
-        loadError:state.pickuptransaction.loadError,
-        error:state.pickuptransaction.error,
-        list:state.pickuptransaction.list,
+    (state) => ({
+        loading: state.pickuptransaction.loading,
+        loadError: state.pickuptransaction.loadError,
+        error: state.pickuptransaction.error,
+        list: state.pickuptransaction.list,
     }),
-    (dispatch)=>({
-        loadList:()=>dispatch(pickuptransactionAction.loadList()),
+    (dispatch) => ({
+        loadList: () => dispatch(pickuptransactionAction.loadList()),
     })
 )(PickUpTransaction)

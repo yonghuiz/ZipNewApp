@@ -1,7 +1,7 @@
 /**
  * Created by liuyu on 2017/6/27.
  */
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import {
     View,
     Text,
@@ -10,14 +10,14 @@ import {
 } from 'react-native'
 import Hud from 'react-native-lyhud'
 import * as Animatable from 'react-native-animatable'
-import Camera from 'react-native-camera'
+import { RNCamera } from 'react-native-camera'
 import {
     QRCODELL_QRCODE,
 } from '../config/API'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import * as zipporaHomeActions from '../actions/zipporaHomeAction'
 import * as deliverActions from '../actions/deliverAction'
-import {Navigation} from 'react-native-navigation'
+import { Navigation } from 'react-native-navigation'
 
 
 class BarScan extends PureComponent {
@@ -31,7 +31,7 @@ class BarScan extends PureComponent {
 
     constructor(props) {
         super();
-       // Navigation.events().bindComponent(this);
+        // Navigation.events().bindComponent(this);
         // props.navigator.setOnNavigatorEvent((event) => {
         //     this.onNavigatorEvent(event)
         // });
@@ -41,24 +41,24 @@ class BarScan extends PureComponent {
     }
     componentDidMount() {
         this.navigationEventListener = Navigation.events().bindComponent(this);
-      }
-    
-      componentWillUnmount() {
+    }
+
+    componentWillUnmount() {
         // Not mandatory
         this.props.setCanScan(true);
-            this.props.setScan(true);
+        this.props.setScan(true);
         if (this.navigationEventListener) {
-          this.navigationEventListener.remove();
+            this.navigationEventListener.remove();
         }
-      }
-    
-      componentDidAppear() {
-        this.time = setTimeout(()=>{
-                            this.setState({
-                                showCamera: true,
-                            });
-                        },1000);
-      }
+    }
+
+    componentDidAppear() {
+        this.time = setTimeout(() => {
+            this.setState({
+                showCamera: true,
+            });
+        }, 1000);
+    }
 
     // onNavigatorEvent(event) {
     //     switch (event.id) {
@@ -104,17 +104,17 @@ class BarScan extends PureComponent {
 
     render() {
         return (
-            <View style={{flex: 1}}>
+            <View style={{ flex: 1 }}>
                 {
                     this.state.showCamera ?
-                        <Camera
+                        <RNCamera
                             style={{
                                 flex: 1,
                                 flexDirection: 'column',
                             }}
                             captureAudio={false}
-                            aspect={Camera.constants.Aspect.fill}
-                            captureQuality={'medium'}
+                            // aspect={Camera.constants.Aspect.fill}
+                            // captureQuality={'medium'}
                             onBarCodeRead={(data) => {
                                 console.log(data);
                                 if (this.isReading == false) {
@@ -123,7 +123,7 @@ class BarScan extends PureComponent {
                                 }
                                 // this.refs.toast.show('Please wait...', 100000);
                             }}
-                            //barCodeTypes={[Camera.constants.BarCodeType.qr]}
+                        //barCodeTypes={[Camera.constants.BarCodeType.qr]}
                         >
                             <View
                                 style={{
@@ -133,45 +133,45 @@ class BarScan extends PureComponent {
                                     justifyContent: 'flex-end',
                                 }}
                             >
-                                <View style={{height: 8, paddingLeft: 42, paddingRight: 42, flexDirection: 'row'}}>
-                                    <View style={{width: 30, backgroundColor: Color.blue}}/>
-                                    <View style={{flex: 1}}/>
-                                    <View style={{width: 30, backgroundColor: Color.blue}}/>
+                                <View style={{ height: 8, paddingLeft: 42, paddingRight: 42, flexDirection: 'row' }}>
+                                    <View style={{ width: 30, backgroundColor: Color.blue }} />
+                                    <View style={{ flex: 1 }} />
+                                    <View style={{ width: 30, backgroundColor: Color.blue }} />
                                 </View>
                             </View>
-                            <View style={{height: screenSize.width - 100, flexDirection: 'row'}}>
+                            <View style={{ height: screenSize.width - 100, flexDirection: 'row' }}>
                                 <View style={{
                                     width: 50, backgroundColor: 'rgba(0,0,0,0.4)', flexDirection: 'row',
                                     justifyContent: 'flex-end',
                                 }}>
-                                    <View style={{width: 8, flexDirection: 'column'}}>
-                                        <View style={{height: 22, backgroundColor: Color.blue}}/>
-                                        <View style={{flex: 1}}/>
-                                        <View style={{height: 22, backgroundColor: Color.blue}}/>
+                                    <View style={{ width: 8, flexDirection: 'column' }}>
+                                        <View style={{ height: 22, backgroundColor: Color.blue }} />
+                                        <View style={{ flex: 1 }} />
+                                        <View style={{ height: 22, backgroundColor: Color.blue }} />
                                     </View>
                                 </View>
-                                <View style={{width: screenSize.width - 100, borderColor: 'white', borderWidth: 1}}>
+                                <View style={{ width: screenSize.width - 100, borderColor: 'white', borderWidth: 1 }}>
                                     <Animatable.Image
-                                        animation={{from: {marginTop: 0}, to: {marginTop: screenSize.width - 100 - 10}}}
+                                        animation={{ from: { marginTop: 0 }, to: { marginTop: screenSize.width - 100 - 10 } }}
                                         easing="linear"
                                         iterationCount="infinite"
                                         duration={2000}
-                                        style={{width: screenSize.width - 90, height: 10}}
-                                        source={require('../assets/images/scan-line.png')}/>
+                                        style={{ width: screenSize.width - 90, height: 10 }}
+                                        source={require('../assets/images/scan-line.png')} />
                                 </View>
-                                <View style={{width: 50, backgroundColor: 'rgba(0,0,0,0.4)', flexDirection: 'row'}}>
-                                    <View style={{width: 8, flexDirection: 'column'}}>
-                                        <View style={{height: 22, backgroundColor: Color.blue}}/>
-                                        <View style={{flex: 1}}/>
-                                        <View style={{height: 22, backgroundColor: Color.blue}}/>
+                                <View style={{ width: 50, backgroundColor: 'rgba(0,0,0,0.4)', flexDirection: 'row' }}>
+                                    <View style={{ width: 8, flexDirection: 'column' }}>
+                                        <View style={{ height: 22, backgroundColor: Color.blue }} />
+                                        <View style={{ flex: 1 }} />
+                                        <View style={{ height: 22, backgroundColor: Color.blue }} />
                                     </View>
                                 </View>
                             </View>
-                            <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', flexDirection: 'column'}}>
-                                <View style={{height: 8, paddingLeft: 42, paddingRight: 42, flexDirection: 'row'}}>
-                                    <View style={{width: 30, backgroundColor: Color.blue}}/>
-                                    <View style={{flex: 1}}/>
-                                    <View style={{width: 30, backgroundColor: Color.blue}}/>
+                            <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', flexDirection: 'column' }}>
+                                <View style={{ height: 8, paddingLeft: 42, paddingRight: 42, flexDirection: 'row' }}>
+                                    <View style={{ width: 30, backgroundColor: Color.blue }} />
+                                    <View style={{ flex: 1 }} />
+                                    <View style={{ width: 30, backgroundColor: Color.blue }} />
                                 </View>
                                 <View style={{
                                     paddingLeft: 50,
@@ -180,16 +180,16 @@ class BarScan extends PureComponent {
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 }}>
-                                    <Text style={{color: 'white'}}>
+                                    <Text style={{ color: 'white' }}>
                                         Align QR Code within frame to scan
                                     </Text>
                                 </View>
                             </View>
-                        </Camera> :
-                        <View style={{flex:1, backgroundColor:'black', alignItems:'center', justifyContent:'center'}}>
-                            <View style={{flexDirection:'row'}}>
-                                <ActivityIndicator animated={true} color="white"/>
-                                <Text style={{marginLeft:4,color:'white'}}>
+                        </RNCamera> :
+                        <View style={{ flex: 1, backgroundColor: 'black', alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <ActivityIndicator animated={true} color="white" />
+                                <Text style={{ marginLeft: 4, color: 'white' }}>
                                     Starting camera
                                 </Text>
                             </View>
@@ -197,7 +197,7 @@ class BarScan extends PureComponent {
                 }
                 <Hud textOnly={true} ref={(r) => {
                     this.hud = r
-                }}/>
+                }} />
             </View>
         )
     }

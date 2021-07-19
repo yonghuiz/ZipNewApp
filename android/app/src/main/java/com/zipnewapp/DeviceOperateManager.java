@@ -1,4 +1,4 @@
-package com.zipcodexpress;
+package com.zipcodexpress1;
 
 import android.content.Intent;
 import android.graphics.Rect;
@@ -30,11 +30,11 @@ public class DeviceOperateManager extends ReactContextBaseJavaModule {
         localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= 9) {
             localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-            localIntent.setData(Uri.fromParts("package", getCurrentActivity().getPackageName(),null));
+            localIntent.setData(Uri.fromParts("package", getCurrentActivity().getPackageName(), null));
         } else if (Build.VERSION.SDK_INT <= 8) {
             localIntent.setAction(Intent.ACTION_VIEW);
             localIntent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-            localIntent.putExtra("com.android.settings.ApplicationPkgName",getCurrentActivity().getPackageName());
+            localIntent.putExtra("com.android.settings.ApplicationPkgName", getCurrentActivity().getPackageName());
         }
         getCurrentActivity().startActivity(localIntent);
     }
